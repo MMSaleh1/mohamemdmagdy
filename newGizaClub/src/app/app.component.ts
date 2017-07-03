@@ -11,7 +11,7 @@ import {RegestrationPage } from '../pages/regestration/regestration';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LandingPage ;
+  rootPage:any = RegestrationPage ;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
