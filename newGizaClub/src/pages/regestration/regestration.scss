@@ -1,3 +1,41 @@
 page-regestration {
+    
+}
+.regestration-content{
+    background-color: 	#003147;
+}
+.icon{
+    color: 	#fbb713;
+    font-size: 3em;
+}
+.regestration-row{
+        margin: auto;
+        width: 75%;
+}
+.text-input::-moz-placeholder {
+  color: white;
+}
 
+.text-input:-ms-input-placeholder {
+  color: white;
+}
+
+.text-input::-webkit-input-placeholder {
+  text-indent: 0;
+  color: white;
+}
+.regestration-bottom{
+    margin: auto;
+    width: 50%;
+    color: #003147;
+    background-color:#fbb713 ;
+}
+img{
+  height: 24%;
+  width: 42%;
+  margin: auto;
+  display: block;
+}
+ion-input{
+    color: #ffffff;
 }
