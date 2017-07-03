@@ -13,4 +13,5 @@ import { LandingPage } from './landing';
     LandingPage
   ]
 })
-export class LandingPageModule {}
+export class LandingPageModule {
+}

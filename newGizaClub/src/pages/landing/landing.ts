@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import {LoadingController,IonicPage, NavController, NavParams } from 'ionic-angular';
 /**
  * Generated class for the LandingPage page.
  *
@@ -13,17 +12,31 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'landing.html',
 })
 export class LandingPage {
-  	slides = [
+    	slideImages = [
 		{ image: "assets/img/image1.jpg" },
 		{ image: "assets/img/image2.jpg" },
 		{ image: "assets/img/image3.jpg" }
 	];
   logo = "assets/img/ngiza.png";
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams,public loading:LoadingController) {
+   
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LandingPage');
-  }
+}
+
+  ionViewLoaded() {
+    
+     console.log('ionViewDidLoad LandingPage');
+  //let loader = this.loading.create({
+  //  content: 'Getting latest entries...',
+  //});
+
+  //loader.present();
+  //setTimeout(function() {
+
+   // loader.dismiss();
+  //}, 3000);
+    
+}
+
 
 }
