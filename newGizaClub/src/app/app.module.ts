@@ -10,6 +10,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { LandingPage} from '../pages/landing/landing';
 import { RegestrationPage }from '../pages/regestration/regestration';
 import { LoginPage } from '../pages/login/login';
+import {ForgetpwPage} from '../pages/forgetpw/forgetpw';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -23,7 +24,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage,
     LandingPage,
     RegestrationPage,
-    LoginPage
+    LoginPage,
+    ForgetpwPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage,
     LandingPage,
     RegestrationPage,
-    LoginPage
+    LoginPage,
+    ForgetpwPage
   ],
   providers: [
     StatusBar,
