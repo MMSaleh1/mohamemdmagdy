@@ -18,11 +18,11 @@
    <form [formGroup]="regesterForm" (ngSubmit)="onRegester()">
   <ion-grid>
   <ion-row class="regestration-row">
-    <ion-col col-auto>
+    <ion-col col-3>
      <ion-icon name="person" class="icon"></ion-icon>
     </ion-col>
     <ion-col >
-     <input  type="text"  name="name"  formControlName="name" placeholder="Name" >
+     <ion-input  type="text"  name="name"  formControlName="name" placeholder="Name"></ion-input>
      <div *ngIf="regesterForm.controls['name'].invalid && regesterBefore == true">
        enter valed name
      </div>
@@ -30,11 +30,11 @@
     </ion-col>
   </ion-row>
   <ion-row class="regestration-row">
-    <ion-col col-auto>
+    <ion-col col-3>
      <ion-icon name="mail" class="icon"></ion-icon>
     </ion-col>
     <ion-col >
-     <input  type="text"  name="membership" formControlName="membership" placeholder="membership">
+     <ion-input  type="text"  name="membership" formControlName="membership" placeholder="membership"></ion-input>
      <div *ngIf="regesterForm.controls['membership'].invalid && regesterBefore == true">
        enter valed membership
      </div>
@@ -42,44 +42,44 @@
     </ion-col>
   </ion-row>
   <ion-row class="regestration-row">
-    <ion-col col-auto>
+    <ion-col col-3>
      <ion-icon name="phone-portrait" class="icon"></ion-icon>
     </ion-col>
     <ion-col >
-     <input  type="text" name="phone" formControlName="phone" placeholder="Phone Number">
+     <ion-input  type="text" name="phone" formControlName="phone" placeholder="Phone Number"></ion-input>
      <div *ngIf="regesterForm.controls['phone'].invalid && regesterBefore == true">
        enter valed phone number
      </div>
     </ion-col>
   </ion-row>
   <ion-row class="regestration-row">
-    <ion-col col-auto>
+    <ion-col col-3>
      <ion-icon name="mail" class="icon"></ion-icon>
     </ion-col>
     <ion-col >
-     <input  type="email" name="email" formControlName="email" placeholder="Email">
+     <ion-input  type="email" name="email" formControlName="email" placeholder="Email"></ion-input>
      <div *ngIf="regesterForm.controls['email'].invalid && regesterBefore == true">
        enter valed email
      </div>
     </ion-col>
   </ion-row>
   <ion-row class="regestration-row">
-    <ion-col col-auto>
+    <ion-col col-3>
      <ion-icon name="lock" class="icon"></ion-icon>
     </ion-col>
     <ion-col >
-     <input type="password"  name="password" formControlName="password" placeholder="password">
+     <ion-input type="password"  name="password" formControlName="password" placeholder="Password"></ion-input>
      <div *ngIf="regesterForm.controls['password'].invalid && regesterBefore == true">
        enter valed password
      </div>
     </ion-col>
   </ion-row>
   <ion-row class="regestration-row">
-    <ion-col col-auto>
+    <ion-col col-3>
      <ion-icon name="lock" class="icon"></ion-icon>
     </ion-col>
     <ion-col >
-     <input type="password"  name="Rpassword" formControlName="Rpassword" placeholder="Confirm Password">
+     <ion-input type="password"  name="Rpassword" formControlName="Rpassword" placeholder="Confirm Password"></ion-input>
      <div *ngIf="regesterForm.value.password != regesterForm.value.Rpassword && regesterBefore == true">
        enter valed membership
      </div>

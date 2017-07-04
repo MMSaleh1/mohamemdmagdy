@@ -10,9 +10,13 @@ page-login {
     color: 	#fbb713;
     font-size: 3em;
 }
-.regestration-row{
-        margin: auto;
-        width: 75%;
+.registration-row{
+      margin-top: 40px;
+      
+}
+.reg-input-row{
+   margin: auto;
+   width: 75%;
 }
 .text-input::-moz-placeholder {
   color: white;
@@ -26,7 +30,7 @@ page-login {
   text-indent: 0;
   color: white;
 }
-.regestration-bottom{
+.registration-button{
     margin: auto;
     width: 50%;
     color: #003147;
@@ -41,3 +45,40 @@ img{
 ion-input{
     color: #ffffff;
 }
+.fp-Button{
+    float: right;
+    background-color: transparent;
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0.0);
+    font-size: smaller;
+    color: darkgrey;
+    text-transform: none;
+}
+.fp-Button.activated{
+    float: right;
+    background-color: transparent;
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0.0);
+    font-size: smaller;
+    color: darkgrey;
+    text-transform: none;
+}
+.fp-container{
+    width: 100%;
+}
+.fp-row{
+  margin-top: -23px;
+}
+.registration-label-row{
+  margin-top: 40px;
+}
+.registration-label{
+  margin: auto;
+  color: #b7bdc1;
+
+}
+.sign-up-button{
+     margin: auto;
+    width: 50%;
+    color: #003147;
+    background-color:#d8d8d8;
+}
+
