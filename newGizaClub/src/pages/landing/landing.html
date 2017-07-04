@@ -4,6 +4,14 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>LandingPage</ion-title>
+  </ion-navbar>
+</ion-header>
 <ion-content padding>
  <ion-slides autoplay="3000" loop="true" speed="3000" class="slides" pager="false" parallax="true">
         <ion-slide *ngFor="let slide of slideImages">
