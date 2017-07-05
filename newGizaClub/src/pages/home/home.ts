@@ -4,6 +4,7 @@ import { NavController,NavParams } from 'ionic-angular';
 import{ EventPage }from '../event/event';
 import{ NotificationsPage} from '../notifications/notifications';
 import {AllEventsPage} from '../allevents/allevents';
+import {NotificationtabPage} from '../notificationtab/notificationtab';
 
 @Component({
   selector: 'page-home',
@@ -81,7 +82,7 @@ export class HomePage {
     });
   }
   goToNotifications(){
-    this.navCtrl.push(NotificationsPage);
+    this.navCtrl.push(NotificationtabPage);
   }
   goToEvents(){
     this.navCtrl.push(AllEventsPage);

@@ -15,6 +15,8 @@ import {EventPage} from '../pages/event/event';
 import {NotificationsPage} from '../pages/notifications/notifications';
 import {AllEventsPage} from '../pages/allevents/allevents';
 import {ProfilePage} from '../pages/profile/profile';
+import {NotificationtabPage} from '../pages/notificationtab/notificationtab';
+import {MasterplanPage} from '../pages/masterplan/masterplan';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -33,7 +35,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     EventPage,
     NotificationsPage,
     AllEventsPage,
-    ProfilePage
+    NotificationtabPage,
+    ProfilePage,
+    MasterplanPage
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     EventPage,
     NotificationsPage,
     AllEventsPage,
-    ProfilePage
+    NotificationtabPage,
+    ProfilePage,
+    MasterplanPage
   ],
   providers: [
     StatusBar,

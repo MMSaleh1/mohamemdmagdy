@@ -9,6 +9,7 @@ import { LandingPage} from '../pages/landing/landing';
 import {RegestrationPage } from '../pages/regestration/regestration';
 import { LoginPage } from '../pages/login/login';
 import {ProfilePage} from '../pages/profile/profile';
+import {MasterplanPage} from '../pages/masterplan/masterplan';
 
 
 @Component({
@@ -16,7 +17,7 @@ import {ProfilePage} from '../pages/profile/profile';
 })
 export class MyApp {
    @ViewChild(Nav) nav: Nav;
-  rootPage:any = LoginPage ;
+  rootPage:any = HomePage ;
   pages: Array<{title: string, component: any}>;
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     this.pages=[
@@ -25,7 +26,8 @@ export class MyApp {
       {title: 'RegestrationPage' ,component :RegestrationPage},
       {title: 'LoginPage' ,component : LoginPage},
       {title: 'TabsPage',component : TabsPage},
-      {title: 'ProfilePage',component : ProfilePage}
+      {title: 'ProfilePage',component : ProfilePage},
+      {title: 'masterplan',component : MasterplanPage}
     ]
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
