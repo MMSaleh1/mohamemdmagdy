@@ -11,6 +11,9 @@ import { LandingPage} from '../pages/landing/landing';
 import { RegestrationPage }from '../pages/regestration/regestration';
 import { LoginPage } from '../pages/login/login';
 import {ForgetpwPage} from '../pages/forgetpw/forgetpw';
+import {EventPage} from '../pages/event/event';
+import {NotificationsPage} from '../pages/notifications/notifications';
+import {AllEventsPage} from '../pages/allevents/allevents';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -25,7 +28,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LandingPage,
     RegestrationPage,
     LoginPage,
-    ForgetpwPage
+    ForgetpwPage,
+    EventPage,
+    NotificationsPage,
+    AllEventsPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +47,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LandingPage,
     RegestrationPage,
     LoginPage,
-    ForgetpwPage
+    ForgetpwPage,
+    EventPage,
+    NotificationsPage,
+    AllEventsPage
   ],
   providers: [
     StatusBar,

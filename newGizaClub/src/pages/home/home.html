@@ -3,18 +3,62 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title class="title">Home</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  
+  <ion-scroll scrollY="true" style="height: 33%;">
+    <ion-row class="notif-row">
+    <ion-col col-8 class="notif-col">
+    <h3>Notifications</h3>
+    </ion-col >
+  <ion-col col-auto> 
+    <button class="home-buttons" (click)="goToNotifications()">view all >></button>
+  </ion-col >
+    </ion-row>
+    <ion-list>
+      <ion-grid>
+        <ion-item  *ngFor="let item of Notifications" (tap)="openNotifcation()">
+            
+            <ion-row>
+              <ion-col col-auto>
+                  <ion-icon class="notif-icon" name="disc"></ion-icon>
+              </ion-col>
+              <ion-col class="notif=title-col">
+                <span class="notif-title">
+                {{item.title}}
+                </span>
+              </ion-col>
+              <ion-col>
+                <div class="notif-time">
+                {{item.time}}
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="notif-description">
+                {{item.description}}
+              </ion-col>
+            </ion-row>
+            
+        </ion-item>
+        </ion-grid>
+    </ion-list>
+</ion-scroll>
+<ion-row class="notif-row">
+    <ion-col col-8 class="notif-col">
+    <h3>Events</h3>
+    </ion-col >
+  <ion-col col-auto> 
+    <button class="home-buttons" (click)="goToEvents()">view all >></button>
+  </ion-col >
+    </ion-row>
+ <ion-slides  loop="true"  pager="true" parallax="true" style="height: 33%;">
+    <ion-slide *ngFor="let slide of events">
+      <img class="event-img" [src]="slide.imageUrl"/>
+
+    </ion-slide>
+ </ion-slides>
 </ion-content>
