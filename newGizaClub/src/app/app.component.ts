@@ -22,7 +22,8 @@ export class MyApp {
       {title: "Home" ,component : HomePage},
       {title: 'LandingPage' ,component :LandingPage},
       {title: 'RegestrationPage' ,component :RegestrationPage},
-      {title: 'LoginPage' ,component : LoginPage}
+      {title: 'LoginPage' ,component : LoginPage},
+      {title: 'TabsPage',component : TabsPage}
     ]
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
