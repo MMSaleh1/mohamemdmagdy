@@ -14,6 +14,7 @@ import {ForgetpwPage} from '../pages/forgetpw/forgetpw';
 import {EventPage} from '../pages/event/event';
 import {NotificationsPage} from '../pages/notifications/notifications';
 import {AllEventsPage} from '../pages/allevents/allevents';
+import {ProfilePage} from '../pages/profile/profile';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -31,7 +32,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ForgetpwPage,
     EventPage,
     NotificationsPage,
-    AllEventsPage
+    AllEventsPage,
+    ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ForgetpwPage,
     EventPage,
     NotificationsPage,
-    AllEventsPage
+    AllEventsPage,
+    ProfilePage
   ],
   providers: [
     StatusBar,

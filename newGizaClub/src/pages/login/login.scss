@@ -36,12 +36,8 @@ page-login {
     color: #003147;
     background-color:#fbb713 ;
 }
-img{
-  height: 24%;
-  width: 42%;
-  margin: auto;
-  display: block;
-}
+
+
 ion-input{
     color: #ffffff;
 }
@@ -80,5 +76,8 @@ ion-input{
     width: 50%;
     color: #003147;
     background-color:#d8d8d8;
+}
+.round-img{
+     border-radius: 100% !important;
 }
 

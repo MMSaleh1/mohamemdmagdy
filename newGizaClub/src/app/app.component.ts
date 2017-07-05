@@ -8,6 +8,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { LandingPage} from '../pages/landing/landing';
 import {RegestrationPage } from '../pages/regestration/regestration';
 import { LoginPage } from '../pages/login/login';
+import {ProfilePage} from '../pages/profile/profile';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class MyApp {
       {title: 'LandingPage' ,component :LandingPage},
       {title: 'RegestrationPage' ,component :RegestrationPage},
       {title: 'LoginPage' ,component : LoginPage},
-      {title: 'TabsPage',component : TabsPage}
+      {title: 'TabsPage',component : TabsPage},
+      {title: 'ProfilePage',component : ProfilePage}
     ]
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
