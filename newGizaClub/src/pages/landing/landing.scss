@@ -20,4 +20,19 @@ page-landing {
     background-color: transparent;
 }
 */
-
+.spinner{
+    width: 100%;
+    height: 100%;
+    background-image : "assets/img/ngiza,png";
+    stroke: #444;
+    fill: #222;
+    position: relative;
+    z-index: 100;
+}
+.spinner-container {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  height: 85px;
+  text-align: center;
+}
