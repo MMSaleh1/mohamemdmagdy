@@ -20,6 +20,7 @@ export class MyApp {
   rootPage:any = HomePage ;
   pages: Array<{title: string, component: any}>;
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+    this.rootPage=HomePage;
     this.pages=[
       {title: "Home" ,component : HomePage},
       {title: 'LandingPage' ,component :LandingPage},
@@ -27,7 +28,7 @@ export class MyApp {
       {title: 'LoginPage' ,component : LoginPage},
       {title: 'TabsPage',component : TabsPage},
       {title: 'ProfilePage',component : ProfilePage},
-      {title: 'masterplan',component : MasterplanPage}
+      {title: 'general plan',component : MasterplanPage}
     ]
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
