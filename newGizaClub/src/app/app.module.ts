@@ -19,6 +19,7 @@ import {AllEventsPage} from '../pages/allevents/allevents';
 import {ProfilePage} from '../pages/profile/profile';
 import {NotificationtabPage} from '../pages/notificationtab/notificationtab';
 import {MasterplanPage} from '../pages/masterplan/masterplan';
+import {SportsPage} from '../pages/sports/sports';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -39,7 +40,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AllEventsPage,
     NotificationtabPage,
     ProfilePage,
-    MasterplanPage
+    MasterplanPage,
+    SportsPage
     
   ],
   imports: [
@@ -62,7 +64,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AllEventsPage,
     NotificationtabPage,
     ProfilePage,
-    MasterplanPage
+    MasterplanPage,
+    SportsPage
   ],
   providers: [
     StatusBar,
