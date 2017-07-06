@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
+import { AboutPage } from '../pages/about/about';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LandingPage} from '../pages/landing/landing';
 import {RegestrationPage } from '../pages/regestration/regestration';
@@ -23,12 +24,14 @@ export class MyApp {
     this.rootPage=HomePage;
     this.pages=[
       {title: "Home" ,component : HomePage},
+      {title: 'about us',component : AboutPage },
       {title: 'LandingPage' ,component :LandingPage},
       {title: 'RegestrationPage' ,component :RegestrationPage},
       {title: 'LoginPage' ,component : LoginPage},
       {title: 'TabsPage',component : TabsPage},
       {title: 'ProfilePage',component : ProfilePage},
       {title: 'general plan',component : MasterplanPage}
+      
     ]
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
