@@ -36,12 +36,15 @@ export class LoginPage {
 	}
   onLogin(): void{
     this.loginBefore = true;
-       console.log(this.loginForm.value.password);
-    console.log(this.loginForm.value.email);
+    if(this.loginForm.valid){
+      this.page=HomePage;
+    this.navCtrl.push(this.page);
+    }
+    
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+    
  
   }
   pushPage(page : any){

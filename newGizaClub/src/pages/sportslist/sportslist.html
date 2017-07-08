@@ -1,0 +1,23 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title class="title">Sports</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>   
+  <ion-item *ngFor="let item of sports">
+    <ion-thumbnail item-start>
+      <img [src]="item.imageUrl">
+    </ion-thumbnail>
+    <h2>{{item.title}}</h2>
+    <button ion-button clear item-end (click)="goTopage(item)">View</button>
+  </ion-item>
+</ion-list>
+
+</ion-content>

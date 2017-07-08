@@ -1,44 +1,4 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title class="title">Home</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-   <ion-scroll scrollY="true" style="height: 40%;">
-  <ion-list>   
-   
-    <ion-row class="notif-row">
-    <ion-col col-8 class="notif-col">
-    <h3>Sports</h3>
-    </ion-col>
-    </ion-row>
-  <ion-item *ngFor="let item of sports">
-    <ion-thumbnail item-start>
-      <img [src]="item.imageUrl">
-    </ion-thumbnail>
-    <h2>{{item.title}}</h2>
-    <button ion-button clear item-end (click)="goTopage(item)">View</button>
-  </ion-item>
-</ion-list>
-</ion-scroll>
-
-<ion-scroll scrollY="true" style="height: 40%;">
-  <ion-list>   
-   
-    <ion-row class="notif-row">
-    <ion-col col-8 class="notif-col">
-    <h3>FACILITIES</h3>
-    </ion-col>
-    </ion-row>
-  <ion-item *ngFor="let item of facilities">
-    <h2>{{item.title}}</h2>
-    <button ion-button clear item-end (click)="goTopage(item)">View</button>
-  </ion-item>
-</ion-list>
-</ion-scroll>
-
-</ion-content>
+<ion-tabs>
+  <ion-tab [root]="sports" tabTitle="sports" tabIcon="home"></ion-tab>
+  <ion-tab [root]="facilities" tabTitle="facilities" tabIcon="home"></ion-tab>
+</ion-tabs>

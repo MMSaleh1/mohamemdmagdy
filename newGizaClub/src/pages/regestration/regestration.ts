@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController,  } from 'ionic-angular';
 import {FormBuilder,FormGroup,Validators} from '@angular/forms';
 
 /**
@@ -16,7 +16,7 @@ import {FormBuilder,FormGroup,Validators} from '@angular/forms';
 export class RegestrationPage {
   public regesterForm: FormGroup;
   public regesterBefore = false;
-  constructor(public navCtrl: NavController, private navParams: NavParams,private formBuilder:FormBuilder) {
+  constructor(public navCtrl: NavController,private formBuilder:FormBuilder) {
   this.buildregesterForm();
 }
 
