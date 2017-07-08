@@ -1,0 +1,24 @@
+<!--
+  Generated template for the FacilitieslistPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title class="title">FACILITIES</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+  <ion-item *ngFor="let item of facilities">
+    <h2>{{item.title}}</h2>
+    <button ion-button clear item-end (click)="goTopage(item)">View</button>
+  </ion-item>
+</ion-list>
+</ion-content>

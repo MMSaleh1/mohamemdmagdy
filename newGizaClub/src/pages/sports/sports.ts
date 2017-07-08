@@ -16,11 +16,11 @@ export class SportsPage {
   public sport :any ;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
       this.sport =navParams.get("sport");
-      console.log(this.sport);
+      
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SportsPage');
+    
   }
 
 }

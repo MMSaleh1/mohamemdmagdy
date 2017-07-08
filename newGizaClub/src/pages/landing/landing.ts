@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {LoadingController,IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HomePage } from '../home/home';
 /**
  * Generated class for the LandingPage page.
  *
@@ -23,9 +24,8 @@ export class LandingPage {
 
 }
 
-  ionViewLoaded() {
+//  ionViewLoaded() {
     
-     console.log('ionViewDidLoad LandingPage');
   //let loader = this.loading.create({
   //  content: 'Getting latest entries...',
   //});
@@ -33,10 +33,13 @@ export class LandingPage {
   //loader.present();
   //setTimeout(function() {
 
-   // loader.dismiss();
-  //}, 3000);
+  //  loader.dismiss();
+  //  this.navCtrl.push(HomePage);
+  //}, 30000);
+
+  
     
-}
+//}
 
 
 }

@@ -20,9 +20,9 @@ export class MasterplanPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MasterplanPage');
+ 
   }
-private zoom(){
+ public zoom(){
   this.photoViewer.show(this.imgSrc);
 }
 

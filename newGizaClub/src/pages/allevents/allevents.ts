@@ -18,7 +18,6 @@ export class AllEventsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AlleventsPage');
   }
 
 }

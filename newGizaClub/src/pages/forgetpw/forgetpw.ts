@@ -24,7 +24,7 @@ export class ForgetpwPage {
 		});
 	}
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ForgetpwPage');
+    
   }
   Send(){
     this.sentBefore=true;

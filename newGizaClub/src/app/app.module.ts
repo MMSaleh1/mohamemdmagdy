@@ -4,6 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import {PhotoViewer } from '@ionic-native/photo-viewer';
+import { SuperTabsModule } from 'ionic2-super-tabs';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -20,6 +21,11 @@ import {ProfilePage} from '../pages/profile/profile';
 import {NotificationtabPage} from '../pages/notificationtab/notificationtab';
 import {MasterplanPage} from '../pages/masterplan/masterplan';
 import {SportsPage} from '../pages/sports/sports';
+import {SportslistPage} from '../pages/sportslist/sportslist';
+import {FacilitieslistPage} from '../pages/facilitieslist/facilitieslist';
+import {PhilosophyPage} from '../pages/philosophy/philosophy';
+import {VisionPage} from '../pages/vision/vision';
+import {AbouttabsPage} from '../pages/abouttabs/abouttabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -41,12 +47,17 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     NotificationtabPage,
     ProfilePage,
     MasterplanPage,
-    SportsPage
-    
+    SportsPage,
+    SportslistPage,
+    FacilitieslistPage,
+    PhilosophyPage,
+    VisionPage,
+    AbouttabsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+     SuperTabsModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -65,7 +76,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     NotificationtabPage,
     ProfilePage,
     MasterplanPage,
-    SportsPage
+    SportsPage,
+    SportslistPage,
+    FacilitieslistPage,
+    PhilosophyPage,
+    VisionPage,
+    AbouttabsPage
   ],
   providers: [
     StatusBar,
