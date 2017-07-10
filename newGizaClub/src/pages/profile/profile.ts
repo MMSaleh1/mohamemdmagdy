@@ -36,8 +36,6 @@ export class ProfilePage {
   ionViewDidLoad() {
 
   }
-  segmentChanged(){
-    console.log(this.segment);
-  }
+
 
 }
