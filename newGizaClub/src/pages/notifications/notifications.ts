@@ -13,8 +13,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'notifications.html',
 })
 export class NotificationsPage {
-
+  private sport : any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.sport = navParams.get('sport');
   }
 
   ionViewDidLoad() {

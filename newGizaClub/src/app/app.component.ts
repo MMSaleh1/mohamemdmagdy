@@ -10,11 +10,11 @@ import { LoginPage } from '../pages/login/login';
 import {ProfilePage} from '../pages/profile/profile';
 import {MasterplanPage} from '../pages/masterplan/masterplan';
 
-
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+  
    @ViewChild(Nav) nav: Nav;
   rootPage:any;
   pages: Array<{title: string, component: any}>;

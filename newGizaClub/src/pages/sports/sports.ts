@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NotificationsPage} from '../notifications/notifications';
 
 /**
  * Generated class for the SportsPage page.
@@ -21,6 +22,11 @@ export class SportsPage {
 
   ionViewDidLoad() {
     
+  }
+  open(){
+    this.navCtrl.push( NotificationsPage,{
+      sport : this.sport
+    });
   }
 
 }
