@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import {PhotoViewer } from '@ionic-native/photo-viewer';
 import { SuperTabsModule } from 'ionic2-super-tabs';
 
 import { AboutPage } from '../pages/about/about';
@@ -86,8 +85,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    PhotoViewer
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}

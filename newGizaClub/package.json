@@ -25,7 +25,6 @@
         "@ionic-native/splash-screen": "3.12.1",
         "@ionic-native/status-bar": "3.12.1",
         "@ionic/storage": "2.0.1",
-        "com-sarriaroman-photoviewer": "^1.1.10",
         "cordova-android": "^6.2.3",
         "cordova-ios": "^4.4.0",
         "cordova-plugin-console": "^1.0.5",
@@ -55,8 +54,7 @@
             "cordova-plugin-splashscreen": {},
             "cordova-plugin-statusbar": {},
             "cordova-plugin-whitelist": {},
-            "ionic-plugin-keyboard": {},
-            "com-sarriaroman-photoviewer": {}
+            "ionic-plugin-keyboard": {}
         },
         "platforms": [
             "android",

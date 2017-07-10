@@ -22,7 +22,8 @@
     <preference name="FadeSplashScreenDuration" value="4000" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
-    <preference name="SplashScreenDelay" value="10000" />
+    <preference name="SplashScreenDelay" value="30000" />
+    <preference name="AutoHideSplashScreen" value="false" />
     <preference name="loadUrlTimeoutValue" value="700000" />
     <platform name="android">
         <allow-intent href="market:*" />
@@ -81,7 +82,6 @@
     </platform>
     <engine name="android" spec="^6.2.3" />
     <engine name="ios" spec="^4.4.0" />
-    <plugin name="com-sarriaroman-photoviewer" spec="^1.1.10" />
     <plugin name="cordova-plugin-console" spec="^1.0.5" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
