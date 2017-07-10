@@ -13,13 +13,19 @@
     <ion-title>profile</ion-title>
   </ion-navbar>
 
-  <ion-toolbar>
-    <ion-segment [(ngModel)]="topTab" color="secondary">
-      <ion-segment-button value="camera">
-        <ion-icon name="camera"></ion-icon>
+  <ion-toolbar >
+    <ion-segment [(ngModel)]="segment" color="secondary" ">
+      <ion-segment-button value="info" class="profile-segment-button"  >
+       info
       </ion-segment-button>
-      <ion-segment-button value="bookmark">
-        <ion-icon name="bookmark"></ion-icon>
+      <ion-segment-button value="relatives" class="profile-segment-button" >
+        Relatives
+      </ion-segment-button>
+      <ion-segment-button value="payments" class="profile-segment-button" >
+        Payments
+      </ion-segment-button>
+      <ion-segment-button value="credit" class="profile-segment-button" >
+        Credit
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -28,10 +34,103 @@
 
 
 <ion-content padding>
-<ion-tabs>
-  <ion-tab [root]="tab1Root">info</ion-tab>
-  <ion-tab [root]="tab2Root">Relatives</ion-tab>
-  <ion-tab [root]="tab3Root">Payments</ion-tab>
-  <ion-tab [root]="tab3Root">Credit</ion-tab>
-</ion-tabs>
+<div *ngIf="segment == 'info'">
+  <div>
+    <img class="round-img"src={{user.img}}>
+    <h3 class="profile-user-name">{{user.name}}</h3>
+  </div>
+  <div>
+    <ion-grid>
+      <ion-row class="profile-user-row">
+        <ion-col>
+          User Id
+        </ion-col>
+        <ion-col>
+          {{user.id}}
+        </ion-col>
+      </ion-row>
+      <ion-row class="profile-user-row">
+        <ion-col>
+          RFID SerialNumber
+        </ion-col>
+        <ion-col>
+          {{user.rfid}}
+        </ion-col>
+      </ion-row>
+      <ion-row class="profile-user-row">
+        <ion-col>
+          Date of Birth
+        </ion-col>
+        <ion-col>
+          {{user.dob}}
+        </ion-col>
+      </ion-row>
+      <ion-row class="profile-user-row">
+        <ion-col>
+          National ID
+        </ion-col>
+        <ion-col>
+          {{user.nid}}
+        </ion-col>
+      </ion-row>
+      <ion-row class="profile-user-row">
+        <ion-col>
+          Mobile Number
+        </ion-col>
+        <ion-col>
+          {{user.mobileNum}}
+        </ion-col>
+      </ion-row>
+      <ion-row class="profile-user-row">
+        <ion-col>
+          Membership Id
+        </ion-col>
+        <ion-col>
+          {{user.memberId}}
+        </ion-col>
+      </ion-row>
+      <ion-row class="profile-user-row">
+        <ion-col>
+          Email
+        </ion-col>
+        <ion-col>
+          {{user.email}}
+        </ion-col>
+      </ion-row>
+      <ion-row class="profile-user-row">
+        <ion-col>
+          Norminated By
+        </ion-col>
+        <ion-col>
+          {{user.normnatedBy}}
+        </ion-col>
+      </ion-row>
+      <ion-row class="profile-user-row">
+        <ion-col>
+          Occupation
+        </ion-col>
+        <ion-col>
+          {{user.occupation}}
+        </ion-col>
+      </ion-row>
+      <ion-row class="profile-user-row">
+        <ion-col>
+          Application Date
+        </ion-col>
+        <ion-col>
+          {{user.applicationNum}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</div>
+<div *ngIf="segment == 'relatives'">
+  Relatives
+</div>
+<div *ngIf="segment == 'payments'">
+  Payments
+</div>
+<div *ngIf="segment == 'credit'">
+  credit
+</div>
 </ion-content>

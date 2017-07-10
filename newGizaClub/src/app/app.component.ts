@@ -7,7 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { AbouttabsPage } from '../pages/abouttabs/abouttabs';
 import {RegestrationPage } from '../pages/regestration/regestration';
 import { LoginPage } from '../pages/login/login';
-//import {ProfilePage} from '../pages/profile/profile';
+import {ProfilePage} from '../pages/profile/profile';
 import {MasterplanPage} from '../pages/masterplan/masterplan';
 
 
@@ -25,7 +25,7 @@ export class MyApp {
       {title: 'about us',component : AbouttabsPage },
       {title: 'RegestrationPage' ,component :RegestrationPage},
       {title: 'LoginPage' ,component : LoginPage},
-      //{title: 'ProfilePage',component : ProfilePage},
+      {title: 'ProfilePage',component : ProfilePage},
       {title: 'general plan',component : MasterplanPage}
       
     ]

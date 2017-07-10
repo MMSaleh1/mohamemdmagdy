@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {PhotoViewer } from '@ionic-native/photo-viewer';
+
 
 /**
  * Generated class for the MasterplanPage page.
@@ -15,7 +15,7 @@ import {PhotoViewer } from '@ionic-native/photo-viewer';
 })
 export class MasterplanPage {
   private imgSrc ="../../assets/img/masterplan.jpg";
-  constructor(public navCtrl: NavController, public navParams: NavParams,private photoViewer : PhotoViewer) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
 
   }
 
@@ -23,7 +23,7 @@ export class MasterplanPage {
  
   }
  public zoom(){
-  this.photoViewer.show(this.imgSrc);
+  
 }
 
 }
