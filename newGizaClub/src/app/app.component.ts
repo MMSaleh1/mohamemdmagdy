@@ -20,7 +20,7 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
   backButtonPressedOnceToExit=false;
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private toastCtrl:   ToastController) {
-    this.rootPage=HomePage;
+    this.rootPage=LoginPage;
     this.pages=[
       {title: "Home" ,component : HomePage},
       {title: 'about us',component : AbouttabsPage },
