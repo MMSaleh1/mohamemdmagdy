@@ -9,6 +9,7 @@ import {RegestrationPage } from '../pages/regestration/regestration';
 import { LoginPage } from '../pages/login/login';
 import {ProfilePage} from '../pages/profile/profile';
 import {MasterplanPage} from '../pages/masterplan/masterplan';
+import {ResturantsPage} from '../pages/resturants/resturants';
 
 @Component({
   templateUrl: 'app.html'
@@ -27,7 +28,8 @@ export class MyApp {
       {title: 'RegestrationPage' ,component :RegestrationPage},
       {title: 'LoginPage' ,component : LoginPage},
       {title: 'ProfilePage',component : ProfilePage},
-      {title: 'general plan',component : MasterplanPage}
+      {title: 'general plan',component : MasterplanPage},
+      {title: 'resturants',component : ResturantsPage}
       
     ]
     platform.ready().then(() => {

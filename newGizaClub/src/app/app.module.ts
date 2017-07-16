@@ -25,6 +25,7 @@ import {FacilitieslistPage} from '../pages/facilitieslist/facilitieslist';
 import {PhilosophyPage} from '../pages/philosophy/philosophy';
 import {VisionPage} from '../pages/vision/vision';
 import {AbouttabsPage} from '../pages/abouttabs/abouttabs';
+import {ResturantsPage} from '../pages/resturants/resturants';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -51,7 +52,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     FacilitieslistPage,
     PhilosophyPage,
     VisionPage,
-    AbouttabsPage
+    AbouttabsPage,
+    ResturantsPage
   ],
   imports: [
     BrowserModule,
@@ -80,7 +82,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     FacilitieslistPage,
     PhilosophyPage,
     VisionPage,
-    AbouttabsPage
+    AbouttabsPage,
+    ResturantsPage
   ],
   providers: [
     StatusBar,
