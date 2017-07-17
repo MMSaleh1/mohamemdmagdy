@@ -1,7 +1,9 @@
 import { Component,ViewChild } from '@angular/core';
 import {Nav,Platform,ToastController } from 'ionic-angular';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 import { HomePage } from '../pages/home/home';
 import { AbouttabsPage } from '../pages/abouttabs/abouttabs';
@@ -9,6 +11,8 @@ import {RegestrationPage } from '../pages/regestration/regestration';
 import { LoginPage } from '../pages/login/login';
 import {ProfilePage} from '../pages/profile/profile';
 import {MasterplanPage} from '../pages/masterplan/masterplan';
+import {ResturantsPage} from '../pages/resturants/resturants';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -27,7 +31,8 @@ export class MyApp {
       {title: 'RegestrationPage' ,component :RegestrationPage},
       {title: 'LoginPage' ,component : LoginPage},
       {title: 'ProfilePage',component : ProfilePage},
-      {title: 'general plan',component : MasterplanPage}
+      {title: 'general plan',component : MasterplanPage},
+      {title: 'resturants',component : ResturantsPage}
       
     ]
     platform.ready().then(() => {
@@ -78,7 +83,7 @@ export class MyApp {
         toast.present();
       }
 
-  openPage(page) {
+  openPage(page :any) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);

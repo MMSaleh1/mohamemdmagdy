@@ -1,9 +1,10 @@
 import { NgModule, ErrorHandler } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser'
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { HttpModule } from '@angular/http';
+import { SMS }from '@ionic-native/sms';
 
-import { SuperTabsModule } from 'ionic2-super-tabs';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -25,9 +26,11 @@ import {FacilitieslistPage} from '../pages/facilitieslist/facilitieslist';
 import {PhilosophyPage} from '../pages/philosophy/philosophy';
 import {VisionPage} from '../pages/vision/vision';
 import {AbouttabsPage} from '../pages/abouttabs/abouttabs';
+import {ResturantsPage} from '../pages/resturants/resturants';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 @NgModule({
   declarations: [
@@ -51,12 +54,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     FacilitieslistPage,
     PhilosophyPage,
     VisionPage,
-    AbouttabsPage
+    AbouttabsPage,
+    ResturantsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
-     SuperTabsModule.forRoot()
+    HttpModule,
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -80,11 +84,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     FacilitieslistPage,
     PhilosophyPage,
     VisionPage,
-    AbouttabsPage
+    AbouttabsPage,
+    ResturantsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    AndroidPermissions,
+    SMS,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

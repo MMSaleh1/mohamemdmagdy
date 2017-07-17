@@ -1,0 +1,72 @@
+<!--
+  Generated template for the ResturantsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Resturants</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-row class="rest-slides-cont" style="height: 40%;">
+    <ion-slides class="rest-slides"  parallax="true"slidesPerView='3' >
+    <ion-slide class="rest-slider" *ngFor="let slide of resturants">
+      <div class="rest-img-cont">
+      <img  [src]="slide.imageUrl" (click)="changeResturant(slide)"/>
+      </div>
+    <div class="rest-name">
+      {{slide.name}}
+    </div>
+    <div class="rest-desc">
+      {{slide.des}}
+    </div>
+    </ion-slide>
+    </ion-slides>
+  </ion-row>
+  <div class="items-cont">
+  <ion-scroll scrollY="true" style="height: 100%;">
+  <ion-list>
+    <div *ngFor="let item of chossenResturants.menu ; let index = index ; trackBy:trackByIndex;">
+    <ion-item >
+      <ion-row>
+        <ion-col>
+          <div class="item-header">
+          {{item.name}}
+        </div>
+        </ion-col>
+      <ion-col  >
+        <div>
+        <button class="rest-button" ion-button>
+           <ion-icon   name="remove" (click)="changeNumber('remove',index)"></ion-icon>
+        </button>
+        <input [(ngModel)]="orders[index]" type="number" class="rest-input">
+        <button class="rest-button" ion-button> 
+          <ion-icon  name="add" (click)="changeNumber('add',index)"></ion-icon>
+        </button>
+        <div class="rest-item-price">
+          {{item.price}} LE
+        </div>
+        </div>
+      </ion-col >
+      <ion-col  class="rest-img-cont">
+      <img  [src]="item.imageUrl">
+      </ion-col>
+      </ion-row>
+    </ion-item>
+    </div>
+   <button ion-button (click)="order()" name="Order">Order</button>
+  </ion-list>
+  </ion-scroll>
+
+  </div>
+  
+  </ion-content>
