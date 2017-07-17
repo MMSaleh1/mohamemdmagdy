@@ -1,7 +1,9 @@
 import { Component,ViewChild } from '@angular/core';
 import {Nav,Platform,ToastController } from 'ionic-angular';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 import { HomePage } from '../pages/home/home';
 import { AbouttabsPage } from '../pages/abouttabs/abouttabs';
@@ -10,6 +12,7 @@ import { LoginPage } from '../pages/login/login';
 import {ProfilePage} from '../pages/profile/profile';
 import {MasterplanPage} from '../pages/masterplan/masterplan';
 import {ResturantsPage} from '../pages/resturants/resturants';
+
 
 @Component({
   templateUrl: 'app.html'

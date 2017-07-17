@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
+import { SMS }from '@ionic-native/sms';
 
 
 import { AboutPage } from '../pages/about/about';
@@ -29,6 +30,7 @@ import {ResturantsPage} from '../pages/resturants/resturants';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 @NgModule({
   declarations: [
@@ -88,6 +90,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
+    AndroidPermissions,
+    SMS,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
