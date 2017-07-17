@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
 /**
  * Generated class for the ResturantsPage page.
  *
@@ -14,6 +13,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ResturantsPage {
   private orders : number[];
+  
   private resturants:Array<{
       name : any,
       imageUrl : any,
@@ -91,7 +91,11 @@ export class ResturantsPage {
     if(func == 'add'){
       this.orders[index]++;
     }else{
-      this.orders[index]--;
+      if(this.orders[index]!=0){
+
+          this.orders[index]--;
+      }
+      
     }
     console.log(this.orders);
   }

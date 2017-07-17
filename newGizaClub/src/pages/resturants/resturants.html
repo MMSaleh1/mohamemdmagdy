@@ -18,7 +18,7 @@
 
 <ion-content padding>
   <ion-row class="rest-slides-cont" style="height: 40%;">
-    <ion-slides class="rest-slides" loop="true" parallax="true"slidesPerView='3' >
+    <ion-slides class="rest-slides"  parallax="true"slidesPerView='3' >
     <ion-slide class="rest-slider" *ngFor="let slide of resturants">
       <div class="rest-img-cont">
       <img  [src]="slide.imageUrl" (click)="changeResturant(slide)"/>
@@ -38,7 +38,7 @@
     <div *ngFor="let item of chossenResturants.menu ; let index = index ; trackBy:trackByIndex;">
     <ion-item >
       <ion-row>
-        <ion-col  >
+        <ion-col>
           <div class="item-header">
           {{item.name}}
         </div>
@@ -52,8 +52,8 @@
         <button class="rest-button" ion-button> 
           <ion-icon  name="add" (click)="changeNumber('add',index)"></ion-icon>
         </button>
-        <div>
-          {{item.price}}
+        <div class="rest-item-price">
+          {{item.price}} LE
         </div>
         </div>
       </ion-col >
