@@ -83,7 +83,7 @@ export class MyApp {
         });
 
         toast.onDidDismiss(() => {
-          console.log('Dismissed toast');
+          
         });
 
         toast.present();

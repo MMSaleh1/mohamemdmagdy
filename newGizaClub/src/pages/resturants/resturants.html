@@ -35,6 +35,7 @@
   <div class="items-cont">
   <ion-scroll scrollY="true" style="height: 100%;">
   <ion-list>
+    <button ion-button (click)="order()" name="Order">Order</button>
     <div *ngFor="let item of chossenResturants.menu ; let index = index ; trackBy:trackByIndex;">
     <ion-item >
       <ion-row>
