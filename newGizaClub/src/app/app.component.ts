@@ -12,6 +12,7 @@ import { LoginPage } from '../pages/login/login';
 import {ProfilePage} from '../pages/profile/profile';
 import {MasterplanPage} from '../pages/masterplan/masterplan';
 import {ResturantsPage} from '../pages/resturants/resturants';
+import {InteractPage} from '../pages/interact/interact';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class MyApp {
       {title: 'LoginPage' ,component : LoginPage},
       {title: 'ProfilePage',component : ProfilePage},
       {title: 'general plan',component : MasterplanPage},
-      {title: 'resturants',component : ResturantsPage}
+      {title: 'resturants',component : ResturantsPage},
+      {title: 'interact', component : InteractPage}
       
     ]
     platform.ready().then(() => {
@@ -47,7 +49,7 @@ export class MyApp {
         platform.registerBackButtonAction(() => {
             // get current active page
             let view = this.nav.getActive();
-            if (view.component.name == "HomePage") {
+            if (view.component.name == "HomePage" &&!this.nav.canGoBack()) {
                 //Double check to exit app
                 if (new Date().getTime() - lastTimeBackPress < timePeriodToExit) {
                     platform.exitApp(); //Exit from app
@@ -60,7 +62,11 @@ export class MyApp {
                     toast.present();
                     lastTimeBackPress = new Date().getTime();
                 }
-            } else {
+            } else if(view.component.name != "HomePage" ){
+              this.nav.setRoot(HomePage);
+              this.nav.goToRoot({});
+            }
+              else {
                 // go to previous page
                 this.nav.pop({});
             }
