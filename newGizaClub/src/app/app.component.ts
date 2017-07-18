@@ -63,7 +63,7 @@ export class MyApp {
                     lastTimeBackPress = new Date().getTime();
                 }
             } else if(view.component.name != "HomePage" ){
-              this.nav.setRoot(HomePage);
+              this.rootPage=HomePage;
               this.nav.goToRoot({});
             }
               else {
