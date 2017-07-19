@@ -29,11 +29,17 @@ import {AbouttabsPage} from '../pages/abouttabs/abouttabs';
 import {ResturantsPage} from '../pages/resturants/resturants';
 import {InteractPage} from '../pages/interact/interact';
 
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { SMS }from '@ionic-native/sms';
 import { CameraPreview,CameraPreviewPictureOptions,CameraPreviewOptions,CameraPreviewDimensions } from '@ionic-native/camera-preview';
+import { CashProvider } from '../providers/cash/cash';
+import { NativeStorage }from '@ionic-native/native-storage';
+import { UserProvider } from '../providers/user/user';
+import { RootProvider } from '../providers/root/root';
+
 
 @NgModule({
   declarations: [
@@ -98,7 +104,12 @@ import { CameraPreview,CameraPreviewPictureOptions,CameraPreviewOptions,CameraPr
     AndroidPermissions,
     SMS,
     CameraPreview,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    NativeStorage,
+    CashProvider,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    CashProvider,
+    UserProvider,
+    RootProvider
   ]
 })
 export class AppModule {}
