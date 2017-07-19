@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-
+import { Component, } from '@angular/core';
 import {SMS} from '@ionic-native/sms';
 
 import{ FacilitieslistPage} from '../facilitieslist/facilitieslist';
 import{ SportslistPage} from '../sportslist/sportslist';
+import {InteractPage} from '../interact/interact';
 
 @Component({
   selector: 'page-home',
@@ -12,6 +12,7 @@ import{ SportslistPage} from '../sportslist/sportslist';
 export class HomePage {
    public facilities= FacilitieslistPage;
    public sports= SportslistPage;
+   public interact= InteractPage;
 
   constructor (private sms :SMS) {
     

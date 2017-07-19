@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
-import { SMS }from '@ionic-native/sms';
+
 
 
 import { AboutPage } from '../pages/about/about';
@@ -27,10 +27,19 @@ import {PhilosophyPage} from '../pages/philosophy/philosophy';
 import {VisionPage} from '../pages/vision/vision';
 import {AbouttabsPage} from '../pages/abouttabs/abouttabs';
 import {ResturantsPage} from '../pages/resturants/resturants';
+import {InteractPage} from '../pages/interact/interact';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
+import { SMS }from '@ionic-native/sms';
+import { CameraPreview,CameraPreviewPictureOptions,CameraPreviewOptions,CameraPreviewDimensions } from '@ionic-native/camera-preview';
+import { CashProvider } from '../providers/cash/cash';
+import { NativeStorage }from '@ionic-native/native-storage';
+import { UserProvider } from '../providers/user/user';
+import { RootProvider } from '../providers/root/root';
+
 
 @NgModule({
   declarations: [
@@ -55,7 +64,8 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
     PhilosophyPage,
     VisionPage,
     AbouttabsPage,
-    ResturantsPage
+    ResturantsPage,
+    InteractPage
   ],
   imports: [
     BrowserModule,
@@ -85,14 +95,21 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
     PhilosophyPage,
     VisionPage,
     AbouttabsPage,
-    ResturantsPage
+    ResturantsPage,
+    InteractPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AndroidPermissions,
     SMS,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    CameraPreview,
+    NativeStorage,
+    CashProvider,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    CashProvider,
+    UserProvider,
+    RootProvider
   ]
 })
 export class AppModule {}
