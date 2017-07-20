@@ -4,6 +4,7 @@ import {SMS} from '@ionic-native/sms';
 import{ FacilitieslistPage} from '../facilitieslist/facilitieslist';
 import{ SportslistPage} from '../sportslist/sportslist';
 import {InteractPage} from '../interact/interact';
+import {ResturantsPage} from '../resturants/resturants';
 
 @Component({
   selector: 'page-home',
@@ -13,6 +14,7 @@ export class HomePage {
    public facilities= FacilitieslistPage;
    public sports= SportslistPage;
    public interact= InteractPage;
+   public resturants=ResturantsPage;
 
   constructor (private sms :SMS) {
     

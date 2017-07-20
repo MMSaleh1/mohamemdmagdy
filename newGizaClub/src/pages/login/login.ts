@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {FormBuilder,FormGroup,Validators} from '@angular/forms';
+import {NativeStorage} from '@ionic-native/native-storage';
 
 import {HomePage} from '../home/home';
 import {RegestrationPage} from '../regestration/regestration';
@@ -19,13 +20,14 @@ import {ForgetpwPage} from '../forgetpw/forgetpw';
 })
 export class LoginPage {
   public loginForm : FormGroup;
+   public userState : string = "userState";
    public loginBefore = false;
    private page:any;
    private pages ={
      fp : 'ForgetpwPage',
      rg : 'RegestrationPage'
    }
-  constructor(public navCtrl: NavController, public navParams: NavParams,private formBuilder:FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private formBuilder:FormBuilder,private natStorage : NativeStorage) {
   this.buildloginForm();
 }
   buildloginForm(): void {
@@ -38,6 +40,7 @@ export class LoginPage {
     this.loginBefore = true;
     if(this.loginForm.valid){
       this.page=HomePage;
+      this.natStorage.setItem(this.userState,"2");
     this.navCtrl.push(this.page);
     }
     

@@ -4,6 +4,7 @@ import {Nav,Platform,ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
+import {NativeStorage} from '@ionic-native/native-storage';
 
 import { HomePage } from '../pages/home/home';
 import { AbouttabsPage } from '../pages/abouttabs/abouttabs';
@@ -21,10 +22,11 @@ import {InteractPage} from '../pages/interact/interact';
 export class MyApp {
   
    @ViewChild(Nav) nav: Nav;
+   public userState : string = "userState";
   rootPage:any;
   pages: Array<{title: string, component: any}>;
   backButtonPressedOnceToExit=false;
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private toastCtrl:   ToastController) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private toastCtrl:   ToastController,private natStorage : NativeStorage) {
     this.rootPage=LoginPage;
     this.pages=[
       {title: "Home" ,component : HomePage},
@@ -41,8 +43,23 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
-      this.nav.setRoot(this.rootPage);
+      
       splashScreen.hide();
+      this.natStorage.getItem(this.userState).then((data)=>{
+        if(data =="0"){
+          this.rootPage=RegestrationPage;
+        }else if(data == "1"){
+          this.rootPage=LoginPage;
+
+        }else{
+          this.rootPage=HomePage;
+        }
+      },(err)=>{
+        this.natStorage.setItem(this.userState,"0");
+        this.rootPage=RegestrationPage;
+      }
+    )
+    this.nav.setRoot(this.rootPage);
      var lastTimeBackPress = 0;
         var timePeriodToExit  = 2000;
 
@@ -62,7 +79,7 @@ export class MyApp {
                     toast.present();
                     lastTimeBackPress = new Date().getTime();
                 }
-            } else if(view.component.name != "HomePage" ){
+            } else if(view.component.name != "HomePage" && view.component.name !="LoginPage" && view.component.name !="RegestrationPage"){
               this.rootPage=HomePage;
               this.nav.goToRoot({});
             }
