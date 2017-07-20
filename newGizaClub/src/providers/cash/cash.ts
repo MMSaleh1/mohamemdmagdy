@@ -59,7 +59,7 @@ export class CashProvider {
         this.nativeStorage.setItem(location,
         <CacheReponce>{
 						value: data,
-						key: url,
+						key: location,
 						time: new Date(),
 						isValid: true
 					});
