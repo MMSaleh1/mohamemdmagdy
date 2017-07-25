@@ -13,7 +13,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'vision.html',
 })
 export class VisionPage {
-
+  public name :string = "vision";
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

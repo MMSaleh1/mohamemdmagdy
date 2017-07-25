@@ -14,6 +14,7 @@ import {SportsPage} from '../sports/sports';
   templateUrl: 'facilitieslist.html',
 })
 export class FacilitieslistPage {
+  public name : string ="facilities";
 public facilities : Array<{
     title : string , 
     description : string,

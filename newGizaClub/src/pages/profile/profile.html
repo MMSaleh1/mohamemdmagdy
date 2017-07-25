@@ -6,12 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>profile</ion-title>
-  </ion-navbar>
+ <ngsc-header [name]='name'></ngsc-header>
 
   <ion-toolbar >
     <ion-segment [(ngModel)]="segment" color="secondary" >

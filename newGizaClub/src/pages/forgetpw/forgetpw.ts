@@ -13,6 +13,7 @@ import {FormBuilder,FormGroup,Validators} from '@angular/forms';
   templateUrl: 'forgetpw.html',
 })
 export class ForgetpwPage {
+  public name : string ="Forget pw";
    public fpForm : FormGroup;
    public sentBefore = false;
   constructor(public navCtrl: NavController, public navParams: NavParams,private formBuilder:FormBuilder) {

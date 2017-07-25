@@ -14,6 +14,7 @@ import {NativeStorage} from '@ionic-native/native-storage';
   templateUrl: 'regestration.html',
 })
 export class RegestrationPage {
+  public name : string="regestration";
   public regesterForm: FormGroup;
    public userState : string = "userState";
   public regesterBefore = false;

@@ -28,7 +28,7 @@ import {VisionPage} from '../pages/vision/vision';
 import {AbouttabsPage} from '../pages/abouttabs/abouttabs';
 import {ResturantsPage} from '../pages/resturants/resturants';
 import {InteractPage} from '../pages/interact/interact';
-
+import {NewsPage} from '../pages/news/news';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -39,6 +39,7 @@ import { CashProvider } from '../providers/cash/cash';
 import { NativeStorage }from '@ionic-native/native-storage';
 import { UserProvider } from '../providers/user/user';
 import { RootProvider } from '../providers/root/root';
+import { HeaderComponent } from '../components/header/header';
 
 
 @NgModule({
@@ -65,7 +66,9 @@ import { RootProvider } from '../providers/root/root';
     VisionPage,
     AbouttabsPage,
     ResturantsPage,
-    InteractPage
+    InteractPage,
+    NewsPage,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +99,8 @@ import { RootProvider } from '../providers/root/root';
     VisionPage,
     AbouttabsPage,
     ResturantsPage,
-    InteractPage
+    InteractPage,
+    NewsPage
   ],
   providers: [
     StatusBar,

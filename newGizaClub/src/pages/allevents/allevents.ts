@@ -13,7 +13,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'allevents.html',
 })
 export class AllEventsPage {
-
+  public name : string = "all events";
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

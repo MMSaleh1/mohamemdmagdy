@@ -14,6 +14,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class NotificationsPage {
   private sport : any;
+  public name : string = "notifications";
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.sport = navParams.get('sport');
   }
