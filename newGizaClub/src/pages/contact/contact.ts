@@ -6,7 +6,7 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'contact.html'
 })
 export class ContactPage {
-
+  public name : string ="contact us";
   constructor(public navCtrl: NavController) {
 
   }

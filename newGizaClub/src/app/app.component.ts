@@ -15,12 +15,13 @@ import {MasterplanPage} from '../pages/masterplan/masterplan';
 import {ResturantsPage} from '../pages/resturants/resturants';
 import {InteractPage} from '../pages/interact/interact';
 
+declare var window :any;
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  
+    
    @ViewChild(Nav) nav: Nav;
    public userState : string = "userState";
   rootPage:any;
@@ -70,9 +71,10 @@ export class MyApp {
                 //Double check to exit app
                 if (new Date().getTime() - lastTimeBackPress < timePeriodToExit) {
                     platform.exitApp(); //Exit from app
+                   // window.plugins.appMinimize.minimize();
                 } else {
                     let toast = this.toastCtrl.create({
-                        message:  'Press back again to exit App?',
+                        message:  'Press back again to exit App.',
                         duration: 3000,
                         position: 'bottom'
                     });

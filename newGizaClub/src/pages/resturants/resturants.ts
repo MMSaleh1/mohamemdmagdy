@@ -12,6 +12,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'resturants.html',
 })
 export class ResturantsPage {
+  public name : string ="resturants";
   private orders : number[];
   
   private resturants:Array<{

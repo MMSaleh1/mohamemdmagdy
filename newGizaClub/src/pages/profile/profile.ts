@@ -13,6 +13,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
+  public name : string ="profile";
   public segment:any='info';
   public user:any={
     img : "assets/img/profileTemp.png",

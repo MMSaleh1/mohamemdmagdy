@@ -5,7 +5,7 @@ import{ FacilitieslistPage} from '../facilitieslist/facilitieslist';
 import{ SportslistPage} from '../sportslist/sportslist';
 import {InteractPage} from '../interact/interact';
 import {ResturantsPage} from '../resturants/resturants';
-
+import {NewsPage} from '../news/news';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -15,6 +15,7 @@ export class HomePage {
    public sports= SportslistPage;
    public interact= InteractPage;
    public resturants=ResturantsPage;
+   public news= NewsPage;
 
   constructor (private sms :SMS) {
     

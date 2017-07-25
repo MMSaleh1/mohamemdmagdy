@@ -19,6 +19,7 @@ import {ForgetpwPage} from '../forgetpw/forgetpw';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  public name : string ='login';
   public loginForm : FormGroup;
    public userState : string = "userState";
    public loginBefore = false;

@@ -14,6 +14,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'masterplan.html',
 })
 export class MasterplanPage {
+  public name : string ="Our Map";
   private imgSrc ="../../assets/img/masterplan.jpg";
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 

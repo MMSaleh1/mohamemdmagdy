@@ -7,6 +7,7 @@ import { NavController } from 'ionic-angular';
 })
 export class AboutPage {
 
+  public name : string ="about us";
   constructor(public navCtrl: NavController) {
 
   }

@@ -13,7 +13,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'philosophy.html',
 })
 export class PhilosophyPage {
-
+  public name :string ="Philosophy";
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
