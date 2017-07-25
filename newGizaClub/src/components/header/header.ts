@@ -1,5 +1,5 @@
 import { Component,Input } from '@angular/core';
-
+import {NativeStorage} from '@ionic-native/native-storage';
 /**
  * Generated class for the HeaderComponent component.
  *
@@ -13,10 +13,30 @@ import { Component,Input } from '@angular/core';
 export class HeaderComponent {
 @Input()
   name: string="header";
-
-  constructor() {
-    console.log('Hello HeaderComponent Component');
+  logedIn :boolean = false;
+  userState : string = "userState";
+  constructor(public nativeStorage :NativeStorage) {
+   
+    if(typeof this.nativeStorage.getItem(this.userState)!=undefined && typeof this.nativeStorage.getItem(this.userState)!=null ){
+       let state = this.nativeStorage.getItem(this.userState);
+      state.then((data)=>{
+        if(data == "2"){
+          this.logedIn=true;
+        }
+        
+        },(err)=>{
+          this.logedIn=false;
+      }
+    )
+      
+    }
+   
    // this.name = 'header';
+  }
+
+  public logOut(){
+    this.nativeStorage.setItem(this.userState,"1");
+    alert(this.nativeStorage.getItem(this.userState));
   }
 
 }

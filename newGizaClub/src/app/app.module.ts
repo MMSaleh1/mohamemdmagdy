@@ -35,6 +35,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { SMS }from '@ionic-native/sms';
 import { CameraPreview,CameraPreviewPictureOptions,CameraPreviewOptions,CameraPreviewDimensions } from '@ionic-native/camera-preview';
+import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
+
+
 import { CashProvider } from '../providers/cash/cash';
 import { NativeStorage }from '@ionic-native/native-storage';
 import { UserProvider } from '../providers/user/user';
@@ -109,6 +112,7 @@ import { HeaderComponent } from '../components/header/header';
     SMS,
     CameraPreview,
     NativeStorage,
+    Base64ToGallery,
     CashProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CashProvider,

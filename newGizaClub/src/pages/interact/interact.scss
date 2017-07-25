@@ -1,11 +1,23 @@
 page-interact {
+    .image-div{
+            height: 322px;
+            width: 322px;
+            margin: auto;
+            background-color: transparent;
+            border: 11px solid #000;
+            border-radius: 50%;
+    }
+    .image-div-wrapper{
+        height : 24% ;
+         background-color: black ;
+    }
+    .interact-body{
+    background-color:transparent ; 
+}
 
 }
-.interact-body{
-    background-color: transparent !important; 
-}
 ion-app, ion-content {
-  background-color: transparent ;
+  background-color: transparent  ;
 }
 ion-app.md{
     background-color: transparent

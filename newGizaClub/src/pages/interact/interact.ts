@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CameraPreview,CameraPreviewPictureOptions,CameraPreviewOptions,CameraPreviewDimensions } from '@ionic-native/camera-preview';
+import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 
 /**
  * Generated class for the InteractPage page.
@@ -34,7 +35,7 @@ private cameraPreviewOpts: CameraPreviewOptions = {
   alpha: 1
 };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private cameraPreview: CameraPreview) {
+  constructor(public navCtrl: NavController,public b64ToG : Base64ToGallery ,public navParams: NavParams, private cameraPreview: CameraPreview) {
     this.cameraPreview.startCamera(this.cameraPreviewOpts).then(
   (res) => {
     console.log(res);
@@ -42,6 +43,7 @@ private cameraPreviewOpts: CameraPreviewOptions = {
   (err) => {
     console.log(err);
   });
+  this.cameraPreview.setFlashMode("off");
   this.cameraPreview.show();
 
 
@@ -50,7 +52,11 @@ private cameraPreviewOpts: CameraPreviewOptions = {
  
 takePicture(){
 this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
-  this.picture = 'data:image/jpeg;base64,' + imageData;
+  this.picture = 'data:image/jpg;base64,' + imageData;
+  this.b64ToG.base64ToGallery(this.picture).then(
+  res => alert(res),
+  err => alert(err)
+);
 }, (err) => {
   alert(err);
 
