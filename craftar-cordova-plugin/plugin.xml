@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="com.catchoom.craftar" version="2.1.0">
+    
+    <name>CraftAR</name>
+    <description>This plugin provides Image Recognition and Augmented Reality capabilities via the CraftAR service licensed by Catchoom Technologies.</description>
+    <author>Niels Snoeck, Antonio Quesada, Daniel Cabrera</author>
+    <keywords>catchoom,image recognition,IR,augmented reality,AR,cloud recognition service,crs, CraftAR</keywords>
+    <license>Apache 2.0</license>
+    <info>
+    </info>
+        
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+
+	<js-module src="www/CraftARError.js" name="CraftARError">
+        <clobbers target="CraftARError" />
+    </js-module>
+        
+    <js-module src="www/CraftARSDK.js" name="CraftARSDK">
+        <clobbers target="CraftARSDK" />
+    </js-module>
+
+    <js-module src="www/CraftARCloudRecognition.js" name="CraftARCloudRecognition">
+        <clobbers target="CraftARCloudRecognition" />
+    </js-module>
+
+    <asset src="www_app/ar_overlay.html" target="craftar_example/ar_overlay.html" />
+    <asset src="www_app/index.html" target="craftar_example/index.html" />
+    <asset src="www_app/logo.png" target="craftar_example/logo.png" />
+
+    <platform name="ios">
+	<hook type="before_plugin_install" src="hooks/before_plugin_install/000-create-symlinks.sh" />
+ 	    <config-file target="config.xml" parent="/*">
+                <feature name="CraftAR">
+                    <param name="ios-package" value="CraftARPlugin"/>
+                </feature>
+        </config-file>
+
+        <config-file target="*-Info.plist" parent="NSCameraUsageDescription">
+            <string>Open the camera to recognise objects</string>
+        </config-file>
+
+        
+        <header-file src="src/ios/CraftARPlugin.h" />
+        <source-file src="src/ios/CraftARPlugin.m" />
+        <header-file src="src/ios/SerializerUtils.h" />
+        <source-file src="src/ios/SerializerUtils.m" />
+        
+
+        <framework src="src/ios/Pods.framework" custom="true"  /> -->
+        <framework src="src/ios/CraftARCloudImageRecognitionSDK.framework"  custom="true" />
+        <framework src="AudioToolbox.framework" />
+        <framework src="CoreMedia.framework" />
+        <framework src="SystemConfiguration.framework" />
+        <framework src="AVFoundation.framework" />
+        <framework src="libstdc++.dylib" />
+        <framework src="libc++.dylib" />
+        <framework src="CoreLocation.framework" />
+        <framework src="AssetsLibrary.framework" />
+        <framework src="CoreGraphics.framework" />
+        <framework src="MobileCoreServices.framework" />
+
+     </platform>
+    
+    <platform name="android">
+        
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.CAMERA" />
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-feature android:name="android.hardware.camera.autofocus" />
+        </config-file>
+        
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <!--  Activities' screen orientation is fixed to prevent CraftAR crashes during screen orientation change -->
+            <activity
+                android:name="com.catchoom.craftar.CraftARCordovaActivity"
+                android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+                android:screenOrientation="portrait"
+                android:configChanges="orientation|keyboardHidden" >
+            </activity>
+        </config-file>
+        
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="CraftAR" >
+                <param name="android-package" value="com.catchoom.craftar.CraftARPlugin" />
+            </feature>
+        </config-file>
+                
+        <source-file src="src/android/res/layout/craftar_camera.xml" target-dir="res/layout" />
+        <source-file src="src/android/res/layout/catchoom_layout.xml" target-dir="res/layout" />
+
+
+        <source-file src="src/android/src/com/catchoom/craftar/CraftARCordovaActivity.java" target-dir="src/com/catchoom/craftar" />
+        <source-file src="src/android/src/com/catchoom/craftar/CraftARIntent.java" target-dir="src/com/catchoom/craftar" />
+        <source-file src="src/android/src/com/catchoom/craftar/CraftARPlugin.java" target-dir="src/com/catchoom/craftar" />
+        <source-file src="src/android/src/com/catchoom/craftar/FakeR.java" target-dir="src/com/catchoom/craftar" />
+        <source-file src="src/android/src/com/catchoom/craftar/CraftARUtils.java" target-dir="src/com/catchoom/craftar" />
+        <source-file src="src/android/src/com/catchoom/craftar/CustomSearchController.java" target-dir="src/com/catchoom/craftar" />
+        <source-file src="src/android/src/com/catchoom/craftar/CatchoomPluginInterface.java" target-dir="src/com/catchoom/craftar" />
+        <source-file src="src/android/src/com/catchoom/craftar/CraftARFinderPlugin.java" target-dir="src/com/catchoom/craftar" />
+        <source-file src="src/android/src/com/catchoom/craftar/CraftARCloudIRPlugin.java" target-dir="src/com/catchoom/craftar" />
+        <source-file src="src/android/src/com/catchoom/craftar/IR/CraftARPluginManager.java" target-dir="src/com/catchoom/craftar" />
+        <source-file src="src/android/src/com/catchoom/craftar/CatchoomLayout.java" target-dir="src/com/catchoom/craftar" />
+
+
+        <source-file src="src/android/libs/armeabi-v7a/libimageutils.so" target-dir="libs/armeabi-v7a" />
+        <source-file src="src/android/libs/x86/libimageutils.so" target-dir="libs/x86" />
+        
+        <source-file src="src/android/libs/craftar-cloud-image-recognition-sdk-android.jar" target-dir="libs" />
+        <source-file src="src/android/libs/craftar-cloud-image-recognition-sdk-android.jar.properties" target-dir="libs" />
+
+        <source-file src="src/android/libs/sanselan-0_97-android-1.0.0.jar" target-dir="libs" />
+
+
+        <framework src="src/android/catchoom-exclude.gradle" custom="true" type="gradleReference" />
+
+    </platform>
+    
+</plugin>

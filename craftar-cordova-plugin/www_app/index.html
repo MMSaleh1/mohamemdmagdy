@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="cordova.js"></script>		
+		<script>
+							
+                function onSuccess() {
+                }
+        
+                function onError(error) {
+                    alert("Got error response (" + error + ")");
+                }
+        
+                document.addEventListener("deviceready", function() {
+                    setTimeout(function(){
+                               window.CraftAR.startView(onSuccess, onError, {loadUrl: "ar_overlay.html"});
+                    }, 3000);
+                }, false);
+                
+		</script>
+		
+    </head>
+    <body>
+       <div style="position:absolute;left:50%;top:50%;height:44px;width:300px;text-align:center;margin:-22px 0px 0px -150px;">
+		<img src="logo.png" />
+		</div>
+    </body>
+</html>

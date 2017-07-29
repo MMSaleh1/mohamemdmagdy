@@ -36,6 +36,10 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { SMS }from '@ionic-native/sms';
 import { CameraPreview,CameraPreviewPictureOptions,CameraPreviewOptions,CameraPreviewDimensions } from '@ionic-native/camera-preview';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
+import { Camera } from '@ionic-native/camera';
+import { File } from '@ionic-native/file';
+import { FilePath} from '@ionic-native/file-path';
+import {Transfer} from '@ionic-native/transfer';
 
 
 import { CashProvider } from '../providers/cash/cash';
@@ -43,6 +47,7 @@ import { NativeStorage }from '@ionic-native/native-storage';
 import { UserProvider } from '../providers/user/user';
 import { RootProvider } from '../providers/root/root';
 import { HeaderComponent } from '../components/header/header';
+import { ImagerecognitionProvider } from '../providers/imagerecognition/imagerecognition';
 
 
 @NgModule({
@@ -111,13 +116,18 @@ import { HeaderComponent } from '../components/header/header';
     AndroidPermissions,
     SMS,
     CameraPreview,
+    Camera,
     NativeStorage,
     Base64ToGallery,
     CashProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     CashProvider,
     UserProvider,
-    RootProvider
+    RootProvider,
+    File,
+    FilePath,
+    Transfer,
+    ImagerecognitionProvider
   ]
 })
 export class AppModule {}
