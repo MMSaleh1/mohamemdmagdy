@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController} from 'ionic-angular';
 import {FormBuilder,FormGroup,Validators} from '@angular/forms';
 import {NativeStorage} from '@ionic-native/native-storage';
+
+import {CodeverificationPage} from '../codeverification/codeverification';
+import {UserProvider} from '../../providers/user/user';
 /**
  * Generated class for the RegestrationPage page.
  *
@@ -18,7 +21,7 @@ export class RegestrationPage {
   public regesterForm: FormGroup;
    public userState : string = "userState";
   public regesterBefore = false;
-  constructor(public navCtrl: NavController,private formBuilder:FormBuilder , private natStorage : NativeStorage) {
+  constructor(public userProvider :UserProvider,public navCtrl: NavController,private formBuilder:FormBuilder , private natStorage : NativeStorage) {
   this.buildregesterForm();
   
 }
@@ -30,20 +33,21 @@ export class RegestrationPage {
   }
   buildregesterForm(): void {
 		this.regesterForm = this.formBuilder.group({
-			email: ['', [Validators.required, Validators.pattern(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+[^<>()\.,;:\s@\"]{2,})$/)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      Rpassword: ['', [Validators.required, Validators.minLength(6)]]
+			email: ['', [Validators.required, Validators.pattern(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+[^<>()\.,;:\s@\"]{2,})$/)]]
 		});
 	}
 
   onRegester(){
     this.regesterBefore=true;
-    if(this.regesterForm.value.password == this.regesterForm.value.Rpassword && this.regesterForm.valid){
+      
+      //this.natStorage.getItem('code').then(code=>{
+      //  console.log(code);
+     // })
+     if(this.regesterForm.valid){
+       this.navCtrl.setRoot(CodeverificationPage);
       this.natStorage.setItem(this.userState,"1");
-
+     }
+     
     }
-    console.log(this.regesterForm.value.password);
-    console.log(this.regesterForm.value.Rpassword);
-  }
   
 }

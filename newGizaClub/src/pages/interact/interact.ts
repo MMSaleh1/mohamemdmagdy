@@ -3,6 +3,7 @@ import { IonicPage,Platform, NavController, NavParams } from 'ionic-angular';
 import { CameraPreview,CameraPreviewPictureOptions,CameraPreviewOptions,CameraPreviewDimensions } from '@ionic-native/camera-preview';
 import {Camera} from '@ionic-native/camera';
 
+
 import { ImagerecognitionProvider } from '../../providers/imagerecognition/imagerecognition';
 /**
  * Generated class for the InteractPage page.
@@ -20,11 +21,12 @@ export class InteractPage {
 
   private picture: string;
   private recog :any;
-
+  private pic :any;
+  public output:any ="test";
 private pictureOpts: CameraPreviewPictureOptions = {
-  width: 3120,
-  height: 4160,
-  quality: 80
+  width: 320,
+  height: 240,
+  quality: 75
 }
 
 private cameraPreviewOpts: CameraPreviewOptions = {
@@ -40,6 +42,7 @@ private cameraPreviewOpts: CameraPreviewOptions = {
 };
 
   constructor(public platform :Platform,public navCtrl: NavController,public ir :ImagerecognitionProvider,private cameraPreview: CameraPreview) {
+    
     this.cameraPreview.startCamera(this.cameraPreviewOpts).then(
   (res) => {
    console.log(res);
@@ -51,32 +54,74 @@ private cameraPreviewOpts: CameraPreviewOptions = {
   this.cameraPreview.show();
   }
 
+  public state=1;
 
 
 takePicture(){
-  this.picture='../../assets/img/test.jpeg';
-  this.ir.quarryImage(this.picture).subscribe(data=>{
-  this.recog = data;
+this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
+  this.state=0;
+this.picture='data:image/jpeg;base64,'+imageData;
+this.output=typeof(this.recog);
+this.ir.quarryImage(this.picture).subscribe(data=>{
+ this.recog = data;
+ this.output=this.recog;
   if(this.recog !=[]){
     if(this.recog["results"]){
-      alert(this.recog["results"]["score"]);
+     alert(this.recog["results"]["score"]);
     }else{
-      alert(this.recog["error"]["code"]);
-    }
+      alert(this.recog);
+   }
   }else{
     alert("please take another photo");
   }
+ console.log(typeof(this.pic));
+  if(this.pic != null){
+    console.log(this.pic);
+  }
+  this.state=1;
+},err=>{
+
+  this.output=err;
+  if(err["code"]!=null){
+    this.output=err["code"];
+  }
 })
-this.cameraPreview.takePicture(this.pictureOpts).then((imageData) => {
-this.picture='data:image/jpeg;base64,'+imageData;
 },(err) => {
-  alert("image data error");
   alert(err);
 
 });
 }
   ionViewDidLoad() {
    
+  }
+  changeListener($event :any) : void {
+    console.log("test");
+      let image = this.readThis($event.target);
+      console.log(image);
+      this.ir.quarryImage(image).subscribe(data=>{
+      this.recog = data;
+      if(this.recog !=[]){
+      if(this.recog["results"]){
+     alert(this.recog["results"]["score"]);
+      }else{
+      alert(this.recog);
+   }
+  }else{
+    alert("please take another photo");
+  }
+  })
+  }
+  
+
+  readThis(inputValue: any) : any {
+    var file:File = inputValue.files[0]; 
+    var myReader:FileReader = new FileReader();
+    myReader.readAsDataURL(file);
+    myReader.onloadend = function(e){
+      return myReader.result;
+    }
+
+    
   }
 
 }

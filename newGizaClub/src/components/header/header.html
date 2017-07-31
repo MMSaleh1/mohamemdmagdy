@@ -3,11 +3,15 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+    <div *ngIf="logedIn==false">
+    <ion-row >
+      <ion-col>
     <ion-title class="title">{{name}}</ion-title>
-    <!--
-    <div *ngIf="logedIn == true">
-    <button ion-button name="logOut" (click)="logOut()" >
+      </ion-col>
+  <ion-col col-auto>
+    <button ion-button name="logOut" class="logout-Button" (click)="logOut()" >logOut
     </button>
-    </div>
-    !-->
+    </ion-col>
+    </ion-row>
+  </div>
   </ion-navbar>

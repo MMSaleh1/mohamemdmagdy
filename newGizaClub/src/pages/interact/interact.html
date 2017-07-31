@@ -1,15 +1,11 @@
 
 <ion-content fullscreen class="interact-body">
-    <div *ngIf="picture == null" class="image-div-wrapper"></div>
-<div *ngIf="picture == null" class="image-div" auto>
-    
-    </div>
-<div *ngIf="picture == null" class="image-div-wrapper"></div>
 <ion-fab *ngIf="picture == null" right bottom>
     <button *ngIf="picture == null" ion-fab color="primary" (click)="takePicture()">
         <ion-icon name="md-camera"></ion-icon>
     </button>
 </ion-fab>
 
-<div *ngIf="recog !=null">{{recog}}</div>
+<!--<input type="file"  name="file"(change)="changeListener($event)"> !-->
+
 </ion-content>

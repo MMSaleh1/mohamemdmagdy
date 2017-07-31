@@ -14,7 +14,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ImagerecognitionProvider {
   private cToken:string="12b84671ea14431f"; //the colection token
-  private quarryUrl:string="https://search.craftar.net/v2/search";
+  private quarryUrl:string="https://search.craftar.net/v1/search";
   constructor(public http: Http) {
   }
   public quarryImage(image : any):Observable<any[]>{
@@ -22,7 +22,8 @@ export class ImagerecognitionProvider {
     let data = new URLSearchParams();
     data.append('token', this.cToken);
     data.append('image', image);
-    return this.http.post(`${this.quarryUrl}`,data, {responseType: ResponseContentType.Blob}).map(res=><any[]>res.json());
+    data.append('app_id','com.catchoom.test');
+    return this.http.post(`${this.quarryUrl}`,data, {responseType: ResponseContentType.Json}).map(res=><any[]>res.json());
 
   }
 

@@ -29,6 +29,7 @@ import {AbouttabsPage} from '../pages/abouttabs/abouttabs';
 import {ResturantsPage} from '../pages/resturants/resturants';
 import {InteractPage} from '../pages/interact/interact';
 import {NewsPage} from '../pages/news/news';
+import {CodeverificationPage} from '../pages/codeverification/codeverification';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -76,6 +77,7 @@ import { ImagerecognitionProvider } from '../providers/imagerecognition/imagerec
     ResturantsPage,
     InteractPage,
     NewsPage,
+    CodeverificationPage,
     HeaderComponent
   ],
   imports: [
@@ -108,6 +110,7 @@ import { ImagerecognitionProvider } from '../providers/imagerecognition/imagerec
     AbouttabsPage,
     ResturantsPage,
     InteractPage,
+    CodeverificationPage,
     NewsPage
   ],
   providers: [

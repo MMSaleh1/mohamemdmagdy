@@ -42,7 +42,7 @@ export class LoginPage {
     if(this.loginForm.valid){
       this.page=HomePage;
       this.natStorage.setItem(this.userState,"2");
-    this.navCtrl.push(this.page);
+    this.navCtrl.setRoot(this.page);
     }
     
   }
