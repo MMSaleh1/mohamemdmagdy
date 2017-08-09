@@ -30,20 +30,23 @@ export class RegestrationPage {
   }
   buildregesterForm(): void {
 		this.regesterForm = this.formBuilder.group({
-			email: ['', [Validators.required, Validators.pattern(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+[^<>()\.,;:\s@\"]{2,})$/)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      Rpassword: ['', [Validators.required, Validators.minLength(6)]]
+			phone: ['', [Validators.required,Validators.maxLength(11),Validators.minLength(11)]],
+      //password: ['', [Validators.required, Validators.minLength(6)]],
+     // Rpassword: ['', [Validators.required, Validators.minLength(6)]]
 		});
 	}
 
   onRegester(){
     this.regesterBefore=true;
-    if(this.regesterForm.value.password == this.regesterForm.value.Rpassword && this.regesterForm.valid){
-      this.natStorage.setItem(this.userState,"1");
+   // if(this.regesterForm.value.password == this.regesterForm.value.Rpassword && this.regesterForm.valid){
+    //  this.natStorage.setItem(this.userState,"1");
 
+    //}
+    if(this.regesterForm.valid){
+      console.log("valid");
     }
-    console.log(this.regesterForm.value.password);
-    console.log(this.regesterForm.value.Rpassword);
+    //console.log(this.regesterForm.value.password);
+    //console.log(this.regesterForm.value.Rpassword);
   }
   
 }

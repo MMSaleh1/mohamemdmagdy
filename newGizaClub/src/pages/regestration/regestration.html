@@ -18,15 +18,16 @@
   
   <ion-row class="regestration-row">
     <ion-col col-3>
-     <ion-icon name="mail" class="icon"></ion-icon>
+     <ion-icon name="phone-portrait" class="icon"></ion-icon>
     </ion-col>
     <ion-col >
-     <ion-input  type="email" name="email" formControlName="email" placeholder="Email"></ion-input>
-     <div *ngIf="regesterForm.controls['email'].invalid && regesterBefore == true">
-       enter valed email
+     <ion-input  type="phone" name="phone" formControlName="phone" placeholder="enter your phone number"></ion-input>
+     <div *ngIf="regesterForm.controls['phone'].invalid && regesterBefore == true">
+       enter valed phone number
      </div>
     </ion-col>
   </ion-row>
+  <!--
   <ion-row class="regestration-row">
     <ion-col col-3>
      <ion-icon name="lock" class="icon"></ion-icon>
@@ -49,8 +50,9 @@
      </div>
     </ion-col>
   </ion-row>
+  !-->
   <ion-row>
-      <button ion-button type="submit" class="regestration-bottom" block>Sign up</button>
+      <button ion-button type="submit" class="regestration-bottom" block>send code</button>
   </ion-row>
   </ion-grid>
    </form>
