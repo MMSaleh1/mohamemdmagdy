@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import {SMS} from '@ionic-native/sms';
 
 import {LoginPage} from '../login/login';
@@ -9,7 +9,7 @@ import {LoginPage} from '../login/login';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
+
 @Component({
   selector: 'page-codeverification',
   templateUrl: 'codeverification.html',

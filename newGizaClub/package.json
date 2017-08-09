@@ -39,7 +39,6 @@
         "@ionic-native/transfer": "^3.14.0",
         "@ionic/storage": "2.0.1",
         "autoprefixer": "^7.1.2",
-        "com.catchoom.craftar": "file:../craftar-cordova-plugin",
         "cordova-android": "^6.2.3",
         "cordova-base64-to-gallery": "^4.1.2",
         "cordova-ios": "^4.4.0",
@@ -65,14 +64,13 @@
         "resemblejs": "^2.2.4",
         "rxjs": "^5.4.2",
         "sw-toolbox": "3.6.0",
-        "zone.js": "0.8.12",
-        "comcatchoomcraftar": "../craftar-cordova-plugin"
+        "zone.js": "0.8.12"
     },
     "devDependencies": {
         "@ionic/app-scripts": "1.3.12",
-        "@ionic/cli-plugin-cordova": "1.5.0",
-        "@ionic/cli-plugin-ionic-angular": "1.4.0",
-        "ionic": "3.6.0",
+        "@ionic/cli-plugin-cordova": "1.6.2",
+        "@ionic/cli-plugin-ionic-angular": "1.4.1",
+        "ionic": "3.7.0",
         "typescript": "^2.4.1"
     },
     "description": "An Ionic project",
@@ -102,9 +100,7 @@
             "cordova-base64-to-gallery": {},
             "cordova-plugin-file": {},
             "cordova-plugin-file-transfer": {},
-            "cordova-plugin-filepath": {},
-            "com.catchoom.craftar": {},
-            "comcatchoomcraftar": {}
+            "cordova-plugin-filepath": {}
         },
         "platforms": [
             "android",

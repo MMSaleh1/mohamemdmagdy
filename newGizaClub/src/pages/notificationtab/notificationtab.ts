@@ -13,7 +13,7 @@ import {HomePage} from '../home/home';
   selector: 'page-notificationtab',
   templateUrl: 'notificationtab.html'
 })
-@IonicPage()
+//@IonicPage()
 export class NotificationtabPage {
   public root1 = NotificationsPage;
   public root2 = HomePage;

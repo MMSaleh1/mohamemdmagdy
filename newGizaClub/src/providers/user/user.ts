@@ -19,13 +19,13 @@ export class UserProvider extends RootProvider {
     super(http);
     console.log('Hello UserProvider Provider');
   }
-  public doRegesteration(email : string):Observable<any>{
+  public regester_datatable(email : string):Observable<any>{
      const header = new Headers();
         header.append('Access-Control-Allow-Headers', 'Content-Type');
         header.append('Access-Control-Allow-Methods', 'GET');
         header.append('Access-Control-Allow-Origin', '*');
-        console.log(`${this.CONFIG.API}GetActivationEmailBased?email=${email}`)
-     return this.http.get(`${this.CONFIG.API}GetActivationEmailBased?email=${email}`,{headers : header }).map(
+        console.log(`${this.CONFIG.API}regester_datatable?email=${email}`)
+     return this.http.get(`${this.CONFIG.API}regester_datatable?email=${email}`).map(
       res=> <any>res.json());
   }
 }

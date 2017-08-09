@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
 export class RootProvider {
 
   public CONFIG={
-    "API": "http://services.edge-techno.com/ngsc_m/Service1.asmx/",
+    "API": "http://services.edge-techno.com/NGSCMobilApi/api/APP/",
     "RELESE":false
   };
   constructor(public http: Http) {

@@ -13,7 +13,7 @@ import {ForgetpwPage} from '../forgetpw/forgetpw';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
+//@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage,Platform, NavController, NavParams } from 'ionic-angular';
-import { CameraPreview,CameraPreviewPictureOptions,CameraPreviewOptions,CameraPreviewDimensions } from '@ionic-native/camera-preview';
-import {Camera} from '@ionic-native/camera';
+import { Platform, NavController } from 'ionic-angular';
+import { CameraPreview,CameraPreviewPictureOptions,CameraPreviewOptions } from '@ionic-native/camera-preview';
+import {Camera,CameraOptions} from '@ionic-native/camera';
 
 
 import { ImagerecognitionProvider } from '../../providers/imagerecognition/imagerecognition';
@@ -11,8 +11,6 @@ import { ImagerecognitionProvider } from '../../providers/imagerecognition/image
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-declare var cordova: any;
-@IonicPage()
 @Component({
   selector: 'page-interact',
   templateUrl: 'interact.html',
@@ -41,8 +39,7 @@ private cameraPreviewOpts: CameraPreviewOptions = {
   alpha: 1
 };
 
-  constructor(public platform :Platform,public navCtrl: NavController,public ir :ImagerecognitionProvider,private cameraPreview: CameraPreview) {
-    
+  constructor(public camera : Camera, public platform :Platform,public navCtrl: NavController,public ir :ImagerecognitionProvider,private cameraPreview: CameraPreview) {
     this.cameraPreview.startCamera(this.cameraPreviewOpts).then(
   (res) => {
    console.log(res);
@@ -55,6 +52,17 @@ private cameraPreviewOpts: CameraPreviewOptions = {
   }
 
   public state=1;
+
+  public options: CameraOptions = {
+  quality: 75,
+  destinationType: this.camera.DestinationType.DATA_URL,
+  sourceType : this.camera.PictureSourceType.CAMERA,
+  encodingType: this.camera.EncodingType.JPEG,
+  mediaType: this.camera.MediaType.PICTURE,
+  targetHeight: 320,
+  targetWidth:240
+}
+
 
 
 takePicture(){
@@ -80,16 +88,35 @@ this.ir.quarryImage(this.picture).subscribe(data=>{
   }
   this.state=1;
 },err=>{
-
-  this.output=err;
-  if(err["code"]!=null){
-    this.output=err["code"];
-  }
+    this.output=err;
 })
 },(err) => {
   alert(err);
 
 });
+/*
+this.camera.getPicture(Option).then((data)=>{
+this.picture='data:image/jpeg;base64,'+data;
+this.ir.quarryImage(this.picture).subscribe(data=>{;
+ this.output=data;
+  if(this.output !=[]){
+    if(this.output["results"]){
+     alert(this.output["results"]["score"]);
+    }else{
+      alert(this.output);
+   }
+  }else{
+    alert("please take another photo");
+  }
+  this.state=1;
+},err=>{
+    this.output=err;
+});
+},(err)=>{
+  this.output.err;
+
+});
+*/
 }
   ionViewDidLoad() {
    
