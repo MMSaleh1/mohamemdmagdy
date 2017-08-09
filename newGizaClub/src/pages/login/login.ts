@@ -23,47 +23,48 @@ export class LoginPage {
   public loginForm : FormGroup;
    public userState : string = "userState";
    public loginBefore = false;
+   public userdata:any;
+   public userName:string="";
    private page:any;
    private pages ={
      fp : 'ForgetpwPage',
      rg : 'RegestrationPage'
    }
-  constructor(public navCtrl: NavController, public navParams: NavParams,private formBuilder:FormBuilder,private natStorage : NativeStorage) {
-  this.buildloginForm();
+  constructor(public navCtrl: NavController,
+     public navParams: NavParams,
+     private formBuilder:FormBuilder,
+     private natStorage : NativeStorage
+    ) {
+      this.userdata=this.navParams.get("user");
+      if(this.userdata!= undefined){
+        this.userName=this.userdata[0].name;
+      } 
+      this.buildloginForm();
+      
+      console.log(this.userdata);
 }
   buildloginForm(): void {
 		this.loginForm = this.formBuilder.group({
-			email: ['', [Validators.required, Validators.pattern(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+[^<>()\.,;:\s@\"]{2,})$/)]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      Rpassword:['',[Validators.required,Validators.minLength(6)]]
 		});
 	}
   onLogin(): void{
     this.loginBefore = true;
-    if(this.loginForm.valid){
+    if(this.loginForm.valid && this.loginForm.value.password == this.loginForm.value.Rpassword){
       this.page=HomePage;
-      this.natStorage.setItem(this.userState,"2");
-    this.navCtrl.setRoot(this.page);
+      this.natStorage.setItem(this.userState,"3");
+    this.navCtrl.setRoot(this.page,{
+        user : this.userdata
+      });
     }
     
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad() { 
+      
     
  
   }
-  pushPage(page : any){
-    switch (page){
-      case'RegestrationPage':
-        this.page= RegestrationPage;
-        break;
-        case 'ForgetpwPage':
-        this.page= ForgetpwPage;
-        break;
-    }
-    
-      this.navCtrl.push(this.page,{
-        name : "mohammed"
-      });
-
-}
+  
 }

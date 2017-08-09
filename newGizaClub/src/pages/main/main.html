@@ -1,0 +1,87 @@
+<!--
+  Generated template for the MainPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+
+</ion-header>
+
+<ion-content padding>
+  
+  <ion-scroll scrollY="true" style="height: 33%;">
+    <ion-row class="notif-row">
+    <ion-col col-8 class="notif-col">
+    <h3>Notifications</h3>
+    </ion-col >
+  <ion-col col-auto> 
+    <button class="home-buttons" (click)="goToNotifications()">view all >></button>
+  </ion-col >
+    </ion-row>
+    <ion-list>
+      <ion-grid>
+        <ion-item  *ngFor="let item of Notifications" (tap)="openNotifcation()">
+            
+            <ion-row>
+              <ion-col col-auto>
+                  <ion-icon class="notif-icon" name="disc"></ion-icon>
+              </ion-col>
+              <ion-col class="notif=title-col">
+                <span class="notif-title">
+                {{item.title}}
+                </span>
+              </ion-col>
+              <ion-col>
+                <div class="notif-time">
+                {{item.time}}
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="notif-description">
+                {{item.description}}
+              </ion-col>
+            </ion-row>
+            
+        </ion-item>
+        </ion-grid>
+    </ion-list>
+</ion-scroll>
+
+
+
+<ion-row class="notif-row">
+    <ion-col col-8 class="notif-col">
+    <h3>Events</h3>
+    </ion-col >
+  <ion-col col-auto> 
+    <button class="home-buttons" (click)="goToEvents()">view all >></button>
+  </ion-col >
+    </ion-row>
+ <ion-slides  loop="true"  pager="true" parallax="true" style="height: 33%;">
+    <ion-slide *ngFor="let slide of events">
+      <img class="event-img" [src]="slide.imageUrl"/>
+    </ion-slide>
+ </ion-slides>
+
+
+
+  <ion-row class="rest-slides-cont" style="height: 40%;">
+    <ion-slides class="rest-slides"  parallax="true"slidesPerView='3' >
+    <ion-slide class="rest-slider" *ngFor="let slide of resturants">
+      <div class="rest-img-cont">
+      <img  [src]="slide.imageUrl" (click)="goToRestaurant(slide)"/>
+      </div>
+    <div class="rest-name">
+      {{slide.name}}
+    </div>
+    <div class="rest-desc">
+      {{slide.des}}
+    </div>
+    </ion-slide>
+    </ion-slides>
+  </ion-row>
+  
+</ion-content>

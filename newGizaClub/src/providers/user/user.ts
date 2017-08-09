@@ -15,17 +15,14 @@ import {RootProvider} from '../root/root';
 @Injectable()
 export class UserProvider extends RootProvider {
 
+  public regesterUrl:string="regester";
   constructor(public http: Http,private cashe :CashProvider) {
     super(http);
     console.log('Hello UserProvider Provider');
   }
-  public regester_datatable(email : string):Observable<any>{
-     const header = new Headers();
-        header.append('Access-Control-Allow-Headers', 'Content-Type');
-        header.append('Access-Control-Allow-Methods', 'GET');
-        header.append('Access-Control-Allow-Origin', '*');
-        console.log(`${this.CONFIG.API}regester_datatable?email=${email}`)
-     return this.http.get(`${this.CONFIG.API}regester_datatable?email=${email}`).map(
+  public regester(phone : string):Observable<any>{
+        console.log(`${this.CONFIG.API}${this.regesterUrl}?phone=${phone}`)
+     return this.http.get(`${this.CONFIG.API}${this.regesterUrl}?phone=${phone}`).map(
       res=> <any>res.json());
   }
 }

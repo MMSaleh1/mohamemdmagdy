@@ -61,6 +61,7 @@ export class ResturantsPage {
         des:'Reguler Burger , 100% Beef patty'
       }]
     },
+    
     {
       name :'Domino`sPizza',
       imageUrl:'assets/img/Domino`sPizza.png',

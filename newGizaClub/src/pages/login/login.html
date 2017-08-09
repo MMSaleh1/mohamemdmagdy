@@ -11,14 +11,17 @@
   <img class="round-img"src="assets/img/ngiza.png" >
    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
   <ion-grid>
+    <ion-row>
+      <div class="user-dev">welcome :  {{userName}}</div>
+    </ion-row>
   <ion-row class="reg-input-row">
     <ion-col col-3>
-     <ion-icon name="mail" class="icon"></ion-icon>
+     <ion-icon name="lock" class="icon"></ion-icon>
     </ion-col>
     <ion-col >
-     <ion-input  type="email"  name="email"  formControlName="email" placeholder="Email" ></ion-input>
-     <div *ngIf="loginForm.controls['email'].invalid && loginBefore == true">
-       enter valed email
+     <ion-input  type="password"  name="password"  formControlName="password" placeholder="password" ></ion-input>
+     <div *ngIf="loginForm.controls['password'].invalid && loginBefore == true">
+       enter valed password
      </div>
 
     </ion-col>
@@ -28,29 +31,18 @@
      <ion-icon name="lock" class="icon"></ion-icon>
     </ion-col>
     <ion-col >
-     <ion-input  type="password"  name="password" formControlName="password" placeholder="Password"></ion-input>
-     <div *ngIf="loginForm.controls['password'].invalid && loginBefore == true">
-       enter valed password
+     <ion-input  type="password"  name="password" formControlName="Rpassword" placeholder="confirm your Password"></ion-input>
+     <div *ngIf="loginForm.controls['password'] != loginForm.controls['Rpassword'] && loginBefore == true">
+       your password doen`t match
      </div>
 
     </ion-col>
   </ion-row>
-  <ion-row class="fp-row">
-    <div class="fp-container">
-     <button ion-button class="fp-Button" (click)="pushPage(this.pages['fp'])">Forgot Password? </button>
-    </div>
-  </ion-row>
-  
+
   <ion-row class="registration-row">
-      <button ion-button type="submit" class="registration-button" block>Sign in</button>
+      <button ion-button type="submit" class="registration-button" block>confirm</button>
   </ion-row>
   </ion-grid>
    </form>
-   <ion-row>
-       <label class="registration-label">Dont have account</label>
-   </ion-row>
-   <ion-row>
-     <button ion-button class="sign-up-button" (click)="pushPage(this.pages['rg'])">Sign up</button>
-   </ion-row>
   
 </ion-content>

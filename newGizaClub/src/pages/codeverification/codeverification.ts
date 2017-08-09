@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {SMS} from '@ionic-native/sms';
 
+import {UserProvider} from '../../providers/user/user';
 import {LoginPage} from '../login/login';
 /**
  * Generated class for the CodeverificationPage page.
@@ -18,7 +19,16 @@ export class CodeverificationPage {
   public name:string="verification";
   public code:any;
   private correctCode:any;
-  constructor(public navCtrl: NavController,private sms : SMS, public navParams: NavParams) {
+  private userdata:any;
+
+  constructor(public navCtrl: NavController,
+    private sms : SMS,
+    public navParams: NavParams,
+    public user: UserProvider
+  ) {
+      this.userdata=this.navParams.get("user");
+    
+    console.log(this.userdata);
     this.correctCode='11111';
     //if(this.sms.hasPermission()){
       //this.sms.send('01099297597',this.correctCode);
@@ -27,14 +37,19 @@ export class CodeverificationPage {
    // }
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CodeverificationPage');
-  }
+  
   public sendCode(){
     console.log(this.code);
     if(this.code==this.correctCode){
-       this.navCtrl.setRoot(LoginPage);
+       this.navCtrl.setRoot(LoginPage,{"user":this.userdata});
     }
   }
-
+  public requestCode(){
+    this.user.regester(this.userdata[0].mobileNum).subscribe((data)=>{
+      this.code=data;
+    });
+  }
+ionViewDidLoad() {
+    console.log('ionViewDidLoad CodeverificationPage');
+  }
 }
