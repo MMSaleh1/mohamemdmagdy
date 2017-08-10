@@ -74,7 +74,12 @@ export class ResturantsPage {
       }]
     }
   ];
-  this.changeResturant(this.resturants[0]);
+  if(this.navParams.get("restaurnt")!=undefined){
+    this.changeResturant(this.navParams.get("restaurnt"));
+  }else{
+    this.changeResturant(this.resturants[0]);
+  }
+  
   
   }
 

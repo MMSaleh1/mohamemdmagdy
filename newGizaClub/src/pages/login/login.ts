@@ -30,6 +30,9 @@ export class LoginPage {
      fp : 'ForgetpwPage',
      rg : 'RegestrationPage'
    }
+
+
+
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      private formBuilder:FormBuilder,
@@ -37,7 +40,7 @@ export class LoginPage {
     ) {
       this.userdata=this.navParams.get("user");
       if(this.userdata!= undefined){
-        this.userName=this.userdata[0].name;
+        this.userName=this.userdata.username;
       } 
       this.buildloginForm();
       
@@ -52,10 +55,11 @@ export class LoginPage {
   onLogin(): void{
     this.loginBefore = true;
     if(this.loginForm.valid && this.loginForm.value.password == this.loginForm.value.Rpassword){
+      this.userdata.password = this.loginForm.value.password;
       this.page=HomePage;
       this.natStorage.setItem(this.userState,"3");
     this.navCtrl.setRoot(this.page,{
-        user : this.userdata
+        "user" : this.userdata
       });
     }
     

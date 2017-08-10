@@ -5,6 +5,8 @@ import {NativeStorage} from '@ionic-native/native-storage';
 
 import {CodeverificationPage} from '../codeverification/codeverification';
 import {UserProvider} from '../../providers/user/user';
+
+import {User} from '../../templates/usertemplate';
 /**
  * Generated class for the RegestrationPage page.
  *
@@ -21,7 +23,10 @@ export class RegestrationPage {
   public regesterForm: FormGroup;
    public userState : string = "userState";
   public regesterBefore = false;
-  public user : any;
+  public user : User ;
+  public debugOutput:string ="test";
+
+
   constructor(public userProvider :UserProvider,
     public navCtrl: NavController,
     private formBuilder:FormBuilder ,
@@ -29,6 +34,7 @@ export class RegestrationPage {
     private menu : MenuController
 
   ) {
+    this.user = new User();
     this.menu.swipeEnable(false);
   this.buildregesterForm();
   
@@ -52,136 +58,31 @@ export class RegestrationPage {
       //  console.log(code);
      // })
      if(this.regesterForm.valid){
-       
-      this.natStorage.setItem(this.userState,"1");
       console.log(this.regesterForm.value.phone);
-      let tempUser=[{
-          img : "assets/img/profileTemp.png",
-          name: 'user',
-          id : '10',
-          rfid : '100000',
-          dob : '1 Nov 2017',
-          nid : '1221432351556',
-          mobileNum : '01099297597',
-          memberId : '123456789',
-          email : 'user@edge.com',
-          normnatedBy : '----------------------------',
-          occupation : 'Academic Occupation',
-          applicationNum : "1 Nov 2004"
-        },
-        {
-          img : "assets/img/profileTemp.png",
-          name: 'spouse',
-          id : '185658765',
-          rfid : '87658765876',
-          dob : '1 Nov 2017',
-          nid : '8765905876487',
-          mobileNum : '01558745896',
-          memberId : '123456789',
-          email : 'spouse@edge.com',
-          normnatedBy : '----------------------------',
-          occupation : 'Academic Occupation',
-          applicationNum : "1 Nov 2004"
-        },
-        {
-          img : "assets/img/profileTemp.png",
-          name: 'child1',
-          id : '10',
-          rfid : '100000',
-          dob : '1 Nov 2017',
-          nid : '1221432351556',
-          mobileNum : '01099297597',
-          memberId : '123456789',
-          email : 'child1@edge.com',
-          normnatedBy : '----------------------------',
-          occupation : 'Academic Occupation',
-          applicationNum : "1 Nov 2004"
-        },{
-          img : "assets/img/profileTemp.png",
-          name: 'child2',
-          id : '10',
-          rfid : '100000',
-          dob : '1 Nov 2017',
-          nid : '1221432351556',
-          mobileNum : '01099297597',
-          memberId : '123456789',
-          email : 'child2@edge.com',
-          normnatedBy : '----------------------------',
-          occupation : 'Academic Occupation',
-          applicationNum : "1 Nov 2004"
-        }
-      ];
-      this.user=tempUser;
-      this.navCtrl.setRoot(CodeverificationPage,{"user":this.user});
-      /*
-      this.userProvider.regester(this.regesterForm.value.phone).subscribe(data=>{
-        this.user=data[0];
+      //this.navCtrl.setRoot(CodeverificationPage,{"user":this.user});
+      
+      this.userProvider.regester_datatable(this.regesterForm.value.phone).subscribe(data=>{
+        if(data != []){
+          this.natStorage.setItem(this.userState,"1");
+          console.log(data);
+        this.user.username=data[0].name;
+        this.user.email=data[0].email;
+        this.user.membershipID=data[0].member_id;
+        this.user.mobile=data[0].mobile;
+        let code = data[0].code;
         console.log(this.user);
         this.natStorage.setItem("user",this.user);
-        
-        this.navCtrl.setRoot(CodeverificationPage,{"user":this.user});
-      },(err)=>{
-        let tempUser=[{
-          img : "assets/img/profileTemp.png",
-          name: 'user',
-          id : '10',
-          rfid : '100000',
-          dob : '1 Nov 2017',
-          nid : '1221432351556',
-          mobileNum : '01099297597',
-          memberId : '123456789',
-          email : 'user@edge.com',
-          normnatedBy : '----------------------------',
-          occupation : 'Academic Occupation',
-          applicationNum : "1 Nov 2004"
-        },
-        {
-          img : "assets/img/profileTemp.png",
-          name: 'spouse',
-          id : '185658765',
-          rfid : '87658765876',
-          dob : '1 Nov 2017',
-          nid : '8765905876487',
-          mobileNum : '01558745896',
-          memberId : '123456789',
-          email : 'spouse@edge.com',
-          normnatedBy : '----------------------------',
-          occupation : 'Academic Occupation',
-          applicationNum : "1 Nov 2004"
-        },
-        {
-          img : "assets/img/profileTemp.png",
-          name: 'child1',
-          id : '10',
-          rfid : '100000',
-          dob : '1 Nov 2017',
-          nid : '1221432351556',
-          mobileNum : '01099297597',
-          memberId : '123456789',
-          email : 'child1@edge.com',
-          normnatedBy : '----------------------------',
-          occupation : 'Academic Occupation',
-          applicationNum : "1 Nov 2004"
-        },{
-          img : "assets/img/profileTemp.png",
-          name: 'child2',
-          id : '10',
-          rfid : '100000',
-          dob : '1 Nov 2017',
-          nid : '1221432351556',
-          mobileNum : '01099297597',
-          memberId : '123456789',
-          email : 'child2@edge.com',
-          normnatedBy : '----------------------------',
-          occupation : 'Academic Occupation',
-          applicationNum : "1 Nov 2004"
+        this.natStorage.setItem("code",code);
+        this.navCtrl.setRoot(CodeverificationPage,{"user":this.user , "code":code});
+        }else{
+          alert("please enter a valid phone number");
         }
-      ];
-      this.user=tempUser;
-      this.navCtrl.setRoot(CodeverificationPage,{"user":this.user});
+      },(err)=>{
+        this.debugOutput=JSON.stringify(err.json());
+        alert("connection error, please try again");
       }
     );
-    */
+    
      }
      
     }

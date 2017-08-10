@@ -1,29 +1,35 @@
 
 
 export class User {
-    id    : string;
-    fname : string;
-    lname : string;
-    rfid  : string;
-    email : string;
-    mobile: string;
-    nId   : string;
-    //nID => natunal id
-    profission : string;
-    gender  : string;
-    age     : any;
-    mStatus : string;
-    //mstatus => marital status
-    company : string;
-    title   : string;
-    position: string;
+    
+    userID    : string;
+    username : string;
+    DOB : Date;
     image   : string;
-    companyLogo : string;
-    crdate  : Date;
-    crby    : Date;
-    balanceMoney : any;
-    balancePoints : any;
-    upDate   : any;
-    subProfissionId : any;
+    membershipType: string;
+    membershipID: string;
+    nationalId   : string;
+    mobile: string;
+    email : string;
+    //nID => natunal id
+    gender  : string;
+    password:string;
+   // balanceMoney : any;
+   // balancePoints : any;
+   // upDate   : any;
+   // subProfissionId : any;
+   constructor(){
+       this.userID = "";
+        this.username= "";
+        this.DOB = new Date();
+        this.image ="";
+        this.membershipType="" ;
+        this.membershipID= "";
+        this.nationalId= "";
+        this.mobile="";
+        this.email = "";
+        this.gender= "";
+        this.password="";
+   }
 
 }

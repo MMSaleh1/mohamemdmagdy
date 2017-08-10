@@ -82,13 +82,6 @@
             "cordova-plugin-statusbar": {},
             "cordova-plugin-whitelist": {},
             "ionic-plugin-keyboard": {},
-            "cordova-plugin-crosswalk-webview": {
-                "XWALK_VERSION": "23+",
-                "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
-                "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
-                "XWALK_MODE": "embedded",
-                "XWALK_MULTIPLEAPK": "true"
-            },
             "cordova-sms-plugin": {},
             "cordova-plugin-android-permissions": {},
             "cordova-plugin-camera": {
@@ -100,7 +93,14 @@
             "cordova-base64-to-gallery": {},
             "cordova-plugin-file": {},
             "cordova-plugin-file-transfer": {},
-            "cordova-plugin-filepath": {}
+            "cordova-plugin-filepath": {},
+            "cordova-plugin-crosswalk-webview": {
+                "XWALK_VERSION": "23+",
+                "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
+                "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
+                "XWALK_MODE": "embedded",
+                "XWALK_MULTIPLEAPK": "true"
+            }
         },
         "platforms": [
             "android",

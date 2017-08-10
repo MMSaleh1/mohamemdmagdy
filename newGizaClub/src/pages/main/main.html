@@ -54,15 +54,15 @@
 
 <ion-row class="notif-row">
     <ion-col col-8 class="notif-col">
-    <h3>Events</h3>
+    <h3>sports</h3>
     </ion-col >
   <ion-col col-auto> 
     <button class="home-buttons" (click)="goToEvents()">view all >></button>
   </ion-col >
     </ion-row>
  <ion-slides  loop="true"  pager="true" parallax="true" style="height: 33%;">
-    <ion-slide *ngFor="let slide of events">
-      <img class="event-img" [src]="slide.imageUrl"/>
+    <ion-slide *ngFor="let slide of sports">
+      <img class="event-img" [src]="slide.imageUrl" (click)="goToEvent(slide)"/>
     </ion-slide>
  </ion-slides>
 

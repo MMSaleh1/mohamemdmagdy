@@ -14,6 +14,9 @@ import {ProfilePage} from '../pages/profile/profile';
 import {MasterplanPage} from '../pages/masterplan/masterplan';
 import {ResturantsPage} from '../pages/resturants/resturants';
 import {InteractPage} from '../pages/interact/interact';
+import{ FacilitieslistPage} from '../pages/facilitieslist/facilitieslist';
+import{ SportslistPage} from '../pages/sportslist/sportslist'
+
 
 declare var window :any;
 
@@ -31,13 +34,14 @@ export class MyApp {
     this.rootPage=LoginPage;
     this.pages=[
       {title: "Home" ,component : HomePage},
+      {title: 'resturants',component : ResturantsPage},
+      {title: 'sports',component : SportslistPage},
+      {title: 'facilities',component : FacilitieslistPage},
       {title: 'about us',component : AbouttabsPage },
-      {title: 'RegestrationPage' ,component :RegestrationPage},
-      {title: 'LoginPage' ,component : LoginPage},
       {title: 'ProfilePage',component : ProfilePage},
       {title: 'general plan',component : MasterplanPage},
-      {title: 'resturants',component : ResturantsPage},
-      {title: 'interact', component : InteractPage}
+      {title: 'interact', component : InteractPage},
+      
       
     ]
     platform.ready().then(() => {
