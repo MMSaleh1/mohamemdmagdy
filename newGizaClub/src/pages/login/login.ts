@@ -3,6 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {FormBuilder,FormGroup,Validators} from '@angular/forms';
 import {NativeStorage} from '@ionic-native/native-storage';
 
+import {User} from '../../templates/usertemplate';
+
+import {UserProvider} from '../../providers/user/user';
+
 import {HomePage} from '../home/home';
 import {RegestrationPage} from '../regestration/regestration';
 import {ForgetpwPage} from '../forgetpw/forgetpw';
@@ -21,27 +25,38 @@ import {ForgetpwPage} from '../forgetpw/forgetpw';
 export class LoginPage {
   public name : string ='login';
   public loginForm : FormGroup;
-   public userState : string = "userState";
+
+   public defaultPage : string = "defaultPage";
    public loginBefore = false;
-   public userdata:any;
+   public userdata:User;
    public userName:string="";
    private page:any;
-   private pages ={
-     fp : 'ForgetpwPage',
-     rg : 'RegestrationPage'
-   }
-
 
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      private formBuilder:FormBuilder,
-     private natStorage : NativeStorage
+     private natStorage : NativeStorage,
+     private user : UserProvider
     ) {
-      this.userdata=this.navParams.get("user");
-      if(this.userdata!= undefined){
-        this.userName=this.userdata.username;
-      } 
+      this.userdata=new User();
+     // this.userdata=this.navParams.get("user");
+     // if(this.userdata!= undefined){
+      // this.userName=this.userdata.username;
+      //} 
+      this.natStorage.getItem("user").then(data=>{
+        this.userName = data.username;
+        this.userdata.memberId=data.memberId;
+        this.userdata.email=data.email;
+        this.userdata.mobile=data.mobile;
+        this.userdata.dob=data.DOB;
+        this.userdata.nid=data.nationalId;
+        this.userdata.id=data.userID;
+        this.userdata.password="";
+        this.userdata.username=data.username;
+      },err=>{
+        alert(err);
+      })
       this.buildloginForm();
       
       console.log(this.userdata);
@@ -54,13 +69,26 @@ export class LoginPage {
 	}
   onLogin(): void{
     this.loginBefore = true;
-    if(this.loginForm.valid && this.loginForm.value.password == this.loginForm.value.Rpassword){
+    if(this.loginForm.value.password == this.loginForm.value.Rpassword){
+      
       this.userdata.password = this.loginForm.value.password;
       this.page=HomePage;
-      this.natStorage.setItem(this.userState,"3");
+      this.natStorage.setItem(this.defaultPage,this.page.name);
+      this.natStorage.setItem('user',this.userdata);
+      this.user.change_Password(this.userdata.mobile,this.userdata.password).subscribe(data=>{
+        if(data=1){
+          alert("password set");
+        }else{
+          alert("server error please try later");
+        }
+      },err=>{
+        alert(err);
+      })
     this.navCtrl.setRoot(this.page,{
         "user" : this.userdata
       });
+    }else{
+      alert(this.loginForm.value.password == this.loginForm.value.Rpassword);
     }
     
   }

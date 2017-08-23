@@ -3,7 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import {SportslistPage}from '../sportslist/sportslist';
 import {SportsPage} from '../sports/sports';
-import {ResturantsPage} from '../resturants/resturants'
+import {ResturantsPage} from '../resturants/resturants';
+
 /**
  * Generated class for the MainPage page.
  *
@@ -16,6 +17,8 @@ import {ResturantsPage} from '../resturants/resturants'
   templateUrl: 'main.html',
 })
 export class MainPage {
+
+  public name : string ="Home";
  public Notifications : Array<{
     title : string , 
     time  : any,

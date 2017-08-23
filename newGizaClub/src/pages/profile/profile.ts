@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {NativeStorage} from '@ionic-native/native-storage';
+
+import {LoginPage} from '../login/login';
 /**
  * Generated class for the ProfilePage page.
  *
@@ -25,16 +27,27 @@ export class ProfilePage {
     mobileNum : '0199297597',
     memberId : '123456789',
     email : 'mohammed@edge.com',
-    normnatedBy : '----------------------------',
     occupation : 'Academic Occupation',
-    applicationNum : "1 Nov 2004"
+    applicationNum : "1 Nov 2004",
+    password : ""
   };
   constructor(public navCtrl: NavController, public navParams: NavParams,public natStorage:NativeStorage) {
   this.natStorage.getItem("user").then(data=>{
     this.user.memberId=data.memberId;
     this.user.email=data.email;
     this.user.mobile=data.mobile;
+    this.user.dob=data.DOB;
+    this.user.nid=data.nationalId;
+    this.user.id=data.userID;
+    this.user.password=data.password;
+
+  },err=>{
+    console.log(err);
   });
+  }
+
+  public changePassword(){
+    this.navCtrl.setRoot(LoginPage);
   }
 
   ionViewDidLoad() {

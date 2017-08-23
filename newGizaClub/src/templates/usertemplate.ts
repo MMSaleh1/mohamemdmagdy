@@ -2,13 +2,13 @@
 
 export class User {
     
-    userID    : string;
+    id    : string;
     username : string;
-    DOB : Date;
+    dob : Date;
     image   : string;
     membershipType: string;
-    membershipID: string;
-    nationalId   : string;
+    memberId: string;
+    nid   : string;
     mobile: string;
     email : string;
     //nID => natunal id
@@ -19,13 +19,13 @@ export class User {
    // upDate   : any;
    // subProfissionId : any;
    constructor(){
-       this.userID = "";
+       this.id = "";
         this.username= "";
-        this.DOB = new Date();
+        this.dob = new Date();
         this.image ="";
         this.membershipType="" ;
-        this.membershipID= "";
-        this.nationalId= "";
+        this.memberId= "";
+        this.nid= "";
         this.mobile="";
         this.email = "";
         this.gender= "";

@@ -45,7 +45,7 @@ if(typeof(image) != undefined){
   alert('we got image');
 }
     console.log(data2);
-    return this.http.post(`${this.quarryUrl}`,data,{headers:headers}).map(res=><any[]>res.json());
+    return this.http.post(`${this.quarryUrl}`,data2,{headers:headers}).map(res=><any[]>res.json());
     
 
   }

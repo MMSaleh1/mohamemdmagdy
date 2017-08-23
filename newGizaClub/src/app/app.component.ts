@@ -16,6 +16,7 @@ import {ResturantsPage} from '../pages/resturants/resturants';
 import {InteractPage} from '../pages/interact/interact';
 import{ FacilitieslistPage} from '../pages/facilitieslist/facilitieslist';
 import{ SportslistPage} from '../pages/sportslist/sportslist'
+import {CodeverificationPage} from '../pages/codeverification/codeverification';
 
 
 declare var window :any;
@@ -26,12 +27,30 @@ declare var window :any;
 export class MyApp {
     
    @ViewChild(Nav) nav: Nav;
-   public userState : string = "userState";
+   public defaultPage : string = "defaultPage";
   rootPage:any;
   pages: Array<{title: string, component: any}>;
   backButtonPressedOnceToExit=false;
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private toastCtrl:   ToastController,private natStorage : NativeStorage) {
-    this.rootPage=LoginPage;
+    //this.rootPage=RegestrationPage;
+    this.natStorage.getItem(this.defaultPage).then((data)=>{
+          if(data == RegestrationPage.name){
+            this.rootPage=RegestrationPage;
+          }else if(data== LoginPage.name){
+            this.rootPage=LoginPage;
+          }else if(data == CodeverificationPage.name){
+            this.rootPage=CodeverificationPage;
+          }else{
+            this.rootPage=HomePage;
+          }
+          
+      },(err)=>{
+        this.natStorage.setItem(this.defaultPage,RegestrationPage.name);
+        this.rootPage=HomePage;
+        
+      }
+    )
+   
     this.pages=[
       {title: "Home" ,component : HomePage},
       {title: 'resturants',component : ResturantsPage},
@@ -43,28 +62,15 @@ export class MyApp {
       {title: 'interact', component : InteractPage},
       
       
-    ]
+    ],
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
-      
+      this.nav.setRoot(this.rootPage);
       splashScreen.hide();
-      this.natStorage.getItem(this.userState).then((data)=>{
-        if(data =="0"){
-          this.rootPage=RegestrationPage;
-        }else if(data == "1"){
-          this.rootPage=LoginPage;
-
-        }else{
-          this.rootPage=HomePage;
-        }
-      },(err)=>{
-        this.natStorage.setItem(this.userState,"0");
-        this.rootPage=RegestrationPage;
-      }
-    )
-    this.nav.setRoot(this.rootPage);
+     
+    
      var lastTimeBackPress = 0;
         var timePeriodToExit  = 2000;
 
@@ -85,7 +91,7 @@ export class MyApp {
                     toast.present();
                     lastTimeBackPress = new Date().getTime();
                 }
-            } else if(view.component.name != "HomePage" && view.component.name !="LoginPage" && view.component.name !="RegestrationPage"){
+            } else if(view.component.name != "HomePage" && view.component.name != "CodeverificationPage" && view.component.name !="LoginPage" && view.component.name !="RegestrationPage"){
               this.rootPage=HomePage;
               this.nav.goToRoot({});
             }

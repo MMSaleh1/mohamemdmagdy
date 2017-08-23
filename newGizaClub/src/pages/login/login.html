@@ -32,7 +32,7 @@
     </ion-col>
     <ion-col >
      <ion-input  type="password"  name="password" formControlName="Rpassword" placeholder="confirm your Password"></ion-input>
-     <div *ngIf="loginForm.controls['password'] != loginForm.controls['Rpassword'] && loginBefore == true">
+     <div *ngIf="loginForm.value.password  != loginForm.value.Rpassword  && loginBefore == true">
        your password doen`t match
      </div>
 

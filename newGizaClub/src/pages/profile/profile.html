@@ -94,10 +94,10 @@
       </ion-row>
       <ion-row class="profile-user-row">
         <ion-col>
-          Norminated By
+          password
         </ion-col>
         <ion-col>
-          {{user.normnatedBy}}
+          {{user.password}}
         </ion-col>
       </ion-row>
       <ion-row class="profile-user-row">
@@ -116,6 +116,9 @@
           {{user.applicationNum}}
         </ion-col>
       </ion-row>
+      <ion-row class="registration-row">
+      <button ion-button (click)="changePassword()" class="registration-button" block>change password</button>
+  </ion-row>
     </ion-grid>
   </div>
 </div>

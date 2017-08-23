@@ -21,7 +21,7 @@ import {User} from '../../templates/usertemplate';
 export class RegestrationPage {
   public name : string="regestration";
   public regesterForm: FormGroup;
-   public userState : string = "userState";
+   public defaultPage : string = "defaultPage";
   public regesterBefore = false;
   public user : User ;
   public debugOutput:string ="test";
@@ -37,6 +37,12 @@ export class RegestrationPage {
     this.user = new User();
     this.menu.swipeEnable(false);
   this.buildregesterForm();
+   this.natStorage.getItem(this.defaultPage).then(data=>{
+            alert(data);
+          },
+        err=>{
+          alert(err);
+        });
   
 }
 
@@ -63,11 +69,17 @@ export class RegestrationPage {
       
       this.userProvider.regester_datatable(this.regesterForm.value.phone).subscribe(data=>{
         if(data != []){
-          this.natStorage.setItem(this.userState,"1");
+          this.natStorage.setItem(this.defaultPage,CodeverificationPage.name);
+          this.natStorage.getItem(this.defaultPage).then(data=>{
+            alert(data);
+          },
+        err=>{
+          alert(err);
+        })
           console.log(data);
         this.user.username=data[0].name;
         this.user.email=data[0].email;
-        this.user.membershipID=data[0].member_id;
+        this.user.memberId=data[0].member_id;
         this.user.mobile=data[0].mobile;
         let code = data[0].code;
         console.log(this.user);
@@ -78,7 +90,7 @@ export class RegestrationPage {
           alert("please enter a valid phone number");
         }
       },(err)=>{
-        this.debugOutput=JSON.stringify(err.json());
+    
         alert("connection error, please try again");
       }
     );

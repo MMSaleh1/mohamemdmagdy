@@ -3,6 +3,7 @@ import {NativeStorage} from '@ionic-native/native-storage';
 import {NavController} from 'ionic-angular';
 import {LoginPage} from '../../pages/login/login';
 import {RegestrationPage} from '../../pages/regestration/regestration';
+import {HomePage} from '../../pages/home/home';
 /**
  * Generated class for the HeaderComponent component.
  *
@@ -16,38 +17,37 @@ import {RegestrationPage} from '../../pages/regestration/regestration';
 export class HeaderComponent {
 @Input()
   name: string="header";
-  logedIn :boolean = false;
-  userState : string = "userState";
+  //logedIn :boolean = true;
+  defaultPage : string = "defaultPage";
   constructor(public nativeStorage :NativeStorage,public navCtrl :NavController) {
-   this.init;
+  // this.init();
     
   }
+  /*
   private init(){
-    if(typeof this.nativeStorage.getItem(this.userState)!=undefined && typeof this.nativeStorage.getItem(this.userState)!=null ){
-       let state = this.nativeStorage.getItem(this.userState);
-      state.then((data)=>{
-        if(data == "2"){
+    if(typeof this.nativeStorage.getItem(this.defaultPage)!=undefined && typeof this.nativeStorage.getItem(this.defaultPage)!=null ){
+       this.nativeStorage.getItem(this.defaultPage).then((data)=>{
+        if(data == HomePage){
           this.logedIn=true;
         }else{
           this.logedIn=false;
         }
         
         },(err)=>{
-          this.logedIn=false;
+          this.logedIn=true;
       }
     )
       
   }
   }
-
+*/
   public logOut(){
-    this.nativeStorage.setItem(this.userState,"0");
-    this.init();
+    this.nativeStorage.setItem(this.defaultPage,RegestrationPage);
+   // this.init();
     this.navCtrl.setRoot(RegestrationPage);
     
   }
   ionViewDidLoad() {
-    this.init()
   }
 
 }
