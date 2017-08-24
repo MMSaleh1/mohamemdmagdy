@@ -14,6 +14,7 @@ export class HomePage {
    public interact= InteractPage;
    public news= NewsPage;
    public main=MainPage
+   public name:string="Home";
 
   constructor (private sms :SMS,private menu:MenuController) {
     this.menu.swipeEnable(true);

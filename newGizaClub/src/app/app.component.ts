@@ -34,32 +34,32 @@ export class MyApp {
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private toastCtrl:   ToastController,private natStorage : NativeStorage) {
     //this.rootPage=RegestrationPage;
     this.natStorage.getItem(this.defaultPage).then((data)=>{
-          if(data == RegestrationPage.name){
-            this.rootPage=RegestrationPage;
+          if(data == HomePage.name){
+            this.rootPage=HomePage;
           }else if(data== LoginPage.name){
             this.rootPage=LoginPage;
           }else if(data == CodeverificationPage.name){
             this.rootPage=CodeverificationPage;
           }else{
-            this.rootPage=HomePage;
+            this.rootPage=RegestrationPage;
           }
           
       },(err)=>{
         this.natStorage.setItem(this.defaultPage,RegestrationPage.name);
-        this.rootPage=HomePage;
+        this.rootPage=RegestrationPage;
         
       }
     )
    
     this.pages=[
       {title: "Home" ,component : HomePage},
-      {title: 'resturants',component : ResturantsPage},
-      {title: 'sports',component : SportslistPage},
-      {title: 'facilities',component : FacilitieslistPage},
-      {title: 'about us',component : AbouttabsPage },
+      {title: 'Resturants',component : ResturantsPage},
+      {title: 'Sports',component : SportslistPage},
+      {title: 'Facilities',component : FacilitieslistPage},
+      {title: 'About us',component : AbouttabsPage },
       {title: 'ProfilePage',component : ProfilePage},
-      {title: 'general plan',component : MasterplanPage},
-      {title: 'interact', component : InteractPage},
+      {title: 'General plan',component : MasterplanPage},
+      {title: 'Interact', component : InteractPage},
       
       
     ],

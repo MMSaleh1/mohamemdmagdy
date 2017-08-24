@@ -18,6 +18,7 @@ export class UserProvider extends RootProvider {
   private regesterUrl:string="regester_datatable";
   private getUserData:String="confirm_via_email_and_memberid";
   private changePassword:string="member_update_password";
+  private getUserRelatives:string="GetMemberCompleteCircle";
 
   
   constructor(public http: Http,private cashe :CashProvider) {
@@ -40,5 +41,9 @@ export class UserProvider extends RootProvider {
       return this.http.get(`${this.CONFIG.API}${this.changePassword}?phone=${phone}&password=${password}`).map(
         res=><any>res.json());
     }
-      
+
+    public get_user_relatives(phone:string , memberId:string):Observable<any>{
+      return this.http.get(`${this.CONFIG.API}${this.getUserRelatives}?mobile=${phone}&member_id=${memberId}`).map(
+        res=><any>res.json());
+    }
 }

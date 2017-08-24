@@ -31,30 +31,14 @@
 <ion-content padding>
 <div *ngIf="segment == 'info'">
   <div>
-    <img class="round-img"src={{user.img}}>
-    <h3 class="profile-user-name">{{user.name}}</h3>
+    <img class="round-img"src={{user.image}}>
+    <h3 class="profile-user-name">{{user.username}}</h3>
   </div>
   <div>
     <ion-grid>
       <ion-row class="profile-user-row">
         <ion-col>
-          User Id
-        </ion-col>
-        <ion-col>
-          {{user.id}}
-        </ion-col>
-      </ion-row>
-      <ion-row class="profile-user-row">
-        <ion-col>
-          RFID SerialNumber
-        </ion-col>
-        <ion-col>
-          {{user.rfid}}
-        </ion-col>
-      </ion-row>
-      <ion-row class="profile-user-row">
-        <ion-col>
-          Date of Birth
+          age
         </ion-col>
         <ion-col>
           {{user.dob}}
@@ -62,10 +46,10 @@
       </ion-row>
       <ion-row class="profile-user-row">
         <ion-col>
-          National ID
+          family ID
         </ion-col>
         <ion-col>
-          {{user.nid}}
+          {{user.familyId}}
         </ion-col>
       </ion-row>
       <ion-row class="profile-user-row">
@@ -73,7 +57,7 @@
           Mobile Number
         </ion-col>
         <ion-col>
-          {{user.mobileNum}}
+          {{user.mobile}}
         </ion-col>
       </ion-row>
       <ion-row class="profile-user-row">
@@ -94,36 +78,46 @@
       </ion-row>
       <ion-row class="profile-user-row">
         <ion-col>
-          password
+          gender
         </ion-col>
         <ion-col>
-          {{user.password}}
+          {{user.gender}}
         </ion-col>
       </ion-row>
       <ion-row class="profile-user-row">
         <ion-col>
-          Occupation
+          membership Type
         </ion-col>
         <ion-col>
-          {{user.occupation}}
+          {{user.membershipType}}
         </ion-col>
       </ion-row>
-      <ion-row class="profile-user-row">
-        <ion-col>
-          Application Date
-        </ion-col>
-        <ion-col>
-          {{user.applicationNum}}
-        </ion-col>
-      </ion-row>
+      <!--
       <ion-row class="registration-row">
       <button ion-button (click)="changePassword()" class="registration-button" block>change password</button>
   </ion-row>
+    !-->
     </ion-grid>
   </div>
 </div>
 <div *ngIf="segment == 'relatives'">
-  Relatives
+   <div>
+    <img class="round-img"src={{user.image}}>
+    <h3 class="profile-user-name">{{user.username}}</h3>
+  </div>
+  <ion-list>
+  <div *ngFor="let member of relatives">
+    
+  <ion-item>
+    <ion-avatar item-start>
+      <img src="{{member.image}}">
+    </ion-avatar>
+    <h2>{{member.username}}</h2>
+    <p>{{member.Relation}},Membership ID: {{member.memberId}}</p>
+  </ion-item>
+
+  </div>
+</ion-list>
 </div>
 <div *ngIf="segment == 'payments'">
   Payments

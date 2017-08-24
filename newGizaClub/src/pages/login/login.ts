@@ -50,9 +50,7 @@ export class LoginPage {
         this.userdata.email=data.email;
         this.userdata.mobile=data.mobile;
         this.userdata.dob=data.DOB;
-        this.userdata.nid=data.nationalId;
-        this.userdata.id=data.userID;
-        this.userdata.password="";
+        //this.userdata.password="";
         this.userdata.username=data.username;
       },err=>{
         alert(err);
@@ -71,10 +69,11 @@ export class LoginPage {
     this.loginBefore = true;
     if(this.loginForm.value.password == this.loginForm.value.Rpassword){
       
-      this.userdata.password = this.loginForm.value.password;
+      //this.userdata.password = this.loginForm.value.password;
       this.page=HomePage;
       this.natStorage.setItem(this.defaultPage,this.page.name);
       this.natStorage.setItem('user',this.userdata);
+      /*
       this.user.change_Password(this.userdata.mobile,this.userdata.password).subscribe(data=>{
         if(data=1){
           alert("password set");
@@ -87,10 +86,10 @@ export class LoginPage {
     this.navCtrl.setRoot(this.page,{
         "user" : this.userdata
       });
+      */
     }else{
       alert(this.loginForm.value.password == this.loginForm.value.Rpassword);
     }
-    
   }
 
   ionViewDidLoad() { 

@@ -2,34 +2,36 @@
 
 export class User {
     
-    id    : string;
+    
     username : string;
-    dob : Date;
+    dob : string;
     image   : string;
     membershipType: string;
     memberId: string;
-    nid   : string;
+    familyId   : string;
     mobile: string;
     email : string;
-    //nID => natunal id
     gender  : string;
-    password:string;
-   // balanceMoney : any;
+    Relation : string;
+    //password:string;
+    balanceMoney : any;
    // balancePoints : any;
    // upDate   : any;
    // subProfissionId : any;
-   constructor(){
-       this.id = "";
-        this.username= "";
-        this.dob = new Date();
-        this.image ="";
-        this.membershipType="" ;
-        this.memberId= "";
-        this.nid= "";
-        this.mobile="";
-        this.email = "";
-        this.gender= "";
-        this.password="";
+   constructor(username="",dob="",image="",membershipType="",memberId= "",familyId= "",mobile="",email = "",gender= "",Relation="",balanceMoney=0){
+        
+        this.username= username;
+        this.dob = dob;
+        this.image = image;
+        this.membershipType=membershipType;
+        this.memberId= memberId;
+        this.familyId= familyId;
+        this.membershipType=membershipType;
+        this.mobile = mobile;
+        this.email = email;
+        this.gender= gender;
+        this.Relation = Relation;
+        this.balanceMoney = balanceMoney;
    }
 
 }
