@@ -50,6 +50,7 @@ import { UserProvider } from '../providers/user/user';
 import { RootProvider } from '../providers/root/root';
 import { HeaderComponent } from '../components/header/header';
 import { ImagerecognitionProvider } from '../providers/imagerecognition/imagerecognition';
+import { ProductsProvider } from '../providers/products/products';
 
 
 @NgModule({
@@ -133,7 +134,8 @@ import { ImagerecognitionProvider } from '../providers/imagerecognition/imagerec
     File,
     FilePath,
     Transfer,
-    ImagerecognitionProvider
+    ImagerecognitionProvider,
+    ProductsProvider
   ]
 })
 export class AppModule {}

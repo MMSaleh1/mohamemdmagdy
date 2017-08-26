@@ -45,7 +45,7 @@
         <button class="rest-button" ion-button>
            <ion-icon   name="remove" (click)="changeNumber('remove',index)"></ion-icon>
         </button>
-        <input [(ngModel)]="orders[index]" type="number" class="rest-input">
+        <input [(ngModel)]="orders[index].quantity" type="number" class="rest-input">
         <button class="rest-button" ion-button> 
           <ion-icon  name="add" (click)="changeNumber('add',index)"></ion-icon>
         </button>
