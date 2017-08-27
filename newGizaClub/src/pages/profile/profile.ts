@@ -25,7 +25,7 @@ export class ProfilePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public natStorage:NativeStorage) {
     this.family=new Array();
     this.relatives=new Array();
-    this.user=new User("mohammed",'20',"assets/img/profileTemp.png","false",'123456789','1000','1111111111111','mohammed@edge','male',null,0);
+    this.user=new User("mohammed",'20',"assets/img/profileTemp.png","false",'123456789','1000','1111111111111','mohammed@edge','male',null,1000);
   /*
     this.natStorage.getItem("user").then(data=>{
     this.user.memberId=data.memberId;

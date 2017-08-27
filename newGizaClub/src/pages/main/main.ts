@@ -349,7 +349,8 @@ export class MainPage {
         des:'Reguler Burger , 100% Beef patty'
       }
     ]
-    },
+    }
+  /*,
     {
       name :'BurgerKing',
       imageUrl:'assets/img/BurgerKing.png',
@@ -372,6 +373,7 @@ export class MainPage {
         des:'Reguler Pizza, with your favorite toppings'
       }]
     }
+    */
   ];
     let output = this.navParams.get("name");
     console.log(output);

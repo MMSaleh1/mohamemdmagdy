@@ -1,0 +1,87 @@
+<!--
+  Generated template for the OrderPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+ <ngsc-header [name]='name'></ngsc-header>
+</ion-header>
+
+
+<ion-content padding>
+<ion-row>
+    <ion-col class="order-header-col">
+      Item Name
+    </ion-col>
+    <ion-col class="order-header-col">
+      Quantity
+    </ion-col>
+    <ion-col class="order-header-col">
+      item Price
+    </ion-col>
+    <ion-col class="order-header-col">
+      purchase price
+    </ion-col>
+  </ion-row>
+<div class="order-dis" *ngFor="let order of orders;let index = index ; trackBy:trackByIndex;">
+  <ion-row>
+    <ion-col  class="order-col">
+      {{order.item.name}}
+    </ion-col>
+    <ion-col  class="order-col">
+      {{order.quantity}}
+    </ion-col>
+    <ion-col  class="order-col">
+      {{order.item.price}}
+    </ion-col>
+    <ion-col  class="order-col">
+      {{order.item.price * order.quantity}}
+    </ion-col>
+  </ion-row>
+</div>
+  <div class="total-price">
+  <ion-row>
+  <ion-col>
+    total price :
+  </ion-col>
+  <ion-col>
+    {{totalPrice}}
+  </ion-col>
+  </ion-row>
+  
+
+  <div *ngIf="paymentMethod == 61">
+<ion-row>
+  <ion-col>
+    your balance now :
+  </ion-col>
+  <ion-col>
+    {{user.balanceMoney}}
+  </ion-col>
+  </ion-row>
+<ion-row>
+<ion-col>
+    your balance after purchase :
+  </ion-col>
+  <ion-col>
+    {{user.balanceMoney - totalPrice }}
+  </ion-col>
+</ion-row>
+  </div>
+  </div>
+<ion-row>
+  <ion-col class="payment-method-col">
+    Choose payment Method :
+  </ion-col>
+  <div *ngFor="let method of paymentMethods">
+  <ion-col>
+   <button ion-button  class="order-bottom" block (click)="changePayment(method.name)">{{method.name}}</button>
+  </ion-col>
+  </div>
+</ion-row>
+<ion-row>
+  <button ion-button  class="order-bottom" block (click)="confirmOrder()">Confirm Order</button>
+</ion-row>
+
+</ion-content>

@@ -31,7 +31,7 @@ import {InteractPage} from '../pages/interact/interact';
 import {NewsPage} from '../pages/news/news';
 import {CodeverificationPage} from '../pages/codeverification/codeverification';
 import {MainPage} from '../pages/main/main';
-
+import {OrderPage} from '../pages/order/order';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
@@ -81,7 +81,8 @@ import { ProductsProvider } from '../providers/products/products';
     NewsPage,
     CodeverificationPage,
     HeaderComponent,
-    MainPage
+    MainPage,
+    OrderPage
   ],
   imports: [
     BrowserModule,
@@ -115,7 +116,8 @@ import { ProductsProvider } from '../providers/products/products';
     InteractPage,
     CodeverificationPage,
     NewsPage,
-    MainPage
+    MainPage,
+    OrderPage
   ],
   providers: [
     StatusBar,
