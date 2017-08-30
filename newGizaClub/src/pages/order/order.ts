@@ -24,8 +24,10 @@ export class OrderPage {
     item: Product;
     quantity: number; 
   }>;
+
   public user : User ;
   public totalPrice:number = 0;
+  public tableCode : string = "";
   public paymentMethods : Array<{
     name : string  ;
     number : number;
@@ -33,7 +35,11 @@ export class OrderPage {
   public paymentMethod :number = 61 ;
   
 
-  constructor(public navCtrl: NavController, public navParams: NavParams , public natStorage : NativeStorage ,public ProdProvider :ProductsProvider) {
+  constructor(public navCtrl: NavController,
+     public navParams: NavParams ,
+      public natStorage : NativeStorage ,
+      public ProdProvider :ProductsProvider,
+    ) {
     this.paymentMethods=[{
       name : "cash",
       number : 41
@@ -64,6 +70,9 @@ export class OrderPage {
     })
   }
 
+
+
+
   public changePayment(payment : string ){
     if(payment == "cash"){
       this.paymentMethod = 41;
@@ -81,8 +90,8 @@ export class OrderPage {
     console.log(count);
     let today  = new Date();
     let time = today.getHours()+":"+today.getMinutes();
-    if((this.user.balanceMoney > this.totalPrice && this.paymentMethod == 61)|| this.paymentMethod ==41 ){
-    this.ProdProvider.add_invoice_header(count,this.totalPrice,this.user.memberId,this.paymentMethod,1,1,0,time).subscribe(data=>{
+    if((this.user.balanceMoney >= this.totalPrice && this.paymentMethod == 61)|| this.paymentMethod ==41 ){
+    this.ProdProvider.add_invoice_header(count,this.totalPrice,this.user.memberId,this.paymentMethod,1,100,0,time).subscribe(data=>{
 
     let invId=data;
     for(var i = 0;i<this.orders.length;i++){
