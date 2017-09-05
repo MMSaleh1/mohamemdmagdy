@@ -15,7 +15,7 @@
     <h3>Notifications</h3>
     </ion-col >
   <ion-col col-auto> 
-    <button class="home-buttons" (click)="goToNotifications()">view all >></button>
+    <button class="home-buttons" (tap)="goToNotifications()">view all >></button>
   </ion-col >
     </ion-row>
     <ion-list>
@@ -55,22 +55,22 @@
     <h3>Sports</h3>
     </ion-col >
   <ion-col col-auto> 
-    <button class="home-buttons" (click)="goToEvents()">view all >></button>
+    <button class="home-buttons" (tap)="goToEvents()">view all >></button>
   </ion-col >
     </ion-row>
  <ion-slides  loop="true"  pager="true" parallax="true" style="height: 33%;">
     <ion-slide *ngFor="let slide of sports">
-      <img class="sports-image" [src]="slide.imageUrl" (click)="goToEvent(slide)"/>
+      <img class="sports-image" [src]="slide.imageUrl" (tap)="goToEvent(slide)"/>
     </ion-slide>
  </ion-slides>
 
 
-
+<span *ngIf="posReady">
   <ion-row class="rest-slides-cont" style="height: 40%;">
     <ion-slides class="rest-slides"  parallax="true"slidesPerView='3' >
     <ion-slide class="rest-slider" *ngFor="let slide of resturants">
       <div class="rest-img-cont">
-      <img  [src]="slide.imageUrl" (click)="goToRestaurant(slide)"/>
+      <img  [src]="slide.image" (tap)="goToRestaurant(slide)"/>
       </div>
     <div class="rest-name">
       {{slide.name}}
@@ -81,5 +81,5 @@
     </ion-slide>
     </ion-slides>
   </ion-row>
-  
+</span>
 </ion-content>

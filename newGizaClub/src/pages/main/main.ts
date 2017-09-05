@@ -1,9 +1,19 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import {NativeStorage} from '@ionic-native/native-storage';
+
 
 import {SportslistPage}from '../sportslist/sportslist';
 import {SportsPage} from '../sports/sports';
 import {ResturantsPage} from '../resturants/resturants';
+
+import { ProductsProvider } from '../../providers/products/products';
+
+import {Resturant ,Product} from '../../templates/resturantstemplate';
+
+
+
+
 
 /**
  * Generated class for the MainPage page.
@@ -17,6 +27,7 @@ import {ResturantsPage} from '../resturants/resturants';
   templateUrl: 'main.html',
 })
 export class MainPage {
+  public posReady: boolean=false;;
 
   public name : string ="Home";
  public Notifications : Array<{
@@ -25,7 +36,8 @@ export class MainPage {
     description : string,
     isNew : boolean
   }>;
-
+  private resturants :Array<Resturant>;
+/*
    private resturants:Array<{
       name : any,
       imageUrl : any,
@@ -37,6 +49,7 @@ export class MainPage {
         des : any
       }>,
   }>;
+  */
     public sports : Array<{
     title : string,
     imageUrl : string,
@@ -44,7 +57,73 @@ export class MainPage {
   }>;
 
 
-  constructor(public navCtrl: NavController,public navParams : NavParams) {
+  constructor(public navCtrl: NavController,public navParams : NavParams, public natStorage : NativeStorage,public productsProvider :ProductsProvider) {
+    this.resturants = new Array();
+    this.natStorage.getItem("POS").then(data=>{
+      if(data.length>0){
+      alert("using native storage");
+      this.resturants.length= data.length;
+    for (var i = 0; i < data.length; i++) {
+      this.resturants[i]= data[i];
+    }
+    this.posReady=true;
+  }else{
+    alert("No Resturants");
+  }
+    },err=>{
+      this.productsProvider.get_Pos().subscribe(prod=>{ // getting points of sale from the API
+        if(prod.length >0){ // check if there is no POS
+        this.resturants.length = prod.length; // init the array length
+
+        this.productsProvider.get_products().subscribe(Data=>{ // get the products from API , to put each product in its POS
+
+          if(Data.length > 0 ){// check if there is no product 
+            let POSArr = new Array(); // create array to store the POS
+            POSArr.length = Data.length; // init the array length
+            for(var i =0;i<prod.length;i++){ // itirate over the POS
+              this.resturants[i] = new Resturant(prod[i].PointName,prod[i].PointID,prod[i].PointDesc,prod[i].PointLogo,[new Product()],prod[i].PointCategory);//add a POS to the array
+              let counter = 0; // counter that points to  first empty postion in the products array for each POS
+              for(var j=0 ; j<Data.length ; j++){ // itirate over the products
+                POSArr[j] = new Product(Data[j].prod_name,Data[j].prod_image,Data[j].price,Data[j].prod_desc,Data[j].prod_id,Data[j].quantity,Data[j].prod_category,Data[j].point_id); // add product to the product array
+                if(POSArr[j].PosId == this.resturants[i].id ){ // check if the current product has he point of sale id as the current POS 
+                  this.resturants[i].products[counter] = POSArr[j];// if true => add the product to the array of products in the current POS
+                  counter++; // move the counter to point to the next postion in the array
+                  
+                }
+              } 
+            }
+            this.natStorage.setItem("POS",this.resturants);
+            this.natStorage.setItem("products",POSArr);
+            console.log(this.resturants);
+            console.log(POSArr);
+            this.posReady=true;
+          }
+      
+        })
+        
+        
+      }else{
+        alert("No Resturants");
+      }
+      },err=>{
+        alert("No Resturants");
+      })
+
+    });
+    
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     this.Notifications=[
       {
         title : "FirstNotif",
@@ -328,55 +407,10 @@ export class MainPage {
                       beach-like setting.`
     }
     ];
-  this.resturants=[{
-      name :'McDonald`s',
-      imageUrl:'assets/img/McDonald`s.png',
-      des:'Burger',
-      menu:[{
-        name: 'Big Mac',
-        imageUrl: 'assets/img/burger.png',
-        price: 12,
-        des:'Reguler Burger , 100% Beef patty'
-      },{
-      name: 'Big Mac2',
-        imageUrl: 'assets/img/burger.png',
-        price: 12,
-        des:'Reguler Burger , 100% Beef patty'
-      },{
-      name: 'Big Mac3',
-        imageUrl: 'assets/img/burger.png',
-        price: 12,
-        des:'Reguler Burger , 100% Beef patty'
-      }
-    ]
-    }
-  /*,
-    {
-      name :'BurgerKing',
-      imageUrl:'assets/img/BurgerKing.png',
-      des:'Burger',
-      menu:[{
-        name: 'WHOPPER',
-        imageUrl: 'assets/img/burger.png',
-        price: 12,
-        des:'Reguler Burger , 100% Beef patty'
-      }]
-    },
-    {
-      name :'Domino`sPizza',
-      imageUrl:'assets/img/Domino`sPizza.png',
-      des:'pizza',
-      menu:[{
-        name: 'pizza',
-        imageUrl: 'assets/img/pizza.png',
-        price: 12,
-        des:'Reguler Pizza, with your favorite toppings'
-      }]
-    }
-    */
-  ];
-    let output = this.navParams.get("name");
-    console.log(output);
+   
+    //let output = this.navParams.get("name");
+   // console.log(output);
+
 
   }
   openNotifcation(){
@@ -396,7 +430,7 @@ export class MainPage {
   }
 
   goToRestaurant(slide :any){
-    this.navCtrl.push(ResturantsPage,{"restaurnt":slide});
+    this.navCtrl.push(ResturantsPage,{"resturant":slide});
     console.log(slide);
   }
 

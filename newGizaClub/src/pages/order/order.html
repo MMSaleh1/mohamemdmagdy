@@ -42,10 +42,10 @@
 </div>
 <ion-row>
   <ion-col>
-    <p>please enter the table number</p>
+    <p>table number</p>
   </ion-col>
   <ion-col>
-  <ion-input type="number" maxlength="2" placeholder="enter your input"></ion-input>
+  <ion-input class="table-number" type="number" pattern="[0-9]*"  max="99"   placeholder="enter your input"></ion-input>
   </ion-col>
   </ion-row>
   <div class="total-price">
@@ -86,13 +86,13 @@
   <div *ngFor="let method of paymentMethods">
   <ion-row>
     <ion-col col-4>
-   <button ion-button  class="order-bottom" block (click)="changePayment(method.name)">{{method.name}}</button>
+   <button ion-button  class="order-bottom" block (tap)="changePayment(method.name)">{{method.name}}</button>
     </ion-col>
   </ion-row>
   </div>
 
 <ion-row>
-  <button ion-button  class="order-bottom" block (click)="confirmOrder()">Confirm Order</button>
+  <button ion-button  class="order-bottom" block (tap)="confirmOrder()">Confirm Order</button>
 </ion-row>
 
 </ion-content>

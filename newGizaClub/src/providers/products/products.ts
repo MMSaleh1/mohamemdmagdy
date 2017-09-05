@@ -5,6 +5,8 @@ import 'rxjs/add/operator/map';
 
 import {RootProvider} from '../root/root';
 
+import {CacheProvider , CacheReponce} from '../cache/cache';
+
 
 /*
   Generated class for the ProductsProvider provider.
@@ -19,17 +21,20 @@ export class ProductsProvider extends RootProvider {
   private GetProduct : string="GetProduct";
   private InvoiceHeader: string="AddInvoiceHeader";
   private InvoiceItem: string = "AddInvoiceitem";
-  constructor(public http: Http) {
+  private getPos :string = "getPos";
+  constructor(public http: Http , public cacheProvider : CacheProvider) {
     super(http);
     console.log('Hello ProductsProvider Provider');
   }
-  public get_category(): Observable<any>{
-    return this.http.get(`${this.CONFIG.API}${this.GetCategory}`).map(res=><any>res.json());
-
+  public get_category():Observable<any>{
+   return this.http.get(`${this.CONFIG.API}${this.GetCategory}`).map(res=><any>res.json());
   }
   public get_products():Observable<any>{
     return this.http.get(`${this.CONFIG.API}${this.GetProduct}`).map(res=><any>res.json());
 
+  }
+  public get_Pos():Observable<any>{
+    return this.http.get(`${this.CONFIG.API}${this.getPos}`).map(res=><any>res.json());
   }
   //Order : first step
 

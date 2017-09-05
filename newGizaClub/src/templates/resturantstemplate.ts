@@ -1,23 +1,27 @@
 
 export class Resturant {
+    private  URLNAME="http://services.edge-techno.com/newgiza";
+    
     public name: string;
     public id: string;
     public des : string;
     public image: string;
+    public category : string;
     public products : Product[];
     
-    constructor(name = "" , id = "" , des = "" , Image = "" , products = [new  Product()]){
+    constructor(name = "" , id = "" , des = "" , imageUrl = "" , products = [new  Product()],Category = ""){
         this.name = name ;
         this.id = id ;
         this.des = des ; 
-        this.image = Image;
+        this.image = (imageUrl.length > 0 && imageUrl !=null)?this.URLNAME+imageUrl.substring(1,imageUrl.length) : "";
         this.products = products ;
+        this.category= Category;
     }
 
 
 }
 export class Product {
-    public  URLNAME="http://services.edge-techno.com/newgiza";
+    private  URLNAME="http://services.edge-techno.com/newgiza";
 
     public name:any;
     public imageUrl:any;
@@ -26,15 +30,17 @@ export class Product {
     public id :string;
     public quantity: number;
     public categoryId: string;
+    public PosId: string;
 
-    constructor(name = "" , imageUrl = "" , price = 0 , des = "" , id = "-1" , quantity = 0 , categoryId = '-1'){
+    constructor(name = "" , imageUrl = "" , price = 0 , des = "" , id = "-1" , quantity = 0 , categoryId = '-1',POSId = "-1"){
         this.categoryId = categoryId;
         this.des = des;
         this.id = id;
-        this.imageUrl = this.URLNAME+imageUrl.substring(1,imageUrl.length);
+        this.imageUrl = (imageUrl.length > 0 && imageUrl != null)?this.URLNAME+imageUrl.substring(1,imageUrl.length) : "";
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+        this.PosId = POSId;
 
     }
 

@@ -47,7 +47,6 @@
         "cordova-plugin-camera-preview": "^0.9.0",
         "cordova-plugin-compat": "^1.1.0",
         "cordova-plugin-console": "^1.0.5",
-        "cordova-plugin-crosswalk-webview": "^2.3.0",
         "cordova-plugin-device": "^1.1.4",
         "cordova-plugin-file": "^4.3.3",
         "cordova-plugin-file-transfer": "^1.6.3",
@@ -93,14 +92,7 @@
             "cordova-base64-to-gallery": {},
             "cordova-plugin-file": {},
             "cordova-plugin-file-transfer": {},
-            "cordova-plugin-filepath": {},
-            "cordova-plugin-crosswalk-webview": {
-                "XWALK_VERSION": "23+",
-                "XWALK_LITEVERSION": "xwalk_core_library_canary:17+",
-                "XWALK_COMMANDLINE": "--disable-pull-to-refresh-effect",
-                "XWALK_MODE": "embedded",
-                "XWALK_MULTIPLEAPK": "true"
-            }
+            "cordova-plugin-filepath": {}
         },
         "platforms": [
             "android",

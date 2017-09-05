@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http,Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
-import {CashProvider} from '../cash/cash';
+//import {CashProvider} from '../cash/cash';
 import {User} from '../../templates/usertemplate';
 
 import {RootProvider} from '../root/root';
@@ -21,7 +21,7 @@ export class UserProvider extends RootProvider {
   private getUserRelatives:string="GetMemberCompleteCircle";
 
   
-  constructor(public http: Http,private cashe :CashProvider) {
+  constructor(public http: Http) {
     super(http);
     console.log('Hello UserProvider Provider');
   }

@@ -12,11 +12,12 @@
 
 
 <ion-content padding>
+  <span *ngIf="ready[0]">
   <ion-row class="rest-slides-cont" style="height: 40%;">
     <ion-slides class="rest-slides"  parallax="true"slidesPerView='3' >
-    <ion-slide class="rest-slider" *ngFor="let slide of resturants">
+    <ion-slide class="rest-slider" *ngFor="let slide of resturants" (tap)="changeResturant(slide)">
       <div class="rest-img-cont">
-      <img  [src]="slide.image" (click)="changeResturant(slide)"/>
+      <img  [src]="slide.image">
       </div>
     <div class="rest-name">
       
@@ -28,11 +29,16 @@
     </ion-slide>
     </ion-slides>
   </ion-row>
-  <div class="items-cont" *ngIf="ready">
+  <div class="items-cont" *ngIf="!ready[1]">
+    <div class="no-items-cont">
+    No Menu items Aveilable
+    </div>
+  </div>
+  <div class="items-cont" *ngIf="ready[1]" >
   <ion-scroll scrollY="true" style="height: 100%;">
   <ion-list>
     <button ion-button (click)="order()" name="Order">Order</button>
-    <div *ngFor="let item of chossenResturants.products ; let index = index ; trackBy:trackByIndex;">
+    <div *ngFor="let item of chossenResturant.products ; let index = index ; trackBy:trackByIndex;">
     <ion-item >
       <ion-row>
         <ion-col>
@@ -70,5 +76,5 @@
   </ion-scroll>
 
   </div>
-  
+  </span>
   </ion-content>

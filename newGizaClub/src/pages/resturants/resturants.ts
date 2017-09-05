@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import {  NavController, NavParams } from 'ionic-angular';
+import {NativeStorage} from '@ionic-native/native-storage';
+
+
 import {ProductsProvider} from '../../providers/products/products';
 import {Resturant , Product , Category} from '../../templates/resturantstemplate';
 import {OrderPage} from '../order/order';
-import { DatePipe } from '@angular/common';
 /**
  *
  * Generated class for the ResturantsPage page.
@@ -21,7 +23,10 @@ export class ResturantsPage {
     item: Product;
     quantity: number; 
   }>;
-  private ready : boolean = false;
+  public ready : boolean[]=[false,false,false];
+  //ready[0] check the POS
+  //ready[1] check the products
+  //ready[2] check the categories
   private resturants : Resturant[] ;
 
   private categories : Category[] ;
@@ -43,107 +48,88 @@ export class ResturantsPage {
       }>,
   }>;
     */
-    private chossenResturants :Resturant;
+    private chossenResturant :Resturant;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public ProdProvider:ProductsProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public ProdProvider:ProductsProvider,public natStorage : NativeStorage) {
     this.resturants = [new Resturant()];
     this.products = [new Product()];
     this.categories = [new Category()];
-     let temp = new Resturant("McDonald`s",'1','Burger','assets/img/McDonald`s.png');
-     this.resturants[0]= temp;
-     console.log(this.resturants);
-    this.ProdProvider.get_products().subscribe(data=>{
-        if(data.length >0){
-          this.products.length = data.length;
-          for(var i =0 ; i < data.length ; i++){
-            let temp = new Product(data[i].prod_name,data[i].prod_image,data[i].price,data[i].prod_desc,data[i].prod_id,data[i].quantity,data[i].prod_category);
-            this.products[i]=temp;
+    
+     this.natStorage.getItem("POS").then(data=>{
+       if(data.length>0){
+       for(var i = 0 ; i< data.length ;i++){
+         this.resturants[i]=data[i];
+       }
+       
+      this.ready[0]=true;
+    }else{
+      alert("No Resturnts");
+    }
+     },err=>{
+      this.ProdProvider.get_Pos().subscribe(prod=>{ // getting points of sale from the API
+        if(prod.length >0){ // check if there is no POS
+        this.resturants.length = prod.length; // init the array length
+
+        this.ProdProvider.get_products().subscribe(Data=>{ // get the products from API , to put each product in its POS
+
+          if(Data.length > 0 ){// check if there is no product 
+            
+            this.products.length=Data.length;// init the array length
+            for(var i =0;i<prod.length;i++){ // itirate over the POS
+              this.resturants[i] = new Resturant(prod[i].PointName,prod[i].PointID,prod[i].PointDesc,prod[i].PointLogo,[new Product()],prod[i].PointCategory);//add a POS to the array
+              let counter = 0; // counter that points to  first empty postion in the products array for each POS
+              for(var j=0 ; j<Data.length ; j++){ // itirate over the products
+                this.products[j] = new Product(Data[j].prod_name,Data[j].prod_image,Data[j].price,Data[j].prod_desc,Data[j].prod_id,Data[j].quantity,Data[j].prod_category,Data[j].point_id); // add product to the product array
+                if(this.products[j].PosId == this.resturants[i].id ){ // check if the current product has he point of sale id as the current POS 
+                  this.resturants[i].products[counter] = this.products[j];// if true => add the product to the array of products in the current POS
+                  counter++; // move the counter to point to the next postion in the array
+                  
+                }
+              }
+              
+              
+            }
+            if(this.navParams.get('resturant')){
+              this.changeResturant(this.navParams.get('resturant'));
+            }else{
+                this.changeResturant(this.resturants[0]);
+            }
+            //this.chossenResturant=this.resturants[0];
+            this.ready[0]=true;
+            this.natStorage.setItem("POS",this.resturants);
+            this.natStorage.setItem("products",this.products);
+            console.log(this.chossenResturant);
+            console.log(this.products);
+
           }
-          this.resturants[0].products = this.products;
-          this.ready = true;
-          
-            this.changeResturant(this.resturants[0]);
-          
-          
-          
-        }else{
-          alert("No product available");
-        }
-          
-        console.log(this.products);
+      
+        })
+        
+        
+      }else{
+        alert("No Resturants");
+      }
       },err=>{
-        console.log(err);
-      });
+        alert("No Resturants");
+      })
+      })
+     console.log(this.resturants);
       this.ProdProvider.get_category().subscribe(data=>{
         if(data.length > 0){
           this.categories.length = data.length;
           for(var i =0 ; i < data.length;i++){
             let temp = new Category(data[i].category_name,data[i].category_id);
             this.categories[i] = temp ;
+            
           }
         }
+        this
         console.log(data);
       },err=>{
         console.log(err);
       });
-
-
-
-
       
-  
-      /*
-    this.resturants=[{
-      name :'McDonald`s',
-      imageUrl:'assets/img/McDonald`s.png',
-      des:'Burger',
-      menu:[{
-        name: 'Big Mac',
-        imageUrl: 'assets/img/burger.png',
-        price: 12,
-        des:'Reguler Burger , 100% Beef patty',
-        quantity: 
-      },{
-      name: 'Big Mac2',
-        imageUrl: 'assets/img/burger.png',
-        price: 12,
-        des:'Reguler Burger , 100% Beef patty'
-      },{
-      name: 'Big Mac3',
-        imageUrl: 'assets/img/burger.png',
-        price: 12,
-        des:'Reguler Burger , 100% Beef patty'
-      }
-    ]
-    }
 
-  ,
-    {
-      name :'BurgerKing',
-      imageUrl:'assets/img/BurgerKing.png',
-      des:'Burger',
-      menu:[{
-        name: 'WHOPPER',
-        imageUrl: 'assets/img/burger.png',
-        price: 12,
-        des:'Reguler Burger , 100% Beef patty'
-      }]
-    },
-    
-    {
-      name :'Domino`sPizza',
-      imageUrl:'assets/img/Domino`sPizza.png',
-      des:'pizza',
-      menu:[{
-        name: 'pizza',
-        imageUrl: 'assets/img/pizza.png',
-        price: 12,
-        des:'Reguler Pizza, with your favorite toppings'
-      }]
-    }
-    
-  ];
-  */
  
  let today  = new Date();
 let time = today.getHours()+":"+today.getMinutes();
@@ -172,22 +158,28 @@ this.ProdProvider.add_invoice_header(2,20,3147,41,1,1,0,time).subscribe(data=>{
     //console.log('ionViewDidLoad ResturantsPage');
   }
   changeResturant(resturant : any){
-    this.chossenResturants = resturant;
+    this.chossenResturant = resturant;
     this.orders= new Array();
-    this.orders.length=this.chossenResturants.products.length;
+    this.orders.length=this.chossenResturant.products.length;
     this.orders.fill({item: new Product(), quantity :0});
     for(var i =0;i<this.orders.length;i++){
-      let temp :any ={item :this.chossenResturants.products[i],quantity:0 }
+      let temp :any ={item :this.chossenResturant.products[i],quantity:0 }
       this.orders[i]=temp;
       //console.log(this.orders[i]);
     }
+    if(this.chossenResturant.products[0].id != '-1'){
+      this.ready[1]=true
+    }else{
+      this.ready[1]=false;
+    }
+    
+    }
 
-  }
   changeNumber(func : String,index : any){
    // console.log(this.orders.length);
     
-    this.orders[index].item=this.chossenResturants.products[index]; //order is important  first change the item from defult
-   // console.log(this.chossenResturants['menu'][index]);
+    this.orders[index].item=this.chossenResturant.products[index]; //order is important  first change the item from defult
+   // console.log(this.chossenResturant['menu'][index]);
     if(func == 'add' && this.orders[index].quantity < this.orders[index].item.quantity){
       this.orders[index].quantity++; // then change its quantity
     }else if(func == 'remove'){
@@ -211,5 +203,6 @@ this.ProdProvider.add_invoice_header(2,20,3147,41,1,1,0,time).subscribe(data=>{
     console.log(this.orders);
     this.navCtrl.push(OrderPage,{"orders":this.orders});
   }
+  
 
 }

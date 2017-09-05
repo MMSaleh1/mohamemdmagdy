@@ -44,7 +44,7 @@ import { FilePath} from '@ionic-native/file-path';
 import {Transfer} from '@ionic-native/transfer';
 
 
-import { CashProvider } from '../providers/cash/cash';
+import { CacheProvider } from '../providers/cache/cache';
 import { NativeStorage }from '@ionic-native/native-storage';
 import { UserProvider } from '../providers/user/user';
 import { RootProvider } from '../providers/root/root';
@@ -128,9 +128,9 @@ import { ProductsProvider } from '../providers/products/products';
     Camera,
     NativeStorage,
     Base64ToGallery,
-    CashProvider,
+    CacheProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CashProvider,
+    CacheProvider,
     UserProvider,
     RootProvider,
     File,

@@ -13,19 +13,19 @@ import 'rxjs/add/operator/map';
   for more info on providers and Angular DI.
 */
 @Injectable()
-export class CashProvider {
+export class CacheProvider {
 
   constructor(public http: Http,private nativeStorage : NativeStorage) {
     console.log('Hello CashProvider Provider');
   }
-  public get_http(url :string , location : string):Observable<any>{
+  public get_http(url :string):Observable<any>{
     let   sub = new Subject();
-    this.getFromStrorage(location,(data:any)=>{
+    this.getFromStrorage(url,(data:any)=>{
       sub.next(data);
 
     },
     (err:any)=>{
-      this.getFromUrl(url,location,(data:any)=>{
+      this.getFromUrl(url,(data:any)=>{
         sub.next(data);
       },
       (err :any)=>{
@@ -53,13 +53,13 @@ export class CashProvider {
     );
     
   }
-  private getFromUrl(url : string ,location : string, succ :Function,fail :Function){
+  private getFromUrl(url : string, succ :Function,fail :Function){
     this.http.get(url).subscribe(
       (data:any)=>{
-        this.nativeStorage.setItem(location,
+        this.nativeStorage.setItem(url,
         <CacheReponce>{
 						value: data,
-						key: location,
+						key: url,
 						time: new Date(),
 						isValid: true
 					});
