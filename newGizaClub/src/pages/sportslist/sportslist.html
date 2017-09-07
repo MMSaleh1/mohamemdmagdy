@@ -4,13 +4,13 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>   
+  <ion-list *ngIf="sportsReady">   
   <ion-item *ngFor="let item of sports">
     <ion-thumbnail item-start>
-      <img [src]="item.imageUrl">
+      <img [src]="item.logo">
     </ion-thumbnail>
-    <h2>{{item.title}}</h2>
-    <button ion-button clear item-end (click)="goTopage(item)">View</button>
+    <h2>{{item.name}}</h2>
+    <button ion-button clear item-end (tap)="goTopage(item)">View</button>
   </ion-item>
 </ion-list>
 

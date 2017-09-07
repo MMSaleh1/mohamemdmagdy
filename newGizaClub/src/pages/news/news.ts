@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import {  NavController, NavParams } from 'ionic-angular';
+import {NativeStorage} from '@ionic-native/native-storage';
+
+import { NewsProvider } from '../../providers/news/news';  
+
+import { News } from '../../templates/usertemplate';
 
 
 /**
@@ -22,8 +27,10 @@ export class NewsPage {
     isliked :boolean;
     isdesliked :boolean;
   }>;
+  public news :Array<News>;
   public action :string="NaN";
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public ready : boolean = false;
+  constructor(public navCtrl: NavController, public navParams: NavParams , public newsProvider :NewsProvider , public natStorage :NativeStorage) {
     this.posts=[{
       name : "post1",
       content : "this is post nubmer 1 , testing long contents for over flowing",
@@ -52,8 +59,31 @@ export class NewsPage {
       dislikes : 0,
       isliked :false,
       isdesliked :false
+    }];
+    this.news = new Array();
+    this.natStorage.getItem("news").then(data=>{
+      for(var i = 0 ;i<data.length;i++){
+        this.news[i]=new News(data[i].id,data[i].title,data[i].content,data[i].likeCount,data[i].dislikeCount);
+      }
+      this.ready=true;
+    },err=>{
+      this.newsProvider.getnews('3147').subscribe(news=>{
+        if(news.length > 0){
+          for(var i = 0 ;i<news.length;i++){
+            this.news[i]=new News(news[i].NewsID,news[i].NewsTitle,news[i].NewsContent,news[i].LikeCount,news[i].DisLikeCount);
+          }
+          console.log(this.news);
+        this.ready=true;
+        this.natStorage.setItem('news',this.news);
+        
+        }else{
+          alert("No News For now");
+        }
+      },err=>{
+        alert(err);
+      })
     }
-  ]
+  )
   }
 
 
@@ -61,26 +91,26 @@ export class NewsPage {
     console.log('ionViewDidLoad NewsPage');
   }
   public like(itemindex :any){
-    this.posts[itemindex].isliked=true;
-    this.posts[itemindex].likes++;
+    this.news[itemindex].isliked=true;
+    this.news[itemindex].likeCount++;
 
   }
   public dislike(itemindex :any){
-    this.posts[itemindex].isdesliked=true;
-    this.posts[itemindex].dislikes++;
+    this.news[itemindex].isdesliked=true;
+    this.news[itemindex].dislikeCount++;
   }
 
 
   public change(itemindex:any,action:any){
 
-    if(this.posts[itemindex].isliked){
-      this.posts[itemindex].likes--;
-      this.posts[itemindex].isliked=false;
+    if(this.news[itemindex].isliked){
+      this.news[itemindex].likeCount--;
+      this.news[itemindex].isliked=false;
       
-    }else if(this.posts[itemindex].isdesliked)
+    }else if(this.news[itemindex].isdesliked)
     {
-      this.posts[itemindex].dislikes--;
-      this.posts[itemindex].isdesliked=false;
+      this.news[itemindex].dislikeCount--;
+      this.news[itemindex].isdesliked=false;
     }
     
   }

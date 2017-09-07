@@ -32,6 +32,10 @@ import {NewsPage} from '../pages/news/news';
 import {CodeverificationPage} from '../pages/codeverification/codeverification';
 import {MainPage} from '../pages/main/main';
 import {OrderPage} from '../pages/order/order';
+import {SportsRegestrationPage} from '../pages/sports-regestration/sports-regestration';
+import {ListsportdetailsPage} from '../pages/listsportdetails/listsportdetails';
+import {JointeamPage} from '../pages/jointeam/jointeam';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
@@ -51,6 +55,8 @@ import { RootProvider } from '../providers/root/root';
 import { HeaderComponent } from '../components/header/header';
 import { ImagerecognitionProvider } from '../providers/imagerecognition/imagerecognition';
 import { ProductsProvider } from '../providers/products/products';
+import { SportsProvider } from '../providers/sports/sports';
+import { NewsProvider } from '../providers/news/news';
 
 
 @NgModule({
@@ -82,7 +88,10 @@ import { ProductsProvider } from '../providers/products/products';
     CodeverificationPage,
     HeaderComponent,
     MainPage,
-    OrderPage
+    OrderPage,
+    SportsRegestrationPage,
+    ListsportdetailsPage,
+    JointeamPage
   ],
   imports: [
     BrowserModule,
@@ -117,7 +126,10 @@ import { ProductsProvider } from '../providers/products/products';
     CodeverificationPage,
     NewsPage,
     MainPage,
-    OrderPage
+    OrderPage,
+    SportsRegestrationPage,
+    ListsportdetailsPage,
+    JointeamPage
   ],
   providers: [
     StatusBar,
@@ -137,7 +149,9 @@ import { ProductsProvider } from '../providers/products/products';
     FilePath,
     Transfer,
     ImagerecognitionProvider,
-    ProductsProvider
+    ProductsProvider,
+    SportsProvider,
+    NewsProvider
   ]
 })
 export class AppModule {}

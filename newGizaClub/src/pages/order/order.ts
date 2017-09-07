@@ -27,12 +27,13 @@ export class OrderPage {
 
   public user : User ;
   public totalPrice:number = 0;
-  public tableCode : string = "";
+  public tableCode : number = 0;
   public paymentMethods : Array<{
     name : string  ;
     number : number;
   }>
   public paymentMethod :number = 61 ;
+  public resturant : any;
   
 
   constructor(public navCtrl: NavController,
@@ -50,6 +51,7 @@ export class OrderPage {
     }
   ]
     this.orders = this.navParams.get("orders");
+    this.resturant = this.navParams.get("resturant");
     for(let i =0; i< this.orders.length;i++){
       this.totalPrice += (this.orders[i].item.price*this.orders[i].quantity);
     }
@@ -82,6 +84,7 @@ export class OrderPage {
 
   }
   public confirmOrder(){
+    if(this.tableCode >0 && this.tableCode <= 100){
     let count = 0;
     
     for(var i =0 ; i<this.orders.length;i++){
@@ -91,7 +94,7 @@ export class OrderPage {
     let today  = new Date();
     let time = today.getHours()+":"+today.getMinutes();
     if((this.user.balanceMoney >= this.totalPrice && this.paymentMethod == 61)|| this.paymentMethod ==41 ){
-    this.ProdProvider.add_invoice_header(count,this.totalPrice,this.user.memberId,this.paymentMethod,1,100,0,time).subscribe(data=>{
+    this.ProdProvider.add_invoice_header(count,this.totalPrice,this.user.memberId,this.paymentMethod,this.resturant.id,this.tableCode,0,time).subscribe(data=>{
 
     let invId=data;
     for(var i = 0;i<this.orders.length;i++){
@@ -111,7 +114,10 @@ export class OrderPage {
   }else{
     alert("you dont have enougth money in your balance");
   }
+  }else{
+    alert("enter valid table number");
   }
+}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrderPage');

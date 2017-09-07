@@ -13,7 +13,7 @@ export class Resturant {
         this.name = name ;
         this.id = id ;
         this.des = des ; 
-        this.image = (imageUrl.length > 0 && imageUrl !=null)?this.URLNAME+imageUrl.substring(1,imageUrl.length) : "";
+        this.image = ( imageUrl !=null &&imageUrl.length > 0 )?this.URLNAME+imageUrl.substring(1,imageUrl.length) : "";
         this.products = products ;
         this.category= Category;
     }
@@ -36,7 +36,7 @@ export class Product {
         this.categoryId = categoryId;
         this.des = des;
         this.id = id;
-        this.imageUrl = (imageUrl.length > 0 && imageUrl != null)?this.URLNAME+imageUrl.substring(1,imageUrl.length) : "";
+        this.imageUrl = (imageUrl != null &&imageUrl.length > 0 )?this.URLNAME+imageUrl.substring(1,imageUrl.length) : "";
         this.name = name;
         this.price = price;
         this.quantity = quantity;

@@ -20,8 +20,12 @@ import { CodeverificationPage } from '../pages/codeverification/codeverification
 
 
 import { ProductsProvider } from '../providers/products/products';
+import { SportsProvider } from '../providers/sports/sports';
+import { NewsProvider } from '../providers/news/news';  
 
-import {Resturant,Category,Product} from '../templates/resturantstemplate';
+import { Sports } from '../templates/sportstemplate';
+import { Resturant,Category,Product } from '../templates/resturantstemplate';
+import { News } from '../templates/usertemplate';
 
 
 @Component({
@@ -39,7 +43,9 @@ export class MyApp {
       splashScreen: SplashScreen,
       private toastCtrl:   ToastController,
       private natStorage : NativeStorage,
-      private productsProvider : ProductsProvider 
+      private productsProvider : ProductsProvider ,
+      private sportsProvider : SportsProvider,
+      private newsProvider : NewsProvider
     ) {
     //this.rootPage=RegestrationPage;
     
@@ -51,15 +57,43 @@ export class MyApp {
       {title: 'Facilities',component : FacilitieslistPage},
       {title: 'About us',component : AbouttabsPage },
       {title: 'ProfilePage',component : ProfilePage},
-      {title: 'General plan',component : MasterplanPage},
-      {title: 'Interact', component : InteractPage},
+     // {title: 'General plan',component : MasterplanPage},
+     // {title: 'Interact', component : InteractPage},
       
       
     ],
 
 
     platform.ready().then(() => {
-      //calling APIs from the server to get the static data
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      this.natStorage.getItem(this.defaultPage).then((data)=>{
+        if(data == HomePage.name){
+          this.rootPage=HomePage;
+        }else if(data== LoginPage.name){
+          this.rootPage=LoginPage;
+        }else if(data == CodeverificationPage.name){
+          this.rootPage=CodeverificationPage;
+        }else{
+          this.rootPage=RegestrationPage;
+        }
+        
+    },(err)=>{
+      this.natStorage.setItem(this.defaultPage,RegestrationPage.name);
+      this.rootPage=RegestrationPage;
+    }
+  )
+      statusBar.styleDefault();
+      this.nav.setRoot(this.rootPage).catch(err=>{
+        console.log(err)});
+      splashScreen.hide();
+     
+    
+     var lastTimeBackPress = 0;
+        var timePeriodToExit  = 2000;
+
+        
+              //calling APIs from the server to get the static data
 
 
 this.productsProvider.get_Pos().subscribe(prod=>{ // getting points of sale from the API
@@ -82,12 +116,13 @@ this.productsProvider.get_Pos().subscribe(prod=>{ // getting points of sale from
           }
         } 
       }
+      
       this.natStorage.setItem("POS",POSArr);
       this.natStorage.setItem("products",ProductArr);
-      console.log(POSArr);
-      console.log(ProductArr);
     }
 
+  },err=>{
+    alert(err);
   })
   
   
@@ -97,10 +132,37 @@ this.productsProvider.get_Pos().subscribe(prod=>{ // getting points of sale from
 },err=>{
   alert(err);
 });
+this.sportsProvider.getSports().subscribe(data=>{;
+  if(data.length != 0){
+  let sports= new Array();
+  for(var i =0;i<data.length;i++){
+    sports[i]=new Sports(data[i].SportName,data[i].SportID,data[i].SportDesc);
+  }
+  this.natStorage.setItem("sprots",sports);
+  }else{
+    alert("NO Sports");
+  }
+},err=>{
+})
 this.productsProvider.get_category().subscribe(data=>{
   this.natStorage.setItem("category",data);
-console.log(data);
 });
+this.natStorage.getItem('user').then(data=>{
+  this.newsProvider.getnews(data.memberId).subscribe(news=>{
+    if(news.length > 0){
+      let tempNews :Array<News> = new Array();
+      for(var i = 0 ;i<news.length;i++){
+        tempNews[i]=new News(news[i].NewsID,news[i].NewsTitle,news[i].NewsContent,news[i].LikeCount,news[i].DisLikeCount);
+      }
+    this.natStorage.setItem('news',tempNews);
+    
+    }
+  },err=>{
+    alert(err);
+  })
+},err=>{
+  console.log(err);
+})
 
 
 
@@ -112,33 +174,6 @@ console.log(data);
 
 //----------------------------------------------------------------
 
-
-
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.natStorage.getItem(this.defaultPage).then((data)=>{
-        if(data == HomePage.name){
-          this.rootPage=HomePage;
-        }else if(data== LoginPage.name){
-          this.rootPage=LoginPage;
-        }else if(data == CodeverificationPage.name){
-          this.rootPage=CodeverificationPage;
-        }else{
-          this.rootPage=RegestrationPage;
-        }
-        
-    },(err)=>{
-      this.natStorage.setItem(this.defaultPage,RegestrationPage.name);
-      this.rootPage=RegestrationPage;
-    }
-  )
-      statusBar.styleDefault();
-      this.nav.setRoot(this.rootPage);
-      splashScreen.hide();
-     
-    
-     var lastTimeBackPress = 0;
-        var timePeriodToExit  = 2000;
 
         platform.registerBackButtonAction(() => {
             // get current active page
@@ -170,6 +205,7 @@ console.log(data);
     
 
   }
+  /*
   showToast() {
         let toast = this.toastCtrl.create({
           message: 'Press Again to exit',
@@ -183,7 +219,7 @@ console.log(data);
 
         toast.present();
       }
-
+*/
   openPage(page :any) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario

@@ -201,7 +201,7 @@ this.ProdProvider.add_invoice_header(2,20,3147,41,1,1,0,time).subscribe(data=>{
     }
     console.log(totalPrice);
     console.log(this.orders);
-    this.navCtrl.push(OrderPage,{"orders":this.orders});
+    this.navCtrl.push(OrderPage,{"orders":this.orders , "resturant": this.chossenResturant});
   }
   
 

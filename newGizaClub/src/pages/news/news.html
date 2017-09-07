@@ -8,34 +8,38 @@
   <ngsc-header [name]='name'></ngsc-header>
 </ion-header>
 <ion-content padding>
-<ion-card class="news-card" *ngFor="let post of posts; let index = index ; trackBy:trackByIndex;">
-
+  <span *ngIf="ready">
+<ion-card  class="news-card" *ngFor="let post of news; let index = index ; trackBy:trackByIndex;">
+      <ion-card-header>
+        {{post.title}}
+      </ion-card-header>
       <ion-card-content>
         {{post.content}}
       </ion-card-content>
       <div *ngIf="!post.isliked && !post.isdesliked">
       <ion-row>
         <ion-col col-3>
-          <button ion-button icon-left clear small (click)="like(index)">
+          <button ion-button icon-left clear small (tap)="like(index)">
             <ion-icon  name="thumbs-up"></ion-icon>
-            <div>{{post.likes}}</div>
+            <div>{{post.likeCount}}</div>
           </button>
         </ion-col>
         <ion-col col-3>
-          <button ion-button icon-left clear small (click)="dislike(index)">
+          <button ion-button icon-left clear small (tap)="dislike(index)">
             <ion-icon name="thumbs-down"></ion-icon>
-            <div>{{post.dislikes}}</div>
+            <div>{{post.dislikeCount}}</div>
           </button>
         </ion-col>
       </ion-row>
       </div>
     <div *ngIf="post.isliked">
       <ion-col>
-      <p>you and {{post.likes}} like this</p>
+      <p>you and {{post.likeCount}} like this</p>
       </ion-col>
     </div>
     <div *ngIf="post.isdesliked">
-      <p>you and {{post.dislikes}} dislike this</p>
+      <p>you and {{post.dislikeCount}} dislike this</p>
     </div>
 </ion-card>
+  </span>
 </ion-content>

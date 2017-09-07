@@ -8,8 +8,8 @@
   <ngsc-header [name]='name'></ngsc-header>
 </ion-header>
 <ion-content padding>
-  
-  <ion-scroll scrollY="true" style="height: 33%;">
+  <div style="height: 33%;">
+  <ion-scroll class="notif-scroll"  scrollY="true" >
     <ion-row class="notif-row">
     <ion-col col-8 class="notif-col">
     <h3>Notifications</h3>
@@ -47,9 +47,8 @@
         </ion-grid>
     </ion-list>
 </ion-scroll>
-
-
-
+  </div>
+<div *ngIf="sportsReady" class="sports-div">
 <ion-row class="notif-row">
     <ion-col col-8 class="notif-col">
     <h3>Sports</h3>
@@ -58,15 +57,20 @@
     <button class="home-buttons" (tap)="goToEvents()">view all >></button>
   </ion-col >
     </ion-row>
- <ion-slides  loop="true"  pager="true" parallax="true" style="height: 33%;">
-    <ion-slide *ngFor="let slide of sports">
-      <img class="sports-image" [src]="slide.imageUrl" (tap)="goToEvent(slide)"/>
+ <ion-slides  loop="true"  pager="true" parallax="true" style="margin-top: -14px;">
+    <ion-slide *ngFor="let slide of sports" style="    width: 120px;">
+      <img class="sports-img" [src]="slide.logo" (tap)="goToEvent(slide)"/>
     </ion-slide>
  </ion-slides>
+</div>
 
 
-<span *ngIf="posReady">
-  <ion-row class="rest-slides-cont" style="height: 40%;">
+<div *ngIf="posReady" style="height: 40%;">
+  <ion-row>
+    <ion-row style="padding-top: 13px;">
+        <h3>Food&Beverages</h3>
+  </ion-row>
+  <ion-row class="rest-slides-cont" >
     <ion-slides class="rest-slides"  parallax="true"slidesPerView='3' >
     <ion-slide class="rest-slider" *ngFor="let slide of resturants">
       <div class="rest-img-cont">
@@ -81,5 +85,6 @@
     </ion-slide>
     </ion-slides>
   </ion-row>
-</span>
+  </ion-row>
+</div>
 </ion-content>

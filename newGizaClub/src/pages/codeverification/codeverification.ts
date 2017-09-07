@@ -107,7 +107,7 @@ export class CodeverificationPage {
             let tempUser:User = new User();
 
             tempUser.dob=data[i].DOB;
-            tempUser.image=data[i].image;
+            tempUser.setImage(data[i].PhotoURL);
             tempUser.membershipType=data[i].membershipType
             tempUser.gender=data[i].gender? "male" : "femail";
             tempUser.memberId=data[i].membershipID;

@@ -1,7 +1,7 @@
 
 
 export class User {
-    
+    private  URLNAME="http://services.edge-techno.com/newgiza";
     
     username : string;
     dob : string;
@@ -22,7 +22,7 @@ export class User {
         
         this.username= username;
         this.dob = dob;
-        this.image = image;
+        this.image =  (image !=null &&image.length > 0)?this.URLNAME+image.substring(1,image.length) : "";
         this.membershipType=membershipType;
         this.memberId= memberId;
         this.familyId= familyId;
@@ -30,8 +30,32 @@ export class User {
         this.mobile = mobile;
         this.email = email;
         this.gender= gender;
-        this.Relation = Relation;
+        this.Relation = Relation == null ? "User" : Relation;
         this.balanceMoney = balanceMoney;
    }
+   setImage(image : string){
+    this.image =  (image !=null &&image.length > 0)?this.URLNAME+image.substring(1,image.length) : "";
+   }
+   
 
+}
+
+export class News{
+    id :string ;
+    title : string;
+    content : string ;
+    likeCount : number ; 
+    dislikeCount : number;
+    isliked : boolean;
+    isdesliked : boolean;
+    
+    constructor(id:string="",title:string="",content:string="",likeCount:number=0,dislikeCount:number =0){
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.likeCount = likeCount;
+        this.dislikeCount = dislikeCount;
+        this.isdesliked=false;
+        this.isliked=false;
+    }
 }

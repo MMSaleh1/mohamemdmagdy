@@ -44,8 +44,8 @@ export class ProfilePage {
     for(var i =0 ; i<data.length;i++){
       var tempUser:User=new User();
       tempUser.dob=data[i].dob;
-      //tempUser.image=data[i].image;
-      tempUser.image="assets/img/profileTemp.png";
+      tempUser.image=data[i].image;
+      //tempUser.image="assets/img/profileTemp.png";
       tempUser.membershipType=data[i].membershipType;
       tempUser.gender=data[i].gender;
       tempUser.memberId=data[i].memberId;
@@ -62,18 +62,13 @@ export class ProfilePage {
       this.user=this.family[0];
     }
   },err=>{
-    console.log(err);
+        this.relatives[0]=this.user;
+        this.relatives[0].Relation="child";
+      this.relatives[1]=this.relatives[0];
+      
   })
   
-  if(this.family.length>0){
-    this.user=new User();
-    
-    
-    }else{
-      this.relatives[0]=this.user;
-      this.relatives[0].Relation="child";
-    this.relatives[1]=this.relatives[0];
-    }
+  
 
   }
 
