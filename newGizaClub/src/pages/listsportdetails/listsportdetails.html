@@ -12,6 +12,7 @@
 
 
 <ion-content padding>
+    <img class="sport-logo" [src]="sport.logo" >
   <ion-list *ngIf="ready">   
     <ion-item  *ngFor="let team of allTeams" (tap)="join(team)">
       <ion-row>

@@ -12,15 +12,18 @@
   <ion-scroll class="notif-scroll"  scrollY="true" >
     <ion-row class="notif-row">
     <ion-col col-8 class="notif-col">
-    <h3>Notifications</h3>
+    <h4>News&Offers</h4>
     </ion-col >
   <ion-col col-auto> 
     <button class="home-buttons" (tap)="goToNotifications()">view all >></button>
   </ion-col >
     </ion-row>
-    <ion-list>
+    <div *ngIf="newsMassage">
+      {{newsMassage}}
+    </div>
+    <ion-list *ngIf="newsReady">
       <ion-grid>
-        <ion-item  *ngFor="let item of Notifications" (tap)="openNotifcation()">
+        <ion-item *ngFor="let item of news" (tap)="openNotifcation()">
             
             <ion-row>
               <ion-col col-auto>
@@ -31,15 +34,17 @@
                 {{item.title}}
                 </span>
               </ion-col>
+              <!--
               <ion-col>
                 <div class="notif-time">
                 {{item.time}}
                 </div>
               </ion-col>
+              !-->
             </ion-row>
             <ion-row>
               <ion-col class="notif-description">
-                {{item.description}}
+                {{item.content}}
               </ion-col>
             </ion-row>
             
@@ -48,10 +53,13 @@
     </ion-list>
 </ion-scroll>
   </div>
+  <div *ngIf="sportsMassage">
+      {{sportsMassage}}
+    </div>
 <div *ngIf="sportsReady" class="sports-div">
 <ion-row class="notif-row">
     <ion-col col-8 class="notif-col">
-    <h3>Sports</h3>
+    <h4>Sports</h4>
     </ion-col >
   <ion-col col-auto> 
     <button class="home-buttons" (tap)="goToEvents()">view all >></button>
@@ -64,17 +72,19 @@
  </ion-slides>
 </div>
 
-
+<div *ngIf="posMassage">
+    {{posMassage}}
+  </div>
 <div *ngIf="posReady" style="height: 40%;">
   <ion-row>
     <ion-row style="padding-top: 13px;">
-        <h3>Food&Beverages</h3>
+        <h4>Food&Beverages</h4>
   </ion-row>
   <ion-row class="rest-slides-cont" >
     <ion-slides class="rest-slides"  parallax="true"slidesPerView='3' >
     <ion-slide class="rest-slider" *ngFor="let slide of resturants">
       <div class="rest-img-cont">
-      <img  [src]="slide.image" (tap)="goToRestaurant(slide)"/>
+      <img class="pos-img" [src]="slide.image" (tap)="goToRestaurant(slide)"/>
       </div>
     <div class="rest-name">
       {{slide.name}}

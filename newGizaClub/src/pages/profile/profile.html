@@ -17,7 +17,7 @@
         Relatives
       </ion-segment-button>
       <ion-segment-button value="payments" class="profile-segment-button" >
-        Payments
+        E-wallet
       </ion-segment-button>
       <ion-segment-button value="credit" class="profile-segment-button" >
         Credit
@@ -120,7 +120,9 @@
 </ion-list>
 </div>
 <div *ngIf="segment == 'payments'">
-  Payments
+  <ion-card class="balance-card">
+    <h1>You Have : {{user.balanceMoney}} L.E </h1>
+  </ion-card>
 </div>
 <div *ngIf="segment == 'credit'">
   credit

@@ -24,7 +24,7 @@
       Purchase price
     </ion-col>
   </ion-row>
-<div class="order-dis" *ngFor="let order of orders;let index = index ; trackBy:trackByIndex;">
+<div class="order-dis" *ngFor="let order of viewOrder;let index = index ; trackBy:trackByIndex;">
   <ion-row>
     <ion-col  class="order-col">
       {{order.item.name}}

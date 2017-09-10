@@ -67,6 +67,9 @@ export class MyApp {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      //Keyboard.disableScroll(true)
+      
+
       this.natStorage.getItem(this.defaultPage).then((data)=>{
         if(data == HomePage.name){
           this.rootPage=HomePage;
@@ -116,7 +119,8 @@ this.productsProvider.get_Pos().subscribe(prod=>{ // getting points of sale from
           }
         } 
       }
-      
+      console.log(POSArr);
+      console.log(ProductArr);
       this.natStorage.setItem("POS",POSArr);
       this.natStorage.setItem("products",ProductArr);
     }
@@ -146,15 +150,20 @@ this.sportsProvider.getSports().subscribe(data=>{;
 })
 this.productsProvider.get_category().subscribe(data=>{
   this.natStorage.setItem("category",data);
+},err=>{
+  alert(err);
 });
+
+
+
 this.natStorage.getItem('user').then(data=>{
   this.newsProvider.getnews(data.memberId).subscribe(news=>{
     if(news.length > 0){
       let tempNews :Array<News> = new Array();
       for(var i = 0 ;i<news.length;i++){
-        tempNews[i]=new News(news[i].NewsID,news[i].NewsTitle,news[i].NewsContent,news[i].LikeCount,news[i].DisLikeCount);
+        tempNews[i]=new News(news[i].NewsID,news[i].NewsTitle,news[i].NewsContent,news[i].LikeCount,news[i].DisLikeCount,news[i].NewsImage);
       }
-    this.natStorage.setItem('news',tempNews);
+    this.natStorage.setItem("news",tempNews);
     
     }
   },err=>{

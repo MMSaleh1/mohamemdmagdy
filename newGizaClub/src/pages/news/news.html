@@ -14,18 +14,25 @@
         {{post.title}}
       </ion-card-header>
       <ion-card-content>
+        <ion-row>
+          <ion-col>
         {{post.content}}
+          </ion-col>
+          <ion-col class="news-img-cont">
+            <img [src]="post.image" >
+          </ion-col>
+        </ion-row>
       </ion-card-content>
       <div *ngIf="!post.isliked && !post.isdesliked">
       <ion-row>
         <ion-col col-3>
-          <button ion-button icon-left clear small (tap)="like(index)">
+          <button ion-button icon-left clear small (tap)="change(index,1)">
             <ion-icon  name="thumbs-up"></ion-icon>
             <div>{{post.likeCount}}</div>
           </button>
         </ion-col>
         <ion-col col-3>
-          <button ion-button icon-left clear small (tap)="dislike(index)">
+          <button ion-button icon-left clear small (tap)="change(index,2)">
             <ion-icon name="thumbs-down"></ion-icon>
             <div>{{post.dislikeCount}}</div>
           </button>
@@ -34,11 +41,11 @@
       </div>
     <div *ngIf="post.isliked">
       <ion-col>
-      <p>you and {{post.likeCount}} like this</p>
+      <p class="news-interact">you and {{post.likeCount}} like this</p>
       </ion-col>
     </div>
     <div *ngIf="post.isdesliked">
-      <p>you and {{post.dislikeCount}} dislike this</p>
+      <p class="news-interact">you and {{post.dislikeCount}} dislike this</p>
     </div>
 </ion-card>
   </span>

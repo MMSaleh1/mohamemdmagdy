@@ -17,18 +17,20 @@ import {User} from '../../templates/usertemplate';
   templateUrl: 'sports-regestration.html',
 })
 export class SportsRegestrationPage {
-  public name : "Choose Family member";
+  public name :string = "Choose Member";
+
   public family :Array<User>;
   public user : User;
   public sport : any;
   public ready : boolean = false;
   constructor(public navCtrl: NavController, public navParams: NavParams,public natStorage : NativeStorage) {
+
       if(navParams.get("sport")){
         this.sport = navParams.get("sport");
       }
       console.log(this.sport);
       this.family = new Array();
-      this.user=new User("mohammed",'20',"assets/img/profileTemp.png","false",'123456789','1000','1111111111111','mohammed@edge','male',null,1000);
+      this.user=new User("mohammed",'20',"assets/img/profileTemp.png","false",'123456789','1000','1111111111111','mohammed@edge',0,null,1000);
 
       this.natStorage.getItem("relatives").then(data=>{
         for(var i =0 ; i<data.length;i++){

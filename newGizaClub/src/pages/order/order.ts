@@ -24,6 +24,7 @@ export class OrderPage {
     item: Product;
     quantity: number; 
   }>;
+  public viewOrder :Array<any>;
 
   public user : User ;
   public totalPrice:number = 0;
@@ -50,13 +51,19 @@ export class OrderPage {
       number : 61
     }
   ]
+    this.viewOrder = new Array();
     this.orders = this.navParams.get("orders");
     this.resturant = this.navParams.get("resturant");
+    let counter= 0;
     for(let i =0; i< this.orders.length;i++){
       this.totalPrice += (this.orders[i].item.price*this.orders[i].quantity);
+      if(this.orders[i].quantity >0){
+        this.viewOrder[counter] = this.orders[i];
+        counter++;
+      }
     }
     
-    this.user=new User("mohammed",'20',"assets/img/profileTemp.png","false",'3147','1000','01099297597','mohammed.magdy.ali.96@gmail.com@edge','male',null,50);
+    this.user=new User("mohammed",'20',"assets/img/profileTemp.png","false",'3147','1000','01099297597','mohammed.magdy.ali.96@gmail.com@edge',0,null,50);
     this.natStorage.getItem('user').then(data=>{
        this.user.image="assets/img/profileTemp.png";
       this.user.membershipType=data.membershipType;

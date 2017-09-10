@@ -17,7 +17,7 @@
     <ion-slides class="rest-slides"  parallax="true"slidesPerView='3' >
     <ion-slide class="rest-slider" *ngFor="let slide of resturants" (tap)="changeResturant(slide)">
       <div class="rest-img-cont">
-      <img  [src]="slide.image">
+      <img class="rest-img" [src]="slide.image">
       </div>
     <div class="rest-name">
       
@@ -40,35 +40,33 @@
     <button ion-button (click)="order()" name="Order">Order</button>
     <div *ngFor="let item of chossenResturant.products ; let index = index ; trackBy:trackByIndex;">
     <ion-item >
-      <ion-row>
-        <ion-col>
           <ion-row class="item-header">
           
           {{item.name}}
-        
+
           </ion-row>
-        <ion-row>
-          <p>aveilable : {{item.quantity}}</p>
+        
+        <ion-row class="prod-img-cont">
+            <img class="rest-img" [src]="item.imageUrl">
         </ion-row>
-        </ion-col>
-      <ion-col  >
+        <ion-row>
+      <ion-col>
         <div>
         <button class="rest-button" ion-button>
-           <ion-icon   name="remove" (click)="changeNumber('remove',index)"></ion-icon>
+           <ion-icon class="icon-no-margin"   name="remove" (click)="changeNumber('remove',index)"></ion-icon>
         </button>
         <input [(ngModel)]="orders[index].quantity" type="number" class="rest-input">
         <button class="rest-button" ion-button> 
-          <ion-icon  name="add" (click)="changeNumber('add',index)"></ion-icon>
+          <ion-icon class="icon-no-margin" name="add" (click)="changeNumber('add',index)"></ion-icon>
         </button>
+        </div>
+      </ion-col >
+      <ion-col>
         <div class="rest-item-price">
           {{item.price}} LE
         </div>
-        </div>
-      </ion-col >
-      <ion-col  class="rest-img-cont">
-      <img  [src]="item.imageUrl">
       </ion-col>
-      </ion-row>
+    </ion-row>
     </ion-item>
     </div>
    <button ion-button (click)="order()" name="Order">Order</button>

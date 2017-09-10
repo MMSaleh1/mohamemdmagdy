@@ -5,12 +5,13 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    <ngsc-header [name]='name'></ngsc-header>
+    <ngsc-header [name]="name"></ngsc-header>
 </ion-header>
 
 
 <ion-content padding>
     <ion-list *ngIf="ready">
+      <img class="sport-logo" [src]="sport.logo" >
         <div (tap)="goToRegester(member)" *ngFor="let member of family">
           
         <ion-item >

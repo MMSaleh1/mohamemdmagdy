@@ -35,6 +35,7 @@ import {OrderPage} from '../pages/order/order';
 import {SportsRegestrationPage} from '../pages/sports-regestration/sports-regestration';
 import {ListsportdetailsPage} from '../pages/listsportdetails/listsportdetails';
 import {JointeamPage} from '../pages/jointeam/jointeam';
+import {FacilitiesPage} from '../pages/facilities/facilities';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -91,12 +92,13 @@ import { NewsProvider } from '../providers/news/news';
     OrderPage,
     SportsRegestrationPage,
     ListsportdetailsPage,
-    JointeamPage
-  ],
+    JointeamPage,
+    FacilitiesPage
+    ],
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp,{ scrollAssist: false, autoFocusAssist: false})
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -129,7 +131,8 @@ import { NewsProvider } from '../providers/news/news';
     OrderPage,
     SportsRegestrationPage,
     ListsportdetailsPage,
-    JointeamPage
+    JointeamPage,
+    FacilitiesPage
   ],
   providers: [
     StatusBar,

@@ -6,12 +6,15 @@ import {NativeStorage} from '@ionic-native/native-storage';
 import {SportslistPage}from '../sportslist/sportslist';
 import {SportsPage} from '../sports/sports';
 import {ResturantsPage} from '../resturants/resturants';
+import {NewsPage }from '../news/news';
 
 import { SportsProvider } from '../../providers/sports/sports';
 import { ProductsProvider } from '../../providers/products/products';
+import { NewsProvider} from '../../providers/news/news';
 
 import { Sports } from '../../templates/sportstemplate';
 import {Resturant ,Product} from '../../templates/resturantstemplate';
+import {News} from '../../templates/usertemplate';
 
 
 
@@ -30,8 +33,13 @@ import {Resturant ,Product} from '../../templates/resturantstemplate';
 })
 export class MainPage {
  public posReady: boolean=false;
+ public posMassage : string ;
  public sportsReady: boolean=false;
+ public sportsMassage : string ;
+ public newsReady: boolean=false;
+ public newsMassage : string ;
  public name : string ="Home";
+ public user :any ;
  public Notifications : Array<{
     title : string , 
     time  : any,
@@ -39,36 +47,26 @@ export class MainPage {
     isNew : boolean
   }>;
   private resturants :Array<Resturant>;
-/*
-   private resturants:Array<{
-      name : any,
-      imageUrl : any,
-      des : any,
-      menu : Array<{
-        name:any,
-        imageUrl:any,
-        price : number,
-        des : any
-      }>,
-  }>;
-  */
+
   public sports : Array<any>;
-  /*
-    public sports : Array<{
-    title : string,
-    imageUrl : string,
-    description : string
-  }>
-  */
-  ;
+
+  public news : Array<any>;
+
 
 
   constructor(public navCtrl: NavController,
     public navParams : NavParams, 
     public natStorage : NativeStorage,
     public productsProvider :ProductsProvider,
-    public sportsProvider :SportsProvider) {
+    public sportsProvider :SportsProvider,
+    public newsProvider : NewsProvider
+  ) {
     this.resturants = new Array();
+    this.natStorage.getItem('user').then(data=>{
+      this.user= data;
+    },err=>{
+      console.log(err);
+    })
     this.natStorage.getItem("POS").then(data=>{
       if(data.length>0){
       this.resturants.length= data.length;
@@ -77,7 +75,7 @@ export class MainPage {
     }
     this.posReady=true;
   }else{
-    alert("No Resturants");
+    this.posMassage="No Resturants";
   }
     },err=>{
       this.productsProvider.get_Pos().subscribe(prod=>{ // getting points of sale from the API
@@ -110,10 +108,10 @@ export class MainPage {
         
         
       }else{
-        alert("No Resturants");
+        this.posMassage="No Resturants";
       }
       },err=>{
-        alert("No Resturants");
+        alert(err);
       })
 
     });
@@ -131,40 +129,62 @@ export class MainPage {
         this.sportsReady=true;
         this.natStorage.setItem("sprots",this.sports);
         }else{
-          alert("NO Sports");
+          this.sportsMassage="NO Sports";
         }
       },err=>{
-        console.log(err);
+        alert(err);
       })
     })
 
 
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    this.Notifications=[
-      {
-        title : "FirstNotif",
-        time: '10:40',
-        description :'this is the first notification testing notification formating',
-        isNew : true
-      },
-      {
-        title : "SecondNotif",
-        time: '11:15',
-        description :'this is the Second notification testing notification formating',
-        isNew : true
+    this.news= new Array();
+    if(this.user != null && this.user != undefined){
+      this.newsProvider.getnews(this.user.id).subscribe(news=>{
+        if(news.length > 0){
+        for(var i =0 ;i<news.length;i++){
+        this.news[i]= new News(news[i].NewsID,news[i].NewsTitle,news[i].NewsContent,news[i].LikeCount,news[i].DisLikeCount,news[i].NewsImage);;
+        }
+        this.newsReady= true;
       }
-    ];
-
+      },err=>{
+        alert(err);
+      }
+    )
+  }
+    /*
+    this.natStorage.getItem("news").then(news=>{
+      alert("native news");
+      for(var i = 0 ;i<news.length;i++){
+        this.news[i]=new News(news[i].id,news[i].title,news[i].content,news[i].likeCount,news[i].dislikeCount,news[i].image);
+      }
+      
+    },err=>{
+      if(this.user != null && this.user != undefined){
+      this.newsProvider.getnews(this.user.id).subscribe(news=>{
+        this.news=news;
+        this.newsReady= true;
+      },err=>{
+        alert(err);
+      });
+    }else{
+      this.newsProvider.getnews('3147').subscribe(news=>{
+        if(news.length > 0){
+          for(var i = 0 ; i < news.length; i++){
+            this.news[i]=new News(news[i].NewsID,news[i].NewsTitle,news[i].NewsContent,news[i].LikeCount,news[i].DisLikeCount,news[i].NewsImage);
+          }
+        }else{
+          this.newsMassage="There is No news";
+        }
+        this.newsReady = true;
+        console.log(this.news);
+      },err=>{
+        alert(err);
+      })
+    }
+  }
+  )
+  */
   }
   openNotifcation(){
     console.log("notification opened");
@@ -176,7 +196,7 @@ export class MainPage {
    });
   }
   goToNotifications(){
-   // this.navCtrl.push(NotificationtabPage);
+   this.navCtrl.push(NewsPage);
   }
   goToEvents(){
     this.navCtrl.push(SportslistPage);

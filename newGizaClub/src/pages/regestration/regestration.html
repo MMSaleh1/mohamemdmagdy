@@ -6,30 +6,31 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title class="title">Regestration</ion-title>
+    <ion-title class="title">Registration</ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content class="regestration-content" padding>
-  <img class="round-img" src="assets/img/ngiza.png">
+ 
    <form [formGroup]="regesterForm" (ngSubmit)="onRegester()">
   <ion-grid>
   
   <ion-row class="regestration-row">
-    <ion-col col-3>
-     <ion-icon name="mail" class="icon"></ion-icon>
-    </ion-col>
-    <ion-col >
+    <ion-row class="regestration-row">
+     <ion-icon name="phone-portrait" class="icon"></ion-icon>
+    </ion-row>
+    <ion-row class="regestration-row">
      <ion-input  type="tel" name="phone" formControlName="phone" placeholder="enter you phone number"></ion-input>
      <div *ngIf="regesterForm.controls['phone'].invalid && regesterBefore == true">
        enter valed phone
      </div>
-    </ion-col>
-  </ion-row>
-  <ion-row>
+    </ion-row>
+  </ion-row >
+  <ion-row class="regestration-row">
       <button ion-button type="submit" class="regestration-bottom" block>send me code</button>
   </ion-row>
   </ion-grid>
    </form>
+   <img class="round-img" src="assets/img/ngiza.png">
 
 </ion-content>

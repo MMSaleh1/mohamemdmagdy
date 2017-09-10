@@ -25,7 +25,7 @@ export class ProfilePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public natStorage:NativeStorage) {
     this.family=new Array();
     this.relatives=new Array();
-    this.user=new User("mohammed",'20',"assets/img/profileTemp.png","false",'123456789','1000','1111111111111','mohammed@edge','male',null,1000);
+    this.user=new User("mohammed",'20',"assets/img/profileTemp.png","false",'123456789','1000','1111111111111','mohammed@edge',0,null,1000);
   /*
     this.natStorage.getItem("user").then(data=>{
     this.user.memberId=data.memberId;
@@ -42,19 +42,8 @@ export class ProfilePage {
   */
   this.natStorage.getItem("relatives").then(data=>{
     for(var i =0 ; i<data.length;i++){
-      var tempUser:User=new User();
-      tempUser.dob=data[i].dob;
-      tempUser.image=data[i].image;
-      //tempUser.image="assets/img/profileTemp.png";
-      tempUser.membershipType=data[i].membershipType;
-      tempUser.gender=data[i].gender;
-      tempUser.memberId=data[i].memberId;
-      tempUser.username=data[i].username;
-      tempUser.Relation=data[i].Relation;
-      tempUser.mobile=data[i].mobile;
-      tempUser.email=data[i].email;
-      tempUser.familyId=data[i].familyId;
-      this.family[i]=tempUser;
+      
+      this.family=data;
       if(i>0){
         this.relatives[i-1]=this.family[i];
       }

@@ -24,7 +24,7 @@ export class CodeverificationPage {
   public code:any;
   private correctCode:any;
   private userdata:any;
-  private relatives:Array<User>;
+  private family:Array<User>;
 
   constructor(public navCtrl: NavController,
     private sms : SMS,
@@ -32,103 +32,59 @@ export class CodeverificationPage {
     public user: UserProvider,
     public natStorage: NativeStorage
   ) {
-    this.relatives = new Array();
-      this.userdata=this.navParams.get("user");
-      this.correctCode=this.navParams.get("code");
+    this.natStorage.setItem(this.defaultPage,CodeverificationPage.name);
+    this.family = new Array();
+      
+      
       this.natStorage.getItem("code").then((data)=>{
         this.correctCode = data;
-         alert(this.correctCode);
       },
       err=>{
-        alert(err);
+        this.correctCode=this.navParams.get("code");
       }
     );
     this.natStorage.getItem("user").then((data)=>{
       this.userdata = data;
+      alert(this.correctCode);
+      alert('native storage');
+      //this.sendSms();
     },
     err=>{
-      alert(err);
+      this.userdata=this.navParams.get("user");
+      alert(this.correctCode);
+      // this.sendSms();
+      console.log(this.userdata);
     }
   )
-      this.sendSms();
-     
-    console.log(this.userdata);
   }
 
   
   public sendCode(){
-    console.log(this.code);
     if(this.code==this.correctCode){
-      /*
-      this.user.confirm_via_email_and_memberid(this.userdata.mobile,this.userdata.memberId).subscribe((data)=>{
-        this.userdata.DOB= new Date(data[0].DOB);
-        this.userdata.image=data[0].image;
-        this.userdata.membershipType=data[0].membershipType;
-        this.userdata.gender=data[0].gender;
-        this.userdata.nationalId=data[0].nationalID;
-        this.userdata.userID=data[0].userID;
-        console.log(this.userdata);
-        this.natStorage.setItem(this.defaultPage,LoginPage.name);
-         this.navCtrl.setRoot(LoginPage,{"user":this.userdata});
-      },(err)=>{
-        alert("connection error,please try again");
-      })
-      */
+     
       this.user.get_user_relatives(this.userdata.mobile,this.userdata.memberId).subscribe(data=>{
-        let relativesNum=data.length-1;
-        console.log(relativesNum);
-        
-        let owner =-1;
-        //if(data[0].Relation == null){
-        //   owner = 0;
-        
-       // }else{
+        if(data.length > 0){
+          console.log(data);
+          let owner =-1;
           for(var i =0 ; i<data.length;i++){
-            console.log(data[i].Relation);
             if(data[i].Relation==null){
               owner=i;
-        //    }
           }
         }
-        console.log(data);
-        this.userdata.dob= data[owner].DOB;
-        this.userdata.image=data[owner].image;
-        this.userdata.membershipType=data[owner].membershipType;
-        this.userdata.gender=data[owner].gender ? "male" : "female";
-        this.userdata.memberId=data[owner].membershipID;
-        this.userdata.username=data[owner].username;
-        this.userdata.Relation=data[owner].Relation;
-        this.userdata.familyId=data[owner].FamilyID;
-        if(relativesNum >1){
-          
-          var counter=0;
-          for(var i = owner ; i<data.length;i++){
-            
-            let tempUser:User = new User();
-
-            tempUser.dob=data[i].DOB;
-            tempUser.setImage(data[i].PhotoURL);
-            tempUser.membershipType=data[i].membershipType
-            tempUser.gender=data[i].gender? "male" : "femail";
-            tempUser.memberId=data[i].membershipID;
-            tempUser.mobile=data[i].mobile;
-            tempUser.email=data[i].e_mail;
-            tempUser.username=data[i].username;
-            tempUser.Relation=data[i].Relation;
-            tempUser.familyId=data[i].FamilyID;
-            this.relatives[counter]=tempUser;
-            counter++;
+          for(var i =owner ,j=0 ; i<data.length;i++,j++){
+            this.family[j] = new User(data[i].username,data[i].DOB,data[i].PhotoURL,data[i].membershipType,data[i].membershipID,data[i].FamilyID,data[i].mobile,data[i].e_mail,data[i].gender,data[i].Relation,data[i].Balance)
           }
-          console.log(this.relatives);
+          this.userdata = this.family[0];
+          console.log(this.userdata);
+          console.log(this.family);
+           this.natStorage.setItem(this.defaultPage,HomePage.name);
+           this.natStorage.setItem("relatives",this.family);
+           this.natStorage.setItem("user",this.userdata);
+            this.navCtrl.setRoot(HomePage);
+        }else{
+          alert("No user Data please contact NGSC office");
         }
-        console.log(this.userdata);
-         this.natStorage.setItem(this.defaultPage,HomePage.name);
-         this.natStorage.setItem("relatives",this.relatives);
-         this.natStorage.setItem("user",this.userdata);
-          this.navCtrl.setRoot(HomePage);
-
       })
-      
     }else{
       alert("worng code");
     }
@@ -136,11 +92,10 @@ export class CodeverificationPage {
   public requestCode(){
     this.user.regester_datatable(this.userdata.mobile).subscribe((data)=>{
       this.correctCode=data[0].code;
-      console.log(this.correctCode);
-      this.sendSms();
       alert(this.correctCode);
+      //this.sendSms();
     },(err)=>{
-      alert("connection error,please try again");
+      alert(err);
     });
   }
   private sendSms(){

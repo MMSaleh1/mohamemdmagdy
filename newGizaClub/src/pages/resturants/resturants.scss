@@ -4,15 +4,25 @@ page-resturants {
         font-size: 1.4em;
         text-align: center;
     }
+    .rest-img-cont{
+        width: 100%;
+        height: 40%;
+    }
+    .prod-img-cont{
+        margin: auto;
+        width: 80%;
+        height: 40%;
+    }
 
 }
 .rest-slides.cont{
     height: 33%;
 }
-.rest-img-cont{
-    width: 100%;
-    height: 55%;
+.rest-img{
+    height: 200px !important;
+    width: 100% !important;
 }
+
 .rest-name{
         font-size: 15px;
         color: #357e9f;
@@ -35,7 +45,7 @@ page-resturants {
     width: 30%;
 }
 .item-header{
-    font-size: 24px;
+    font-size: 18px;
     white-space: normal;
     overflow: auto;
     color: #086790;
@@ -52,5 +62,5 @@ page-resturants {
     text-align: center;
     font-size: 24px;
     vertical-align: bottom;
-    margin-top: 10%;
+    
 }

@@ -7,6 +7,7 @@ page-regestration {
 .icon{
     color: 	#fbb713;
     font-size: 3em;
+    margin: auto
 }
 .regestration-row{
         margin: auto;
@@ -37,4 +38,19 @@ ion-input{
 input{
   width: 100%;
   color: #ffffff;
+}
+.text-input::-moz-placeholder {
+  color: white;
+  text-align: center;
+}
+
+.text-input:-ms-input-placeholder {
+  color: white;
+  text-align: center;
+}
+
+.text-input::-webkit-input-placeholder {
+  text-indent: 0;
+  color: white;
+  text-align: center;
 }
