@@ -62,3 +62,18 @@ export class News{
         this.image = (image !=null &&image.length > 0)?this.URLNAME+image.substring(1,image.length) : "";
     }
 }
+
+export class Balance{
+    public amount :number;
+    public balance : number;
+    public transactionDate : string;
+    public transactionType :string;
+
+    constructor(amount : number =0 , Balance : number =0  , transactiondata : string ="" , transactiontype : string=""){
+        this.amount = amount;
+        this. balance = Balance;
+        this.transactionDate = transactiondata;
+        this.transactionType = transactiontype;
+    }
+
+}

@@ -62,5 +62,13 @@
 </ion-row>
 </div>
 </div>
+<ion-row *ngIf="userReady">
+    <ion-col col-4>
+   <button ion-button  class="order-bottom" block (tap)="changePayment(member)">{{member.username}}</button>
+    </ion-col>
+    <ion-col>
+        <button ion-button  class="order-bottom" block (tap)="changePayment(user)">{{user.username}}</button>
+    </ion-col>
+  </ion-row>
 <button ion-button class="join-button" (tap)="join()" block> Join</button>
 </ion-content>

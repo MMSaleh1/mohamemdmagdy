@@ -187,7 +187,7 @@ this.natStorage.getItem('user').then(data=>{
         platform.registerBackButtonAction(() => {
             // get current active page
             let view = this.nav.getActive();
-            if (view.component.name == "HomePage" &&!this.nav.canGoBack()) {
+            if (view.component.name == "HomePage") {
                 //Double check to exit app
                 if (new Date().getTime() - lastTimeBackPress < timePeriodToExit) {
                     platform.exitApp(); //Exit from app

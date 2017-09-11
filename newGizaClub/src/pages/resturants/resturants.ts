@@ -48,19 +48,23 @@ export class ResturantsPage {
       }>,
   }>;
     */
-    private chossenResturant :Resturant;
+    private choosenResturant :Resturant;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public ProdProvider:ProductsProvider,public natStorage : NativeStorage) {
     this.resturants = [new Resturant()];
     this.products = [new Product()];
     this.categories = [new Category()];
-    
+    this.choosenResturant = new Resturant();
      this.natStorage.getItem("POS").then(data=>{
        if(data.length>0){
        for(var i = 0 ; i< data.length ;i++){
          this.resturants[i]=data[i];
        }
-       
+       if(this.navParams.get('resturant')){
+        this.changeResturant(this.navParams.get('resturant'));
+      }else{
+          this.changeResturant(this.resturants[0]);
+      }
       this.ready[0]=true;
     }else{
       alert("No Resturnts");
@@ -94,11 +98,11 @@ export class ResturantsPage {
             }else{
                 this.changeResturant(this.resturants[0]);
             }
-            //this.chossenResturant=this.resturants[0];
+            //this.choosenResturant=this.resturants[0];
             this.ready[0]=true;
             this.natStorage.setItem("POS",this.resturants);
             this.natStorage.setItem("products",this.products);
-            console.log(this.chossenResturant);
+            console.log(this.choosenResturant);
             console.log(this.products);
 
           }
@@ -158,16 +162,16 @@ this.ProdProvider.add_invoice_header(2,20,3147,41,1,1,0,time).subscribe(data=>{
     //console.log('ionViewDidLoad ResturantsPage');
   }
   changeResturant(resturant : any){
-    this.chossenResturant = resturant;
+    this.choosenResturant = resturant;
     this.orders= new Array();
-    this.orders.length=this.chossenResturant.products.length;
+    this.orders.length=this.choosenResturant.products.length;
     this.orders.fill({item: new Product(), quantity :0});
     for(var i =0;i<this.orders.length;i++){
-      let temp :any ={item :this.chossenResturant.products[i],quantity:0 }
+      let temp :any ={item :this.choosenResturant.products[i],quantity:0 }
       this.orders[i]=temp;
       //console.log(this.orders[i]);
     }
-    if(this.chossenResturant.products[0].id != '-1'){
+    if(this.choosenResturant.products[0].id != '-1'){
       this.ready[1]=true
     }else{
       this.ready[1]=false;
@@ -178,8 +182,8 @@ this.ProdProvider.add_invoice_header(2,20,3147,41,1,1,0,time).subscribe(data=>{
   changeNumber(func : String,index : any){
    // console.log(this.orders.length);
     
-    this.orders[index].item=this.chossenResturant.products[index]; //order is important  first change the item from defult
-   // console.log(this.chossenResturant['menu'][index]);
+    this.orders[index].item=this.choosenResturant.products[index]; //order is important  first change the item from defult
+   // console.log(this.choosenResturant['menu'][index]);
     if(func == 'add' && this.orders[index].quantity < this.orders[index].item.quantity){
       this.orders[index].quantity++; // then change its quantity
     }else if(func == 'remove'){
@@ -201,7 +205,7 @@ this.ProdProvider.add_invoice_header(2,20,3147,41,1,1,0,time).subscribe(data=>{
     }
     console.log(totalPrice);
     console.log(this.orders);
-    this.navCtrl.push(OrderPage,{"orders":this.orders , "resturant": this.chossenResturant});
+    this.navCtrl.push(OrderPage,{"orders":this.orders , "resturant": this.choosenResturant});
   }
   
 

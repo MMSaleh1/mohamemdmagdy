@@ -19,6 +19,7 @@ export class UserProvider extends RootProvider {
   private getUserData:String="confirm_via_email_and_memberid";
   private changePassword:string="member_update_password";
   private getUserRelatives:string="GetMemberCompleteCircle";
+  private getBalanceHistorystring="GetMemberBalanceHistory";
 
   
   constructor(public http: Http) {
@@ -45,5 +46,9 @@ export class UserProvider extends RootProvider {
     public get_user_relatives(phone:string , memberId:string):Observable<any>{
       return this.http.get(`${this.CONFIG.API}${this.getUserRelatives}?mobile=${phone}&member_id=${memberId}`).map(
         res=><any>res.json());
+    }
+
+    public get_user_balance_history(userId:string):Observable<any>{
+      return this.http.get(`${this.CONFIG.API}${this.getBalanceHistorystring}?MemberID=${userId}`).map(res=><any>res.json());
     }
 }

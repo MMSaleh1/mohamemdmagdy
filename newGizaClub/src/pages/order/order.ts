@@ -3,9 +3,10 @@ import { NavController, NavParams } from 'ionic-angular';
 import {NativeStorage} from '@ionic-native/native-storage';
 
 import {User} from '../../templates/usertemplate';
+import {Resturant , Product , Category} from '../../templates/resturantstemplate';
 
 import {ProductsProvider} from '../../providers/products/products';
-import {Resturant , Product , Category} from '../../templates/resturantstemplate';
+import {UserProvider} from '../../providers/user/user';
 
 /**
  * Generated class for the OrderPage page.
@@ -35,12 +36,14 @@ export class OrderPage {
   }>
   public paymentMethod :number = 61 ;
   public resturant : any;
+  public ready : boolean = false;
   
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams ,
       public natStorage : NativeStorage ,
       public ProdProvider :ProductsProvider,
+      public userPorvider :UserProvider
     ) {
     this.paymentMethods=[{
       name : "cash",
@@ -63,19 +66,23 @@ export class OrderPage {
       }
     }
     
-    this.user=new User("mohammed",'20',"assets/img/profileTemp.png","false",'3147','1000','01099297597','mohammed.magdy.ali.96@gmail.com@edge',0,null,50);
+    
     this.natStorage.getItem('user').then(data=>{
-       this.user.image="assets/img/profileTemp.png";
-      this.user.membershipType=data.membershipType;
-      this.user.gender=data.gender;
-      this.user.memberId=data.memberId;
-      this.user.username=data.username;
-      this.user.Relation=data.Relation;
-      this.user.mobile=data.mobile;
-      this.user.email=data.email;
-      this.user.familyId=data.familyId;
+       this.user=data;
+       this.userPorvider.get_user_balance_history(this.user.memberId).subscribe(data=>{
+         if(data.length > 0){
+           this.user.balanceMoney = data[0].Balance;
+         }
+         this.ready=true;         
+       },err=>{
+         alert(err);
+       }
+      )
+       
     },err=>{
+      this.user=new User("mohammed",'20',"assets/img/profileTemp.png","false",'3147','1000','01099297597','mohammed.magdy.ali.96@gmail.com@edge',0,null,50);
       console.log(err);
+      this.ready = true;
     })
   }
 

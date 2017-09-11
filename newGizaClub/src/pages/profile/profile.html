@@ -120,11 +120,36 @@
 </ion-list>
 </div>
 <div *ngIf="segment == 'payments'">
-  <ion-card class="balance-card">
+  <ion-card class="balance-card" *ngIf="relativesReady">
     <h1>You Have : {{user.balanceMoney}} L.E </h1>
   </ion-card>
 </div>
 <div *ngIf="segment == 'credit'">
-  credit
+  <div *ngIf="hestoryBalanceReady">
+    <ion-list>
+      <div *ngFor="let balance of balanceHestory">
+      <ion-item >
+        <ion-row>
+          <h4>
+              Balance after Transaction : {{balance.balance}}
+          </h4>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <p>Transaction Type : {{balance.transactionType}}</p>
+          </ion-col>
+          <ion-col>
+            <p>Transaction Amount : {{balance.amount}}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+          <p>Transaction Date : {{balance.transactionDate}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+      </div>
+    </ion-list>
+  </div>
 </div>
 </ion-content>

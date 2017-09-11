@@ -62,11 +62,7 @@ export class MainPage {
     public newsProvider : NewsProvider
   ) {
     this.resturants = new Array();
-    this.natStorage.getItem('user').then(data=>{
-      this.user= data;
-    },err=>{
-      console.log(err);
-    })
+    this.news = new Array();
     this.natStorage.getItem("POS").then(data=>{
       if(data.length>0){
       this.resturants.length= data.length;
@@ -137,37 +133,28 @@ export class MainPage {
     })
 
 
-    
-    this.news= new Array();
-    if(this.user != null && this.user != undefined){
-      this.newsProvider.getnews(this.user.id).subscribe(news=>{
-        if(news.length > 0){
-        for(var i =0 ;i<news.length;i++){
-        this.news[i]= new News(news[i].NewsID,news[i].NewsTitle,news[i].NewsContent,news[i].LikeCount,news[i].DisLikeCount,news[i].NewsImage);;
+    this.natStorage.getItem('user').then(data=>{
+      this.user= data;
+      this.natStorage.getItem("news").then(news=>{
+        
+        for(var i = 0 ;i<news.length;i++){
+          this.news[i]=new News(news[i].id,news[i].title,news[i].content,news[i].likeCount,news[i].dislikeCount,news[i].image);
         }
         this.newsReady= true;
-      }
       },err=>{
-        alert(err);
+        this.newsProvider.getnews(this.user.id).subscribe(news=>{
+          for(var i = 0 ;i<news.length;i++){
+            this.news[i]=new News(news[i].NewsID,news[i].NewsTitle,news[i].NewsContent,news[i].LikeCount,news[i].DisLikeCount,news[i].NewsImage);
+          }
+          this.newsReady= true;
+        },err=>{
+          alert(err);
+        });
+       
       }
     )
-  }
-    /*
-    this.natStorage.getItem("news").then(news=>{
-      alert("native news");
-      for(var i = 0 ;i<news.length;i++){
-        this.news[i]=new News(news[i].id,news[i].title,news[i].content,news[i].likeCount,news[i].dislikeCount,news[i].image);
-      }
-      
     },err=>{
-      if(this.user != null && this.user != undefined){
-      this.newsProvider.getnews(this.user.id).subscribe(news=>{
-        this.news=news;
-        this.newsReady= true;
-      },err=>{
-        alert(err);
-      });
-    }else{
+      console.log(err);
       this.newsProvider.getnews('3147').subscribe(news=>{
         if(news.length > 0){
           for(var i = 0 ; i < news.length; i++){
@@ -181,10 +168,12 @@ export class MainPage {
       },err=>{
         alert(err);
       })
-    }
-  }
-  )
-  */
+    })
+    
+    
+    
+   
+  
   }
   openNotifcation(){
     console.log("notification opened");

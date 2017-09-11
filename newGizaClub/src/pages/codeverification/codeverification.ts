@@ -29,7 +29,7 @@ export class CodeverificationPage {
   constructor(public navCtrl: NavController,
     private sms : SMS,
     public navParams: NavParams,
-    public user: UserProvider,
+    public userProvider: UserProvider,
     public natStorage: NativeStorage
   ) {
     this.natStorage.setItem(this.defaultPage,CodeverificationPage.name);
@@ -46,7 +46,7 @@ export class CodeverificationPage {
     this.natStorage.getItem("user").then((data)=>{
       this.userdata = data;
       alert(this.correctCode);
-      alert('native storage');
+      
       //this.sendSms();
     },
     err=>{
@@ -62,7 +62,7 @@ export class CodeverificationPage {
   public sendCode(){
     if(this.code==this.correctCode){
      
-      this.user.get_user_relatives(this.userdata.mobile,this.userdata.memberId).subscribe(data=>{
+      this.userProvider.get_user_relatives(this.userdata.mobile,this.userdata.memberId).subscribe(data=>{
         if(data.length > 0){
           console.log(data);
           let owner =-1;
@@ -77,6 +77,9 @@ export class CodeverificationPage {
           this.userdata = this.family[0];
           console.log(this.userdata);
           console.log(this.family);
+          this.userProvider.get_user_balance_history(this.userdata.memberId).subscribe(data=>{
+            console.log(data);
+          })
            this.natStorage.setItem(this.defaultPage,HomePage.name);
            this.natStorage.setItem("relatives",this.family);
            this.natStorage.setItem("user",this.userdata);
@@ -90,7 +93,7 @@ export class CodeverificationPage {
     }
   }
   public requestCode(){
-    this.user.regester_datatable(this.userdata.mobile).subscribe((data)=>{
+    this.userProvider.regester_datatable(this.userdata.mobile).subscribe((data)=>{
       this.correctCode=data[0].code;
       alert(this.correctCode);
       //this.sendSms();

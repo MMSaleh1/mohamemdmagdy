@@ -21,13 +21,16 @@
     </ion-row>
     <ion-row class="regestration-row">
      <ion-input  type="tel" name="phone" formControlName="phone" placeholder="enter you phone number"></ion-input>
-     <div *ngIf="regesterForm.controls['phone'].invalid && regesterBefore == true">
+    </ion-row>
+  <ion-row class="reg-error-row">
+     <div class="reg-error-div" *ngIf="regesterForm.controls['phone'].invalid && regesterBefore == true">
        enter valed phone
      </div>
-    </ion-row>
+  </ion-row>
+    
   </ion-row >
   <ion-row class="regestration-row">
-      <button ion-button type="submit" class="regestration-bottom" block>send me code</button>
+      <button ion-button type="submit" class="regestration-bottom" block>Send Code</button>
   </ion-row>
   </ion-grid>
    </form>
