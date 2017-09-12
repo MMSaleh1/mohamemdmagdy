@@ -32,6 +32,7 @@ export class JointeamPage {
     ) {
     this.team = this.navParams.get("team");
     this.member = this.navParams.get("member");
+    this.member.memberId='3147';
     this.Sdetails = new Array();
     console.log(this.team);
     console.log(this.member);
@@ -42,6 +43,8 @@ export class JointeamPage {
     },err=>{
       console.log(err);
       this.paymentUser=this.member;
+      this.user = this.member;
+      //this.user.username="Ramy";
       this.userReady=true;
     })
     let L_limit=-1;
@@ -65,7 +68,7 @@ export class JointeamPage {
       
   }
   public join(){
-    this.userProvider.get_user_balance_history(this.paymentUser.memeberId).subscribe(data=>{
+    this.userProvider.get_user_balance_history(this.paymentUser.memberId).subscribe(data=>{
       if(data.length > 0){
       this.paymentUser.balanceMoney=data[0].Balance;
       if(this.paymentUser.balanceMoney >= this.team.cost){
@@ -81,6 +84,8 @@ export class JointeamPage {
       }else{
         alert("Not Enough Money");
       }
+    }else{
+      console.log("no user");
     }
 
     })
@@ -89,6 +94,7 @@ export class JointeamPage {
 
   public changePayment(user : any){
     this.paymentUser = user;
+    console.log(this.paymentUser);
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad JointeamPage');
