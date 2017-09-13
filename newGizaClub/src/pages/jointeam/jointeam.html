@@ -62,13 +62,21 @@
 </ion-row>
 </div>
 </div>
-<ion-row *ngIf="userReady">
-    <ion-col col-4>
-   <button ion-button  class="order-bottom" block (tap)="changePayment(member)">{{member.username}}</button>
+<ion-row *ngIf="userReady" style="    min-height: 50px;">
+    <ion-col >
+        <button ion-button class="join-button" (tap)="join()" block> Join</button>
     </ion-col>
-    <ion-col>
-        <button ion-button  class="order-bottom" block (tap)="changePayment(user)">{{user.username}}</button>
+    <ion-col *ngIf="!chooseUser">
+        <button ion-button class="join-button" (tap)="changeView()" block> Choose Account</button>
     </ion-col>
+    <ion-col *ngIf="chooseUser">
+      <ion-row class="join-row-right">
+        <button ion-button  class="join-button-2" block (tap)="changePayment(user)">{{user.username}}</button>
+      </ion-row>
+      <ion-row class="join-row-right">
+          <button ion-button  class="join-button-2" block (tap)="changePayment(member)">{{member.username}}</button>
+      </ion-row>
+      </ion-col>
   </ion-row>
-<button ion-button class="join-button" (tap)="join()" block> Join</button>
+
 </ion-content>

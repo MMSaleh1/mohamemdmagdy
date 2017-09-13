@@ -9,8 +9,19 @@ page-jointeam {
         text-align: center;
     }
     .join-button{
+        height: 100%;
+        width: auto;
         color: #003147;
         background-color: #fbb713;
        
+    }
+    .join-button-2{
+        float: right;
+        width: fit-content;
+        color: #003147;
+        background-color: #fbb713;
+    }
+    .join-row-right{
+        float: right;
     }
 }

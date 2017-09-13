@@ -7,7 +7,7 @@
 <ion-header>
   <ngsc-header [name]='name'></ngsc-header>
 </ion-header>
-<ion-content padding>
+<ion-content padding >
   <div style="height: 33%;">
   <ion-scroll class="notif-scroll"  scrollY="true" >
     <ion-row class="notif-row">
@@ -65,7 +65,7 @@
     <button class="home-buttons" (tap)="goToEvents()">view all >></button>
   </ion-col >
     </ion-row>
- <ion-slides  loop="true"  pager="true" parallax="true" style="margin-top: -14px;">
+ <ion-slides  pager="true" parallax="true" slidesPerView='1' style="margin-top: -14px;">
     <ion-slide *ngFor="let slide of sports" style="    width: 120px;">
       <img class="sports-img" [src]="slide.logo" (tap)="goToEvent(slide)"/>
     </ion-slide>
@@ -75,13 +75,13 @@
 <div *ngIf="posMassage">
     {{posMassage}}
   </div>
-<div *ngIf="posReady" style="height: 40%;">
-  <ion-row>
-    <ion-row style="padding-top: 13px;">
+<div *ngIf="posReady">
+  <ion-row class="pos-cont">
+    <ion-row class="pos-header-cont">
         <h4>Food&Beverages</h4>
   </ion-row>
   <ion-row class="rest-slides-cont" >
-    <ion-slides class="rest-slides"  parallax="true"slidesPerView='3' >
+    <ion-slides class="rest-slides" parallax="true"slidesPerView='3' >
     <ion-slide class="rest-slider" *ngFor="let slide of resturants">
       <div class="rest-img-cont">
       <img class="pos-img" [src]="slide.image" (tap)="goToRestaurant(slide)"/>

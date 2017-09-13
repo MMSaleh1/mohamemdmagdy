@@ -16,6 +16,12 @@
   <ion-list *ngIf="ready">   
     <ion-item  *ngFor="let team of allTeams" (tap)="join(team)">
       <ion-row>
+        <ion-col class="sport-details-header">
+          <h3>{{team.name}}</h3>
+
+        </ion-col>
+      </ion-row>
+      <ion-row>
         <ion-col>
           <h3>Age : {{team.age}}</h3>
         </ion-col>

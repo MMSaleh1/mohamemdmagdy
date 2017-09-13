@@ -37,12 +37,6 @@ export class RegestrationPage {
     this.user = new User();
     this.menu.swipeEnable(false);
   this.buildregesterForm();
-   this.natStorage.getItem(this.defaultPage).then(data=>{
-          },
-        err=>{
-          alert(err);
-        });
-  
 }
 
   ionViewDidLoad() {

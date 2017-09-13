@@ -22,6 +22,7 @@ export class JointeamPage {
   public name :string = "Join The Team";
   public Sdetails : Array<string>;
   public userReady : boolean = false;
+  public chooseUser : boolean = false;
   public paymentUser : any; // this indecates which user will pay to join
 
   constructor(public navCtrl: NavController,
@@ -96,8 +97,13 @@ export class JointeamPage {
     this.paymentUser = user;
     console.log(this.paymentUser);
   }
+
+  public changeView(){
+    this.chooseUser=true;
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad JointeamPage');
   }
+  
 
 }

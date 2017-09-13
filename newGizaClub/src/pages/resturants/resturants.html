@@ -13,7 +13,7 @@
 
 <ion-content padding>
   <span *ngIf="ready[0]">
-  <ion-row class="rest-slides-cont" style="height: 40%;">
+  <ion-row class="rest-slides-cont" >
     <ion-slides class="rest-slides"  parallax="true"slidesPerView='3' >
     <ion-slide class="rest-slider" *ngFor="let slide of resturants" (tap)="changeResturant(slide)">
       <div class="rest-img-cont">
@@ -35,41 +35,54 @@
     </div>
   </div>
   <div class="items-cont" *ngIf="ready[1]" >
+    <button ion-button class="order-button" (tap)="order()" name="Order">Order</button>
   <ion-scroll scrollY="true" style="height: 100%;">
   <ion-list>
-    <button ion-button (click)="order()" name="Order">Order</button>
     <div *ngFor="let item of choosenResturant.products ; let index = index ; trackBy:trackByIndex;">
     <ion-item >
-          <ion-row class="item-header">
-          
+          <ion-row >
+            <ion-col class="item-header">
           {{item.name}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col>
+                <div>
+                
+                <div   class="rest-input">
+                  {{orders[index].quantity}}
+                </div>
+                </div>
+              </ion-col >
+                </ion-row>
+                <ion-row>
+              <ion-col>
+                <div class="rest-item-price">
+                  {{item.price}} LE
+                </div>
+              </ion-col>
+            </ion-row>
 
+        <ion-row class="prod-img-cont">
+          <ion-col>
+              <button class="rest-button" (tap)="changeNumber('remove',index)" ion-button>
+                  <ion-icon  class="icon-no-margin"   name="remove" ></ion-icon>
+               </button>
+          </ion-col>
+          <ion-col col-6>
+            <img *ngIf="item.imageUrl" class="rest-img" [src]="item.imageUrl" >
+            <img *ngIf="!item.imageUrl" class="rest-img" src="assets/img/no-img.jpeg" >
+          </ion-col>
+          <ion-col>
+              <button class="rest-button" ion-button (tap)="changeNumber('add',index)"> 
+                  <ion-icon class="icon-no-margin" name="add" ></ion-icon>
+                </button>
+          </ion-col>
           </ion-row>
         
-        <ion-row class="prod-img-cont">
-            <img class="rest-img" [src]="item.imageUrl">
-        </ion-row>
-        <ion-row>
-      <ion-col>
-        <div>
-        <button class="rest-button" ion-button>
-           <ion-icon class="icon-no-margin"   name="remove" (click)="changeNumber('remove',index)"></ion-icon>
-        </button>
-        <input [(ngModel)]="orders[index].quantity" type="number" class="rest-input">
-        <button class="rest-button" ion-button> 
-          <ion-icon class="icon-no-margin" name="add" (click)="changeNumber('add',index)"></ion-icon>
-        </button>
-        </div>
-      </ion-col >
-      <ion-col>
-        <div class="rest-item-price">
-          {{item.price}} LE
-        </div>
-      </ion-col>
-    </ion-row>
     </ion-item>
     </div>
-   <button ion-button (click)="order()" name="Order">Order</button>
+   <button ion-button class="order-button" (tap)="order()" name="Order">Order</button>
   </ion-list>
   </ion-scroll>
 

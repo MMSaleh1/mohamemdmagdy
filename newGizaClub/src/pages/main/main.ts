@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {Nav, NavController, NavParams } from 'ionic-angular';
 import {NativeStorage} from '@ionic-native/native-storage';
-
+import {Slides} from 'ionic-angular';
 
 import {SportslistPage}from '../sportslist/sportslist';
 import {SportsPage} from '../sports/sports';
 import {ResturantsPage} from '../resturants/resturants';
 import {NewsPage }from '../news/news';
+import {HomePage} from '../home/home';
 
 import { SportsProvider } from '../../providers/sports/sports';
 import { ProductsProvider } from '../../providers/products/products';
@@ -32,6 +33,7 @@ import {News} from '../../templates/usertemplate';
   templateUrl: 'main.html',
 })
 export class MainPage {
+  
  public posReady: boolean=false;
  public posMassage : string ;
  public sportsReady: boolean=false;
@@ -46,7 +48,7 @@ export class MainPage {
     description : string,
     isNew : boolean
   }>;
-  private resturants :Array<Resturant>;
+  private resturants :Array<any>;
 
   public sports : Array<any>;
 
@@ -57,18 +59,18 @@ export class MainPage {
   constructor(public navCtrl: NavController,
     public navParams : NavParams, 
     public natStorage : NativeStorage,
+    public nav : Nav,
     public productsProvider :ProductsProvider,
     public sportsProvider :SportsProvider,
     public newsProvider : NewsProvider
   ) {
     this.resturants = new Array();
     this.news = new Array();
+    console.log(this.nav.getActive().component);
+    console.log(this.nav.getActive().name == "HomePage");
     this.natStorage.getItem("POS").then(data=>{
       if(data.length>0){
-      this.resturants.length= data.length;
-    for (var i = 0; i < data.length; i++) {
-      this.resturants[i]= data[i];
-    }
+      this.resturants = data;
     this.posReady=true;
   }else{
     this.posMassage="No Resturants";
@@ -115,6 +117,8 @@ export class MainPage {
 
     this.natStorage.getItem("sports").then(data=>{
       this.sports = data;
+      
+      this.sportsReady=true;
     },err=>{
       this.sportsProvider.getSports().subscribe(data=>{
         if(data.length != 0){
@@ -123,7 +127,7 @@ export class MainPage {
           this.sports[i]=new Sports(data[i].SportName,data[i].SportID,data[i].SportDesc);
         }
         this.sportsReady=true;
-        this.natStorage.setItem("sprots",this.sports);
+        this.natStorage.setItem("sports",this.sports);
         }else{
           this.sportsMassage="NO Sports";
         }

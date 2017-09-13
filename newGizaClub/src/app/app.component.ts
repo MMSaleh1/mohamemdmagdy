@@ -17,6 +17,7 @@ import { InteractPage } from '../pages/interact/interact';
 import { FacilitieslistPage } from '../pages/facilitieslist/facilitieslist';
 import { SportslistPage } from '../pages/sportslist/sportslist'
 import { CodeverificationPage } from '../pages/codeverification/codeverification';
+import { MainPage } from '../pages/main/main';
 
 
 import { ProductsProvider } from '../providers/products/products';
@@ -33,7 +34,7 @@ import { News } from '../templates/usertemplate';
 })
 export class MyApp {
     
-   @ViewChild(Nav) nav: Nav;
+  @ViewChild(Nav) nav: Nav;
    public defaultPage : string = "defaultPage";
   rootPage:any;
   pages: Array<{title: string, component: any}>;
@@ -136,13 +137,13 @@ this.productsProvider.get_Pos().subscribe(prod=>{ // getting points of sale from
 },err=>{
   alert(err);
 });
-this.sportsProvider.getSports().subscribe(data=>{;
+this.sportsProvider.getSports().subscribe(data=>{
   if(data.length != 0){
   let sports= new Array();
   for(var i =0;i<data.length;i++){
     sports[i]=new Sports(data[i].SportName,data[i].SportID,data[i].SportDesc);
   }
-  this.natStorage.setItem("sprots",sports);
+  this.natStorage.setItem("sports",sports);
   }else{
     alert("NO Sports");
   }
@@ -172,6 +173,8 @@ this.natStorage.getItem('user').then(data=>{
 },err=>{
   console.log(err);
 })
+
+
 
 
 
@@ -232,7 +235,11 @@ this.natStorage.getItem('user').then(data=>{
   openPage(page :any) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    this.nav.setRoot(page.component).then(data=>{
+    console.log(data);
+    console.log(this.nav.getActive().name);
+    });
+    
   }
   
   
