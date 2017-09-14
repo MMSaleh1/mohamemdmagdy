@@ -29,7 +29,7 @@ export class User {
         this.membershipType=membershipType;
         this.mobile = mobile;
         this.email = email;
-        this.gender= (gender == 0 ) ? "Male" :"Female";
+        this.gender= (gender == 1 ) ? "Male" :"Female";
         this.Relation = Relation == null ? "User" : Relation;
         this.balanceMoney = balanceMoney;
    }

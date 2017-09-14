@@ -14,7 +14,7 @@ import { ProductsProvider } from '../../providers/products/products';
 import { NewsProvider} from '../../providers/news/news';
 
 import { Sports } from '../../templates/sportstemplate';
-import {Resturant ,Product} from '../../templates/resturantstemplate';
+import {Resturant ,Product, Category} from '../../templates/resturantstemplate';
 import {News} from '../../templates/usertemplate';
 
 
@@ -76,42 +76,72 @@ export class MainPage {
     this.posMassage="No Resturants";
   }
     },err=>{
-      this.productsProvider.get_Pos().subscribe(prod=>{ // getting points of sale from the API
-        if(prod.length >0){ // check if there is no POS
-        this.resturants.length = prod.length; // init the array length
 
+      //the following code is only for testing on browser and it doesn`t work in app 
+      this.productsProvider.get_Pos().subscribe(pos=>{ // getting points of sale from the API
+        if(pos.length >0){ // check if there is no POS
         this.productsProvider.get_products().subscribe(Data=>{ // get the products from API , to put each product in its POS
-
           if(Data.length > 0 ){// check if there is no product 
-            let POSArr = new Array(); // create array to store the POS
-            POSArr.length = Data.length; // init the array length
-            for(var i =0;i<prod.length;i++){ // itirate over the POS
-              this.resturants[i] = new Resturant(prod[i].PointName,prod[i].PointID,prod[i].PointDesc,prod[i].PointLogo,[new Product()],prod[i].PointCategory);//add a POS to the array
-              let counter = 0; // counter that points to  first empty postion in the products array for each POS
-              for(var j=0 ; j<Data.length ; j++){ // itirate over the products
-                POSArr[j] = new Product(Data[j].prod_name,Data[j].prod_image,Data[j].price,Data[j].prod_desc,Data[j].prod_id,Data[j].quantity,Data[j].prod_category,Data[j].point_id); // add product to the product array
-                if(POSArr[j].PosId == this.resturants[i].id ){ // check if the current product has he point of sale id as the current POS 
-                  this.resturants[i].products[counter] = POSArr[j];// if true => add the product to the array of products in the current POS
-                  counter++; // move the counter to point to the next postion in the array
-                  
+            let ProductArr = new Array(); // create array to store the products
+           this.productsProvider.get_category().subscribe(data=>{
+              if(data.length > 0){
+              let categories = new Array();
+              for(var i =0 ; i<data.length;i++){
+                categories[i]= new Category(data[i].category_name,data[i].category_id);
+              }
+              for(var j = 0 ; j<Data.length ; j++){
+                let flag = false;
+                for(var i =0 ; i<categories.length;i++){
+                  if(categories[i].id==Data[j].prod_category){
+                    ProductArr[j] = new Product(Data[j].prod_name,Data[j].prod_image,Data[j].price,Data[j].prod_desc,Data[j].prod_id,Data[j].quantity,categories[i],Data[j].point_id); // add product to the product array
+                   flag = true;
+                    break;
+                  }
                 }
-              } 
+                if(flag == false){
+                  ProductArr[j] = new Product(Data[j].prod_name,Data[j].prod_image,Data[j].price,Data[j].prod_desc,Data[j].prod_id,Data[j].quantity,new Category(),Data[j].point_id); // add product to the product array
+                }
+      
+                
+              
+              }
+              for(var i =0;i<pos.length;i++){ // itirate over the POS
+                this.resturants[i] = new Resturant(pos[i].PointName,pos[i].PointID,pos[i].PointDesc,pos[i].PointLogo,[new Product()],pos[i].PointCategory);//add a POS to the array
+                let counter = 0; // counter that points to  first empty postion in the products array for each POS
+                for(var j=0 ; j<Data.length ; j++){ // itirate over the products
+                  if(ProductArr[j].PosId == this.resturants[i].id ){ // check if the current product has he point of sale id as the current POS 
+                    this.resturants[i].products[counter] = ProductArr[j];// if true => add the product to the array of products in the current POS
+                    counter++; // move the counter to point to the next postion in the array
+                    
+                  }
+                } 
+              }
+              console.log(categories);
+              console.log(this.resturants);
+              console.log(ProductArr);
+              this.posReady=true;
+              this.natStorage.setItem("POS",this.resturants);
             }
-            this.natStorage.setItem("POS",this.resturants);
-            this.natStorage.setItem("products",POSArr);
-            this.posReady=true;
+            
+      
+           },err=>{
+             alert(err);
+           })
+            
+            
           }
       
+        },err=>{
+          alert(err);
         })
         
         
       }else{
-        this.posMassage="No Resturants";
+        alert("No Resturants");
       }
       },err=>{
         alert(err);
-      })
-
+      });
     });
     
 

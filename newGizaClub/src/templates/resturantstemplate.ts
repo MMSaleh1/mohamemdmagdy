@@ -29,11 +29,11 @@ export class Product {
     public des : any;
     public id :string;
     public quantity: number;
-    public categoryId: string;
+    public category: Category;
     public PosId: string;
 
-    constructor(name = "" , imageUrl = "" , price = 0 , des = "" , id = "-1" , quantity = 0 , categoryId = '-1',POSId = "-1"){
-        this.categoryId = categoryId;
+    constructor(name = "" , imageUrl = "" , price = 0 , des = "" , id = "-1" , quantity = 0 , category= new Category(),POSId = "-1"){
+        this.category = category;
         this.des = des;
         this.id = id;
         this.imageUrl = (imageUrl != null &&imageUrl.length > 0 )?this.URLNAME+imageUrl.substring(1,imageUrl.length) : "";

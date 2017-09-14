@@ -81,7 +81,7 @@
         <h4>Food&Beverages</h4>
   </ion-row>
   <ion-row class="rest-slides-cont" >
-    <ion-slides class="rest-slides" parallax="true"slidesPerView='3' >
+    <ion-slides class="rest-slides" parallax="true"slidesPerView='1' >
     <ion-slide class="rest-slider" *ngFor="let slide of resturants">
       <div class="rest-img-cont">
       <img class="pos-img" [src]="slide.image" (tap)="goToRestaurant(slide)"/>

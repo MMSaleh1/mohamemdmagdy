@@ -31,7 +31,7 @@ export class ProfilePage {
     this.family=new Array();
     this.relatives=new Array();
     this.balanceHestory = new Array();
-    this.user=new User("mohammed",'20',"assets/img/profileTemp.png","false",'3147','1000','1111111111111','mohammed@edge',0,null,1000);
+    this.user=new User("mohammed",'20',"assets/img/profileTemp.png","false",'3147','1000','1111111111111','mohammed@edge',1,null,1000);
   /*
     this.natStorage.getItem("user").then(data=>{
     this.user.memberId=data.memberId;

@@ -36,6 +36,7 @@ import {SportsRegestrationPage} from '../pages/sports-regestration/sports-regest
 import {ListsportdetailsPage} from '../pages/listsportdetails/listsportdetails';
 import {JointeamPage} from '../pages/jointeam/jointeam';
 import {FacilitiesPage} from '../pages/facilities/facilities';
+import {ResturantslistPage} from '../pages/resturantslist/resturantslist';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -93,7 +94,8 @@ import { NewsProvider } from '../providers/news/news';
     SportsRegestrationPage,
     ListsportdetailsPage,
     JointeamPage,
-    FacilitiesPage
+    FacilitiesPage,
+    ResturantslistPage
     ],
   imports: [
     BrowserModule,
@@ -132,7 +134,8 @@ import { NewsProvider } from '../providers/news/news';
     SportsRegestrationPage,
     ListsportdetailsPage,
     JointeamPage,
-    FacilitiesPage
+    FacilitiesPage,
+    ResturantslistPage
   ],
   providers: [
     StatusBar,
