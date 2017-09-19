@@ -25,6 +25,7 @@ export class SportslistPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public sportsProvider : SportsProvider , public natStorage : NativeStorage) {
     this.natStorage.getItem("sports").then(data=>{
       this.sports = data;
+      this.sportsReady=true;
     },err=>{
       this.sportsProvider.getSports().subscribe(data=>{
         console.log(data);

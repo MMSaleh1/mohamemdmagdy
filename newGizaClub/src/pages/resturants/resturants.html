@@ -27,8 +27,12 @@
     </div>
   </div>
   <div class="items-cont" *ngIf="haveMenu" >
-    <button ion-button class="order-button" (tap)="order()" name="Order">Order</button>
-  <ion-scroll scrollY="true" style="height: 100%;">
+    <ion-row class="order-button-cont">
+    <ion-col>
+      <button ion-button class="order-button" (tap)="order()" name="Order">Order</button>
+    </ion-col>
+  </ion-row>
+    <ion-scroll scrollY="true" style="height: 100%;">
   <ion-list>
     <div *ngFor="let item of choosenProducts ; let index = index ; trackBy:trackByIndex;">
     <ion-item >
@@ -42,7 +46,7 @@
                 <div>
                 
                 <div   class="rest-input">
-                  {{orders[index].quantity}}
+                  {{subOrders[index].quantity}}
                 </div>
                 </div>
               </ion-col >
@@ -74,7 +78,6 @@
         
     </ion-item>
     </div>
-   <button ion-button class="order-button" (tap)="order()" name="Order">Order</button>
   </ion-list>
   </ion-scroll>
 

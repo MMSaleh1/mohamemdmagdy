@@ -9,7 +9,8 @@
 </ion-header>
 
 
-<ion-content padding *ngIf="ready">
+<ion-content padding >
+  <div *ngIf="ready">
 <ion-row>
     <ion-col class="order-header-col">
       Item Name
@@ -42,7 +43,7 @@
 </div>
 <ion-row>
   <ion-col>
-    <p>table number</p>
+    <p>Table Number</p>
   </ion-col>
   <ion-col>
   <ion-input class="table-number" type="number" pattern="[0-9]*"  max="99" [(ngModel)]="tableCode"  placeholder="enter your input"></ion-input>
@@ -94,5 +95,5 @@
 <ion-row>
   <button ion-button  class="order-bottom" block (tap)="confirmOrder()">Confirm Order</button>
 </ion-row>
-
+  </div>
 </ion-content>

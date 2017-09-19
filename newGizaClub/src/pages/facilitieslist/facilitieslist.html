@@ -10,9 +10,9 @@
 
 <ion-content padding>
   <ion-list>
-  <ion-item *ngFor="let item of facilities">
+  <ion-item *ngFor="let item of facilities" (tap)="goTopage(item)">
     <h2>{{item.title}}</h2>
-    <button ion-button clear item-end (click)="goTopage(item)">View</button>
+    <button ion-button clear item-end (tap)="goTopage(item)">View</button>
   </ion-item>
 </ion-list>
 </ion-content>

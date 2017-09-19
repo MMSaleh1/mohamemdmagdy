@@ -58,7 +58,7 @@ export class MyApp {
       {title: 'Sports',component : SportslistPage},
       {title: 'Facilities',component : FacilitieslistPage},
       {title: 'About us',component : AbouttabsPage },
-      {title: 'ProfilePage',component : ProfilePage},
+      {title: 'MyProfile',component : ProfilePage},
      // {title: 'General plan',component : MasterplanPage},
      // {title: 'Interact', component : InteractPage},
       

@@ -21,7 +21,13 @@ export class ResturantsPage {
   public name : string ="resturants";
   private orders : Array<{
     item: Product;
-    quantity: number; 
+    quantity: number;
+    mainIndex : number;
+  }>;
+  private subOrders : Array <{
+    item: Product;
+    quantity : number;
+    mainIndex : number;
   }>;
   public ready : boolean[]=[false,false,false];
   //ready[0] check the POS
@@ -40,6 +46,7 @@ export class ResturantsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public ProdProvider:ProductsProvider,public natStorage : NativeStorage) {
     this.choosenResturant =this.navParams.get("resturant");
+    this.name=this.choosenResturant.name;
     this.categories = new Array();
     this.categories[0] = new Category("All","-2");
     if(this.choosenResturant != undefined){
@@ -74,26 +81,27 @@ this.haveMenu = true;
   setResturant(resturant : any){
     this.choosenResturant = resturant;
     this.orders= new Array();
-    this.orders.length=this.choosenResturant.products.length;
-    this.orders.fill({item: new Product(), quantity :0});
+    this.subOrders = new Array();
+    this.orders.length =this.choosenResturant.products.length;
     for(var i =0;i<this.orders.length;i++){
-      let temp :any ={item :this.choosenResturant.products[i],quantity:0 }
-      this.orders[i]=temp;
-      //console.log(this.orders[i]);
+      this.orders[i] ={item :this.choosenResturant.products[i],quantity:0 ,mainIndex : i}
+     //console.log(this.orders[i]);
+     
     }
+    console.log(this.orders.keys());
     }
 
   changeNumber(func : String,index : any){
    // console.log(this.orders.length);
     
-    this.orders[index].item=this.choosenResturant.products[index]; //order is important  first change the item from defult
-   // console.log(this.choosenResturant['menu'][index]);
-    if(func == 'add' && this.orders[index].quantity < this.orders[index].item.quantity){
-      this.orders[index].quantity++; // then change its quantity
+    //this.subOrders[index].item=this.choosenResturant.products[index]; //order is important  first change the item from defult
+
+    if(func == 'add' && this.subOrders[index].quantity < this.subOrders[index].item.quantity){
+      this.subOrders[index].quantity++; // then change its quantity
     }else if(func == 'remove'){
-      if(this.orders[index].quantity!=0){
+      if(this.subOrders[index].quantity!=0){
           
-          this.orders[index].quantity--;
+          this.subOrders[index].quantity--;
       }
         
       
@@ -102,6 +110,11 @@ this.haveMenu = true;
   }
   order(){
     let totalPrice =0;
+    if(this.subOrders.length>0){
+      for(var i = 0;i<this.subOrders.length;i++){
+        this.orders[this.subOrders[i].mainIndex].quantity=this.subOrders[i].quantity;
+      }
+    }
     for(let i =0; i< this.orders.length;i++){
       totalPrice += (this.orders[i].item.price*this.orders[i].quantity);
       
@@ -111,20 +124,36 @@ this.haveMenu = true;
     console.log(this.orders);
     this.navCtrl.push(OrderPage,{"orders":this.orders , "resturant": this.choosenResturant});
   }
+
+
+
+
+
+
+
   public filter(category : Category){
     this.choosenProducts = new Array();
     console.log(category);
     let counter =0;
+    if(this.subOrders.length>0){
+      for(var i = 0;i<this.subOrders.length;i++){
+        this.orders[this.subOrders[i].mainIndex].quantity=this.subOrders[i].quantity;
+      }
+    }
+    this.subOrders=new Array();
     if(category.id =='-2'){
       this.choosenProducts = this.choosenResturant.products;
+      this.subOrders = this.orders;
     }else{
       for(var i =0;i<this.choosenResturant.products.length;i++){
         if(this.choosenResturant.products[i].category.id == category.id )
           {
             this.choosenProducts[counter]=this.choosenResturant.products[i];
+            this.subOrders[counter] =this.orders[i];
             counter++;
           }
       }
+      console.log(this.subOrders);
     }
   }
   

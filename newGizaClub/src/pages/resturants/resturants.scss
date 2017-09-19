@@ -2,8 +2,7 @@ page-resturants {
     .order-button{
         color: #003147;
         background-color: #fbb713;
-        width: auto;
-        margin: auto;
+        margin-left: 39%;
         margin-bottom: 10px;
     }
     .no-items-cont{
@@ -23,7 +22,10 @@ page-resturants {
     }
     }
 .rest-slides-cont{
-    height: 20%;
+    //height: 20%;
+}
+.order-button-cont{
+    width: 100%;
 }
 .rest-img{
     height: 80px !important;
