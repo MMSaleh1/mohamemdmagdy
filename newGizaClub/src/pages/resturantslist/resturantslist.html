@@ -11,7 +11,7 @@
 
 <ion-content padding>
   <ion-list *ngIf="Ready">   
-    <ion-item *ngFor="let item of resturants">
+    <ion-item *ngFor="let item of resturants" (tap)="openPage(item)">
       <ion-thumbnail item-start>
         <img *ngIf="item.image" [src]="item.image">
         <img *ngIf="!item.image" src="assets/img/no-img.jpeg" >

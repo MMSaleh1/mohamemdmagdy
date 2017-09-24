@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {  NavController, NavParams } from 'ionic-angular';
 
-import {SportsPage} from '../sports/sports';
+import {FacilitiesPage} from '../facilities/facilities';
 /**
  * Generated class for the FacilitieslistPage page.
  *
@@ -181,9 +181,9 @@ wellbeing all around the club.`
 
   ionViewDidLoad() {
   }
-   goTopage(sport : any ){
-    this.navCtrl.push(SportsPage ,{
-    sport : sport
+   goTopage(facility : any ){
+    this.navCtrl.push(FacilitiesPage ,{
+      "facility" : facility
     });
   }
 

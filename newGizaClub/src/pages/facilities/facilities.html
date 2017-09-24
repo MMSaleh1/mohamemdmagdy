@@ -5,14 +5,11 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>facilities</ion-title>
-  </ion-navbar>
-
+    <ngsc-header [name]='name'></ngsc-header>    
 </ion-header>
 
 
 <ion-content padding>
-
+    <img class="round-img" src="assets/img/ngiza.png">
+  <p class="desc">{{facility.description}}</p>
 </ion-content>

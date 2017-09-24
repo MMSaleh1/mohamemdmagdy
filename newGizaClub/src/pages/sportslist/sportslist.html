@@ -5,7 +5,7 @@
 
 <ion-content padding>
   <ion-list *ngIf="sportsReady">   
-  <ion-item *ngFor="let item of sports">
+  <ion-item *ngFor="let item of sports" (tap)="goTopage(item)">
     <ion-thumbnail item-start>
       <img [src]="item.logo">
     </ion-thumbnail>

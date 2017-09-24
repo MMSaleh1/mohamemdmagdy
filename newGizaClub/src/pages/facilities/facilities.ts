@@ -12,8 +12,11 @@ import {NavController, NavParams } from 'ionic-angular';
   templateUrl: 'facilities.html',
 })
 export class FacilitiesPage {
-
+  public name ='';
+  public facility :any ;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.facility =this.navParams.get("facility");
+    this.name=this.facility.title;
   }
 
   ionViewDidLoad() {
