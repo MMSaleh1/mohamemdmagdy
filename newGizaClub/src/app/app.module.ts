@@ -42,7 +42,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { SMS }from '@ionic-native/sms';
-import { CameraPreview,CameraPreviewPictureOptions,CameraPreviewOptions,CameraPreviewDimensions } from '@ionic-native/camera-preview';
+import { CameraPreview } from '@ionic-native/camera-preview';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery';
 import { Camera } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';

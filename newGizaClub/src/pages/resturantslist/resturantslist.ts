@@ -46,12 +46,12 @@ export class ResturantslistPage {
            this.productsProvider.get_category().subscribe(data=>{
               if(data.length > 0){
               let categories = new Array();
-              for(var i =0 ; i<data.length;i++){
+              for(let i =0 ; i<data.length;i++){
                 categories[i]= new Category(data[i].category_name,data[i].category_id);
               }
-              for(var j = 0 ; j<Data.length ; j++){
+              for(let j = 0 ; j<Data.length ; j++){
                 let flag = false;
-                for(var i =0 ; i<categories.length;i++){
+                for(let i =0 ; i<categories.length;i++){
                   if(categories[i].id==Data[j].prod_category){
                     ProductArr[j] = new Product(Data[j].prod_name,Data[j].prod_image,Data[j].price,Data[j].prod_desc,Data[j].prod_id,Data[j].quantity,categories[i],Data[j].point_id); // add product to the product array
                    flag = true;
@@ -65,10 +65,10 @@ export class ResturantslistPage {
                 
               
               }
-              for(var i =0;i<pos.length;i++){ // itirate over the POS
+              for(let i =0;i<pos.length;i++){ // itirate over the POS
                 this.resturants[i] = new Resturant(pos[i].PointName,pos[i].PointID,pos[i].PointDesc,pos[i].PointLogo,[new Product()],pos[i].PointCategory);//add a POS to the array
                 let counter = 0; // counter that points to  first empty postion in the products array for each POS
-                for(var j=0 ; j<Data.length ; j++){ // itirate over the products
+                for(let j=0 ; j<Data.length ; j++){ // itirate over the products
                   if(ProductArr[j].PosId == this.resturants[i].id ){ // check if the current product has he point of sale id as the current POS 
                     this.resturants[i].products[counter] = ProductArr[j];// if true => add the product to the array of products in the current POS
                     counter++; // move the counter to point to the next postion in the array

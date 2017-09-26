@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import {NativeStorage} from '@ionic-native/native-storage';
 
 import {User} from '../../templates/usertemplate';
-import {Resturant , Product , Category} from '../../templates/resturantstemplate';
+import {Product} from '../../templates/resturantstemplate';
 
 import {ProductsProvider} from '../../providers/products/products';
 import {UserProvider} from '../../providers/user/user';

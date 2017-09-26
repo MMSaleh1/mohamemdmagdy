@@ -1,9 +1,9 @@
 import { Component,Input } from '@angular/core';
 import {NativeStorage} from '@ionic-native/native-storage';
 import {App,NavController} from 'ionic-angular';
-import {LoginPage} from '../../pages/login/login';
+//import {LoginPage} from '../../pages/login/login';
 import {RegestrationPage} from '../../pages/regestration/regestration';
-import {HomePage} from '../../pages/home/home';
+//import {HomePage} from '../../pages/home/home';
 /**
  * Generated class for the HeaderComponent component.
  *

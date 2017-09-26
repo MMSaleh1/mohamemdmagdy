@@ -3,7 +3,6 @@ import {NavController, NavParams } from 'ionic-angular';
 
 import {JointeamPage} from '../jointeam/jointeam';
 
-import {User} from '../../templates/usertemplate';
 import {Coach,Schedule,Team} from '../../templates/sportstemplate';
 
 import {SportsProvider} from '../../providers/sports/sports';
@@ -35,13 +34,13 @@ export class ListsportdetailsPage {
     this.sportsProvider.getSportsDetails(this.sport.id).subscribe(data=>{
       
       if(data.length > 0 ){
-        for(var i = 0;i<data.length ; i++){
+        for(let i = 0;i<data.length ; i++){
           let tempCoach :Coach = new Coach(data[i].CoachName,data[i].CoachID,data[i].CoachBIO,data[i].CoachImage);
           let tempSchedule :Schedule = new Schedule(data[i].ScheduleName,data[i].ScheduleID,data[i].ScheduleDetail);
           this.allTeams[i]=new Team(data[i].TeamName,data[i].TeamID,data[i].TeamCost,data[i].BillingPeriod,data[i].Gender,data[i].TeamAge,tempSchedule,tempCoach,this.sport);
         }
         let counter = 0;
-        for(var i = 0 ; i <this.allTeams.length ; i++){
+        for(let i = 0 ; i <this.allTeams.length ; i++){
           
           if(this.allTeams[i].gender == this.member.gender && this.allTeams[i].age == this.member.dob){
             this.fitTeams[counter] = this.allTeams[i];
