@@ -3,7 +3,6 @@ import {Nav,Platform,ToastController } from 'ionic-angular';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { AndroidPermissions } from '@ionic-native/android-permissions';
 import {NativeStorage} from '@ionic-native/native-storage';
 
 import { HomePage } from '../pages/home/home';
@@ -11,14 +10,10 @@ import { AbouttabsPage } from '../pages/abouttabs/abouttabs';
 import { RegestrationPage } from '../pages/regestration/regestration';
 import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
-import { MasterplanPage } from '../pages/masterplan/masterplan';
-import { ResturantsPage } from '../pages/resturants/resturants';
 import { ResturantslistPage} from '../pages/resturantslist/resturantslist';
-import { InteractPage } from '../pages/interact/interact';
 import { FacilitieslistPage } from '../pages/facilitieslist/facilitieslist';
 import { SportslistPage } from '../pages/sportslist/sportslist'
 import { CodeverificationPage } from '../pages/codeverification/codeverification';
-import { MainPage } from '../pages/main/main';
 
 
 import { ProductsProvider } from '../providers/products/products';
@@ -94,8 +89,8 @@ export class MyApp {
       splashScreen.hide();
      
     
-     var lastTimeBackPress = 0;
-        var timePeriodToExit  = 2000;
+     let lastTimeBackPress = 0;
+        let timePeriodToExit  = 2000;
 
         
               //calling APIs from the server to get the static data
@@ -113,12 +108,12 @@ this.productsProvider.get_Pos().subscribe(pos=>{ // getting points of sale from 
      this.productsProvider.get_category().subscribe(data=>{
         if(data.length > 0){
         let categories = new Array();
-        for(var i =0 ; i<data.length;i++){
+        for(let i =0 ; i<data.length;i++){
           categories[i]= new Category(data[i].category_name,data[i].category_id);
         }
-        for(var j = 0 ; j<Data.length ; j++){
+        for(let j = 0 ; j<Data.length ; j++){
           let flag = false;
-          for(var i =0 ; i<categories.length;i++){
+          for(let i =0 ; i<categories.length;i++){
             if(categories[i].id==Data[j].prod_category){
               ProductArr[j] = new Product(Data[j].prod_name,Data[j].prod_image,Data[j].price,Data[j].prod_desc,Data[j].prod_id,Data[j].quantity,categories[i],Data[j].point_id); // add product to the product array
              flag = true;
@@ -132,10 +127,10 @@ this.productsProvider.get_Pos().subscribe(pos=>{ // getting points of sale from 
           
         
         }
-        for(var i =0;i<pos.length;i++){ // itirate over the POS
+        for(let i =0;i<pos.length;i++){ // itirate over the POS
           POSArr[i] = new Resturant(pos[i].PointName,pos[i].PointID,pos[i].PointDesc,pos[i].PointLogo,[new Product()],pos[i].PointCategory);//add a POS to the array
           let counter = 0; // counter that points to  first empty postion in the products array for each POS
-          for(var j=0 ; j<Data.length ; j++){ // itirate over the products
+          for(let j=0 ; j<Data.length ; j++){ // itirate over the products
             if(ProductArr[j].PosId == POSArr[i].id ){ // check if the current product has he point of sale id as the current POS 
               POSArr[i].products[counter] = ProductArr[j];// if true => add the product to the array of products in the current POS
               counter++; // move the counter to point to the next postion in the array
@@ -171,7 +166,7 @@ this.productsProvider.get_Pos().subscribe(pos=>{ // getting points of sale from 
 this.sportsProvider.getSports().subscribe(data=>{
   if(data.length != 0){
   let sports= new Array();
-  for(var i =0;i<data.length;i++){
+  for(let i =0;i<data.length;i++){
     sports[i]=new Sports(data[i].SportName,data[i].SportID,data[i].SportDesc);
   }
   this.natStorage.setItem("sports",sports);
@@ -183,7 +178,7 @@ this.sportsProvider.getSports().subscribe(data=>{
 this.productsProvider.get_category().subscribe(data=>{
   if(data.length >0){
   let categories = new Array();
-  for(var i =0 ; i<data.length;i++){
+  for(let i =0 ; i<data.length;i++){
     categories[i]= new Category(data[i].category_name,data[i].category_id);
   }
   this.natStorage.setItem("category",categories);
@@ -198,7 +193,7 @@ this.natStorage.getItem('user').then(data=>{
   this.newsProvider.getnews(data.memberId).subscribe(news=>{
     if(news.length > 0){
       let tempNews :Array<News> = new Array();
-      for(var i = 0 ;i<news.length;i++){
+      for(let i = 0 ;i<news.length;i++){
         tempNews[i]=new News(news[i].NewsID,news[i].NewsTitle,news[i].NewsContent,news[i].LikeCount,news[i].DisLikeCount,news[i].NewsImage);
       }
     this.natStorage.setItem("news",tempNews);

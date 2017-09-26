@@ -4,7 +4,7 @@ import {NativeStorage} from '@ionic-native/native-storage';
 
 
 import {ProductsProvider} from '../../providers/products/products';
-import {Resturant , Product , Category} from '../../templates/resturantstemplate';
+import {Product , Category} from '../../templates/resturantstemplate';
 import {OrderPage} from '../order/order';
 /**
  *
@@ -28,11 +28,9 @@ export class ResturantsPage {
   //ready[1] check the products
   //ready[2] check the categories
   public haveMenu :boolean =false;
-  private resturants : Resturant[] ;
+
 
   private categories : Category[] ;
-
-  private products : Product[] ;
 
     private choosenResturant :any;
 

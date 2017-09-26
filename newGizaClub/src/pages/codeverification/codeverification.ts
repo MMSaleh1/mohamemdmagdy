@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import {SMS} from '@ionic-native/sms';
 import {NativeStorage} from '@ionic-native/native-storage';
 
 import {UserProvider} from '../../providers/user/user';
-import {LoginPage} from '../login/login';
 import {HomePage} from '../home/home';
 import {User} from '../../templates/usertemplate';
 /**
@@ -27,7 +25,6 @@ export class CodeverificationPage {
   private family:Array<User>;
 
   constructor(public navCtrl: NavController,
-    private sms : SMS,
     public navParams: NavParams,
     public userProvider: UserProvider,
     public natStorage: NativeStorage
@@ -66,12 +63,12 @@ export class CodeverificationPage {
         if(data.length > 0){
           console.log(data);
           let owner =-1;
-          for(var i =0 ; i<data.length;i++){
+          for(let i =0 ; i<data.length;i++){
             if(data[i].Relation==null){
               owner=i;
           }
         }
-          for(var i =owner ,j=0 ; i<data.length;i++,j++){
+          for(let i =owner ,j=0 ; i<data.length;i++,j++){
             this.family[j] = new User(data[i].username,data[i].DOB,data[i].PhotoURL,data[i].membershipType,data[i].membershipID,data[i].FamilyID,data[i].mobile,data[i].e_mail,data[i].gender,data[i].Relation,data[i].Balance)
           }
           this.userdata = this.family[0];
@@ -96,17 +93,9 @@ export class CodeverificationPage {
     this.userProvider.regester_datatable(this.userdata.mobile).subscribe((data)=>{
       this.correctCode=data[0].code;
       alert(this.correctCode);
-      //this.sendSms();
     },(err)=>{
       alert(err);
     });
-  }
-  private sendSms(){
-    if(this.sms.hasPermission()){
-      this.sms.send(this.userdata.mobile,this.correctCode);
-    }else{
-      alert("we don`t have permission to send sms");
-    }
   }
 ionViewDidLoad() {
     console.log('ionViewDidLoad CodeverificationPage');

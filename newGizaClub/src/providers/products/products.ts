@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 
 import {RootProvider} from '../root/root';
 
-import {CacheProvider , CacheReponce} from '../cache/cache';
+import {CacheProvider } from '../cache/cache';
 
 
 /*
