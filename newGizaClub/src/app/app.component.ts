@@ -218,7 +218,7 @@ this.natStorage.getItem('user').then(data=>{
 
 //----------------------------------------------------------------
 
-
+/*
         platform.registerBackButtonAction(() => {
             // get current active page
             let view = this.nav.getActive();
@@ -245,6 +245,7 @@ this.natStorage.getItem('user').then(data=>{
                 this.nav.pop({});
             }
         });
+        */
     });
     
 
