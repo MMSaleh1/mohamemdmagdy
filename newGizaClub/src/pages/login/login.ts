@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {  NavController, NavParams } from 'ionic-angular';
 import {FormBuilder,FormGroup,Validators} from '@angular/forms';
 import {NativeStorage} from '@ionic-native/native-storage';
 
 import {User} from '../../templates/usertemplate';
 
-import {UserProvider} from '../../providers/user/user';
+//import {UserProvider} from '../../providers/user/user';
 
 import {HomePage} from '../home/home';
-import {RegestrationPage} from '../regestration/regestration';
-import {ForgetpwPage} from '../forgetpw/forgetpw';
+//import {RegestrationPage} from '../regestration/regestration';
+//import {ForgetpwPage} from '../forgetpw/forgetpw';
 
 /**
  * Generated class for the LoginPage page.
@@ -36,8 +36,8 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      private formBuilder:FormBuilder,
-     private natStorage : NativeStorage,
-     private user : UserProvider
+     private natStorage : NativeStorage
+     //,private user : UserProvider
     ) {
       this.userdata=new User();
      // this.userdata=this.navParams.get("user");

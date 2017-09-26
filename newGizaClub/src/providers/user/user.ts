@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http,Headers } from '@angular/http';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 //import {CashProvider} from '../cash/cash';
-import {User} from '../../templates/usertemplate';
 
 import {RootProvider} from '../root/root';
 /*

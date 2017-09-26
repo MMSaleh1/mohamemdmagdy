@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import {NativeStorage} from '@ionic-native/native-storage';
 
 import {User,Balance} from '../../templates/usertemplate';
@@ -11,7 +11,6 @@ import {LoginPage} from '../login/login';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-//@IonicPage()
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html',
