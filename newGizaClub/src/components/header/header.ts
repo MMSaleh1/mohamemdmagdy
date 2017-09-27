@@ -1,6 +1,6 @@
 import { Component,Input } from '@angular/core';
 import {NativeStorage} from '@ionic-native/native-storage';
-import {App,NavController} from 'ionic-angular';
+import {App,NavController,Platform} from 'ionic-angular';
 //import {LoginPage} from '../../pages/login/login';
 import {RegestrationPage} from '../../pages/regestration/regestration';
 //import {HomePage} from '../../pages/home/home';
@@ -19,9 +19,9 @@ export class HeaderComponent {
   name: string="header";
   //logedIn :boolean = true;
   defaultPage : string = "defaultPage";
-  constructor(public nativeStorage :NativeStorage,public navCtrl :NavController,public app:App) {
+  constructor(public platform : Platform,public nativeStorage :NativeStorage,public navCtrl :NavController,public app:App) {
   // this.init();
-    
+  //console.log(platform.is('ios'))
   }
   /*
   private init(){

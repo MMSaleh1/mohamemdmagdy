@@ -8,9 +8,22 @@ header {
 .toolbar-title-md{
     font-size: 1.2em;
 }
-.logout-Button{
+.android-logout-Button{
     margin: auto;
     
     color: #003147;
     background-color: #fbb713;
     }
+    .ios-logout-Button{
+        margin: auto;
+        
+        color: #003147;
+        background-color: transparent;
+        }
+
+.ios-icon{
+
+}
+.android-icon{
+    
+}

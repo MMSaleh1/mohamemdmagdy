@@ -49,15 +49,51 @@
   <ion-input class="table-number" type="number" pattern="[0-9]*"  max="99" [(ngModel)]="tableCode"  placeholder="enter your input"></ion-input>
   </ion-col>
   </ion-row>
+
   <div class="total-price">
+  <div>
   <ion-row>
   <ion-col>
-    Total Price :
+    Order Price :
   </ion-col>
   <ion-col>
-    {{totalPrice}}
+    {{orderPrice}}
   </ion-col>
   </ion-row>
+  </div>
+
+  <div>
+    <ion-row>
+    <ion-col>
+      Service(12%) :
+    </ion-col>
+    <ion-col>
+      {{service}}
+    </ion-col>
+    </ion-row>
+    </div>
+
+    <div>
+      <ion-row>
+      <ion-col>
+        Charge(14%):
+      </ion-col>
+      <ion-col>
+        {{charge}}
+      </ion-col>
+      </ion-row>
+      </div>
+
+      <div>
+        <ion-row>
+        <ion-col>
+          Total Price :
+        </ion-col>
+        <ion-col>
+          {{totalprice}}
+        </ion-col>
+        </ion-row>
+      </div>
   
 
   <div *ngIf="paymentMethod == 61">
@@ -74,23 +110,12 @@
     Your balance after purchase :
   </ion-col>
   <ion-col>
-    {{user.balanceMoney - totalPrice }}
+    {{user.balanceMoney - totalprice }}
   </ion-col>
 </ion-row>
   </div>
-  </div>
-<ion-row>
-  <ion-col class="payment-method-col">
-    Choose payment Method :
-  </ion-col>
-</ion-row>
-  <div *ngFor="let method of paymentMethods">
-  <ion-row>
-    <ion-col col-4>
-   <button ion-button  class="order-bottom" block (tap)="changePayment(method.name)">{{method.name}}</button>
-    </ion-col>
-  </ion-row>
-  </div>
+</div>
+
 
 <ion-row>
   <button ion-button  class="order-bottom" block (tap)="confirmOrder()">Confirm Order</button>

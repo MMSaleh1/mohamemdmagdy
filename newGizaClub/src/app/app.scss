@@ -29,3 +29,18 @@
     font-size: 3em;
     margin: 0 !important;
   }
+  .bar-button-menutoggle-md ion-icon{
+    color: 	#fbb713;
+    font-size: 3em;
+    margin: auto
+  }
+  ion-header ion-icon.back-button-icon.icon, 
+  ion-header span.back-button-text.back-button-text-ios {
+     color:transparent;
+  }
+  .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+      color: #fbb713
+  }
+  ion-header ion-icon.back-button-icon.icon, ion-header span.back-button-text.back-button-text-md{
+    color : #fbb713
+  }
