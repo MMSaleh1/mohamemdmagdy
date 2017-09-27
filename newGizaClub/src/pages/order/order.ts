@@ -108,10 +108,14 @@ export class OrderPage {
     this.ProdProvider.add_invoice_header(count,this.totalprice,this.user.memberId,this.paymentMethod,this.resturant.id,this.tableCode,0,time).subscribe(data=>{
 
     let invId=data;
+    let ordernumber = 0;
     for(var i = 0;i<this.orders.length;i++){
       if(this.orders[i].quantity > 0){
         this.ProdProvider.add_invoice_item(this.orders[i].item.category.id,this.orders[i].item.id,this.orders[i].quantity,this.orders[i].item.price,this.user.memberId,this.paymentMethod,invId).subscribe(Data=>{
-      alert(Data);
+          
+          if(ordernumber == this.orders.length-1 ){
+            alert ("Order Completed");
+          }
     },Err=>{
       alert(Err);
     })
