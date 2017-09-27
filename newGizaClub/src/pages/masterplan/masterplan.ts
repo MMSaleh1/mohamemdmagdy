@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {  NavController, NavParams } from 'ionic-angular';
 
 
 /**
@@ -8,14 +8,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-//@IonicPage()
 @Component({
   selector: 'page-masterplan',
   templateUrl: 'masterplan.html',
 })
 export class MasterplanPage {
   public name : string ="Our Map";
-  private imgSrc ="../../assets/img/masterplan.jpg";
+  //private imgSrc ="../../assets/img/masterplan.jpg";
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
   }
