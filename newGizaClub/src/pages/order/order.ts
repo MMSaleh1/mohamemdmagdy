@@ -112,9 +112,10 @@ export class OrderPage {
     for(var i = 0;i<this.orders.length;i++){
       if(this.orders[i].quantity > 0){
         this.ProdProvider.add_invoice_item(this.orders[i].item.category.id,this.orders[i].item.id,this.orders[i].quantity,this.orders[i].item.price,this.user.memberId,this.paymentMethod,invId).subscribe(Data=>{
-          
-          if(ordernumber == this.orders.length-1 ){
+          ordernumber++;
+          if(ordernumber == this.viewOrder.length-1 ){
             alert ("Order Completed");
+            this.navCtrl.pop();
           }
     },Err=>{
       alert(Err);
