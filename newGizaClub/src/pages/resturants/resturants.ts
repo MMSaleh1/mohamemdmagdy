@@ -37,13 +37,14 @@ export class ResturantsPage {
 
 
   private categories : Category[] ;
-
+ public allRestaurants : Array<any>;
     private choosenResturant :any;
 
     public choosenProducts :Array<any>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public ProdProvider:ProductsProvider,public natStorage : NativeStorage) {
     this.choosenResturant =this.navParams.get("resturant");
+    this.allRestaurants=this.navParams.get("allRestaurants");
     this.name=this.choosenResturant.name;
     this.categories = new Array();
     this.categories[0] = new Category("All","-2");
@@ -120,7 +121,7 @@ this.haveMenu = true;
     }
     console.log(totalPrice);
     console.log(this.orders);
-    this.navCtrl.push(OrderPage,{"orders":this.orders , "resturant": this.choosenResturant});
+    this.navCtrl.push(OrderPage,{"orders":this.orders , "resturant": this.choosenResturant , "allRestaurants" : this.allRestaurants});
   }
 
 

@@ -50,6 +50,17 @@
   </ion-col>
   </ion-row>
 
+  <ion-row>
+    <ion-col>
+      <p>Delever To :</p>
+    </ion-col>
+    <ion-col>
+    <ion-select class="pos-select" [(ngModel)]="dToRestaurnat" >
+        <ion-option *ngFor="let item of allRestaurnats" [value]="item">{{item.name}}</ion-option>
+      </ion-select>
+    </ion-col>
+  </ion-row>
+
   <div class="total-price">
   <div>
   <ion-row>

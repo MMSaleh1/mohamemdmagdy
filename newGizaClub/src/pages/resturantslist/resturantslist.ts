@@ -113,7 +113,7 @@ export class ResturantslistPage {
   }
 
   openPage(resturant : any){
-    this.navCtrl.push(ResturantsPage,{"resturant" : resturant});
+    this.navCtrl.push(ResturantsPage,{"resturant" : resturant , "allRestaurants" :this.resturants});
 
   }
 

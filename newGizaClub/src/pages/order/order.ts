@@ -21,6 +21,7 @@ import {UserProvider} from '../../providers/user/user';
 })
 export class OrderPage {
   public name = "Orders";
+  public deleverTo : any;
   private orders : Array<{
     item: Product;
     quantity: number; 
@@ -40,11 +41,12 @@ export class OrderPage {
   public service : number;
   public charge : number;
   public totalprice : number;
-
+  public dToRestaurnat :any;
+  public allRestaurnats :any;
 
 
   constructor(public navCtrl: NavController,
-     public navParams: NavParams ,
+     public navParams: NavParams,
       public natStorage : NativeStorage ,
       public ProdProvider :ProductsProvider,
       public userPorvider :UserProvider
@@ -61,6 +63,8 @@ export class OrderPage {
     this.viewOrder = new Array();
     this.orders = this.navParams.get("orders");
     this.resturant = this.navParams.get("resturant");
+    this.dToRestaurnat = this.resturant;
+    this.allRestaurnats = this.navParams.get("allRestaurants");
     let counter= 0;
     for(let i =0; i< this.orders.length;i++){
       this.orderPrice += (this.orders[i].item.price*this.orders[i].quantity);
@@ -105,15 +109,15 @@ export class OrderPage {
     let today  = new Date();
     let time = today.getHours()+":"+today.getMinutes();
     if((this.user.balanceMoney >= this.orderPrice && this.paymentMethod == 61)|| this.paymentMethod ==41 ){
-    this.ProdProvider.add_invoice_header(count,this.totalprice,this.user.memberId,this.paymentMethod,this.resturant.id,this.tableCode,0,time).subscribe(data=>{
+    this.ProdProvider.add_invoice_header(count,this.totalprice,this.user.memberId,this.paymentMethod,this.resturant.id,this.tableCode,0,time,"Pending",this.dToRestaurnat).subscribe(data=>{
 
     let invId=data;
     let ordernumber = 0;
     for(var i = 0;i<this.orders.length;i++){
       if(this.orders[i].quantity > 0){
-        this.ProdProvider.add_invoice_item(this.orders[i].item.category.id,this.orders[i].item.id,this.orders[i].quantity,this.orders[i].item.price,this.user.memberId,this.paymentMethod,invId).subscribe(Data=>{
+        this.ProdProvider.add_invoice_item(this.orders[i].item.category.id,this.orders[i].item.id,this.orders[i].quantity,this.orders[i].item.price,this.user.memberId,this.paymentMethod,invId,"Pending",0,this.tableCode).subscribe(Data=>{
           ordernumber++;
-          if(ordernumber == this.viewOrder.length-1 ){
+          if(ordernumber == this.viewOrder.length ){
             alert ("Order Completed");
             this.navCtrl.pop();
           }

@@ -225,7 +225,7 @@ export class MainPage {
   }
 
   goToRestaurant(slide :any){
-    this.navCtrl.push(ResturantsPage,{"resturant":slide});
+    this.navCtrl.push(ResturantsPage,{"resturant":slide,"allRestaurants" : this.resturants});
     console.log(slide);
   }
 
