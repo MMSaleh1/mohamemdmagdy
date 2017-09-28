@@ -49,7 +49,7 @@ export class ProductsProvider extends RootProvider {
 
    
     
-    return   this.http.get(`${this.CONFIG.API}${this.InvoiceHeader}?item_count=${item_count}&total_price=${total_price}&id=${id}&rfid=0&pMethod=${pMethod}&user_id=0&pointID=${pointID}&order_status=${order_status}&deliver_to=${delever_to}&tableCode=${tableCode}&ToGo=${ToGo}`).map(res=><any>res.json());
+    return   this.http.get(`${this.CONFIG.API}${this.InvoiceHeader}?item_count=${item_count}&total_price=${total_price}&id=${id}&rfid=1&pMethod=${pMethod}&user_id=0&pointID=${pointID}&order_status=${order_status}&deliver_to=${delever_to}&tableCode=${tableCode}&ToGo=${ToGo}`).map(res=><any>res.json());
   }
   
 
@@ -57,7 +57,7 @@ export class ProductsProvider extends RootProvider {
     
     
    
-    return   this.http.get(`${this.CONFIG.API}${this.InvoiceItem}?category_id=${category_id}&prod_id=${prod_id}&quatity=${quantity}&price=${price}&id=${id}&rfid=0&pMethod=${pMethod}&invNo=${invNo}&order_status=${order_status}&deliver_to=${deliver_to}&table_no=${table_no}&order_comments=""`).map(res=><any>res.json());
+    return   this.http.get(`${this.CONFIG.API}${this.InvoiceItem}?category_id=${category_id}&prod_id=${prod_id}&quatity=${quantity}&price=${price}&id=${id}&rfid=1&pMethod=${pMethod}&invNo=${invNo}&order_status=${order_status}&deliver_to=${deliver_to}&table_no=${table_no}&order_comments=""`).map(res=><any>res.json());
   }
 
 
