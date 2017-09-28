@@ -4,7 +4,7 @@ import {NativeStorage} from '@ionic-native/native-storage';
 
 import {SportsProvider} from '../../providers/sports/sports';
 import {UserProvider} from '../../providers/user/user';
-
+ import {User} from '../../templates/usertemplate';
 /**
  * Generated class for the JointeamPage page.
  *
@@ -22,7 +22,6 @@ export class JointeamPage {
   public name :string = "Join The Team";
   public Sdetails : Array<string>;
   public userReady : boolean = false;
-  public chooseUser : boolean = false;
   public paymentUser : any; // this indecates which user will pay to join
 
   constructor(public navCtrl: NavController,
@@ -33,7 +32,6 @@ export class JointeamPage {
     ) {
     this.team = this.navParams.get("team");
     this.member = this.navParams.get("member");
-    this.member.memberId='3147';
     this.Sdetails = new Array();
     console.log(this.team);
     console.log(this.member);
@@ -44,7 +42,7 @@ export class JointeamPage {
     },err=>{
       console.log(err);
       this.paymentUser=this.member;
-      this.user = this.member;
+      this.user = this.user=new User("magdy",'20',"assets/img/profileTemp.png","false",'2923','1000','01099297597','mohammed.magdy.ali.96@gmail.com@edge',0,null,50);
       //this.user.username="Ramy";
       this.userReady=true;
     })
@@ -69,6 +67,7 @@ export class JointeamPage {
       
   }
   public join(){
+    console.log(this.paymentUser.memberId);
     this.userProvider.get_user_balance_history(this.paymentUser.memberId).subscribe(data=>{
       if(data.length > 0){
       this.paymentUser.balanceMoney=data[0].Balance;
@@ -86,21 +85,15 @@ export class JointeamPage {
         alert("Not Enough Money");
       }
     }else{
-      console.log("no user");
+      alert("no user");
     }
 
+    },err=>{
+      alert(err);
     })
     
 }
 
-  public changePayment(user : any){
-    this.paymentUser = user;
-    console.log(this.paymentUser);
-  }
-
-  public changeView(){
-    this.chooseUser=true;
-  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad JointeamPage');
   }

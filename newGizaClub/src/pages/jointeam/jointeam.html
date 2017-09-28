@@ -62,21 +62,18 @@
 </ion-row>
 </div>
 </div>
-<ion-row *ngIf="userReady" style="    min-height: 50px;">
-    <ion-col >
+<div *ngIf="userReady" style="    min-height: 50px;">
+    <ion-row>
+      <ion-col>
+        <ion-select class="user-select"  [(ngModel)]="paymentUser" >
+            <ion-option  [value]="user">{{user.username}}</ion-option>
+            <ion-option  [value]="member">{{member.username}}</ion-option>
+          </ion-select>
+        </ion-col>
+        </ion-row>
+    <ion-row >
         <button ion-button class="join-button" (tap)="join()" block> Join</button>
-    </ion-col>
-    <ion-col *ngIf="!chooseUser">
-        <button ion-button class="join-button" (tap)="changeView()" block> Choose Account</button>
-    </ion-col>
-    <ion-col *ngIf="chooseUser">
-      <ion-row class="join-row-right">
-        <button ion-button  class="join-button-2" block (tap)="changePayment(user)">{{user.username}}</button>
-      </ion-row>
-      <ion-row class="join-row-right">
-          <button ion-button  class="join-button-2" block (tap)="changePayment(member)">{{member.username}}</button>
-      </ion-row>
-      </ion-col>
-  </ion-row>
+    </ion-row>
+  </div>
 
 </ion-content>
