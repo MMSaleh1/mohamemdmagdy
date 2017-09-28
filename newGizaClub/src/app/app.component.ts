@@ -1,5 +1,6 @@
 import { Component,ViewChild } from '@angular/core';
-import {Nav,Platform,ToastController } from 'ionic-angular';
+import {Nav,Platform } from 'ionic-angular';
+//import { ToastController} from 'ionic-angular'; 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -8,7 +9,7 @@ import {NativeStorage} from '@ionic-native/native-storage';
 import { HomePage } from '../pages/home/home';
 import { AbouttabsPage } from '../pages/abouttabs/abouttabs';
 import { RegestrationPage } from '../pages/regestration/regestration';
-import { LoginPage } from '../pages/login/login';
+//import { LoginPage } from '../pages/login/login';
 import { ProfilePage } from '../pages/profile/profile';
 import { ResturantslistPage} from '../pages/resturantslist/resturantslist';
 import { FacilitieslistPage } from '../pages/facilitieslist/facilitieslist';
@@ -38,7 +39,7 @@ export class MyApp {
   constructor(platform: Platform,
      statusBar: StatusBar,
       splashScreen: SplashScreen,
-      private toastCtrl:   ToastController,
+     // private toastCtrl:   ToastController,
       private natStorage : NativeStorage,
       private productsProvider : ProductsProvider ,
       private sportsProvider : SportsProvider,
@@ -68,18 +69,16 @@ export class MyApp {
       
 
       this.natStorage.getItem(this.defaultPage).then((data)=>{
-        if(data == HomePage.name){
+        if(data == "2"){
           this.rootPage=HomePage;
-        }else if(data== LoginPage.name){
-          this.rootPage=LoginPage;
-        }else if(data == CodeverificationPage.name){
+        }else if(data =="1"){
           this.rootPage=CodeverificationPage;
         }else{
           this.rootPage=RegestrationPage;
         }
         
     },(err)=>{
-      this.natStorage.setItem(this.defaultPage,RegestrationPage.name);
+      this.natStorage.setItem(this.defaultPage,"0");
       this.rootPage=RegestrationPage;
     }
   )
@@ -89,8 +88,7 @@ export class MyApp {
       splashScreen.hide();
      
     
-     let lastTimeBackPress = 0;
-        let timePeriodToExit  = 2000;
+   
 
         
               //calling APIs from the server to get the static data
@@ -219,6 +217,8 @@ this.natStorage.getItem('user').then(data=>{
 //----------------------------------------------------------------
 
 /*
+  let lastTimeBackPress = 0;
+        let timePeriodToExit  = 2000;
         platform.registerBackButtonAction(() => {
             // get current active page
             let view = this.nav.getActive();

@@ -8,7 +8,7 @@
     <ion-title class="title">{{name}}</ion-title>
       </ion-col>
   <ion-col col-auto>
-    <button *ngIf="platform.is('android')" ion-button name="logOut" class="android-logout-Button" (tap)="logOut()" >logOut
+    <button *ngIf="!platform.is('ios')" ion-button name="logOut" class="android-logout-Button" (tap)="logOut()" >logOut
     </button>
     <button *ngIf="platform.is('ios')" ion-button name="logOut" class="ios-logout-Button" (tap)="logOut()" >logOut
     </button>

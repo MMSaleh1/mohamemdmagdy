@@ -29,7 +29,6 @@ export class CodeverificationPage {
     public userProvider: UserProvider,
     public natStorage: NativeStorage
   ) {
-    this.natStorage.setItem(this.defaultPage,CodeverificationPage.name);
     this.family = new Array();
       
       
@@ -77,7 +76,7 @@ export class CodeverificationPage {
           this.userProvider.get_user_balance_history(this.userdata.memberId).subscribe(data=>{
             console.log(data);
           })
-           this.natStorage.setItem(this.defaultPage,HomePage.name);
+           this.natStorage.setItem(this.defaultPage,"2");
            this.natStorage.setItem("relatives",this.family);
            this.natStorage.setItem("user",this.userdata);
             this.navCtrl.setRoot(HomePage);
