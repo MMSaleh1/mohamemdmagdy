@@ -85,7 +85,7 @@ export class JointeamPage {
         alert("Not Enough Money");
       }
     }else{
-      alert("no user");
+      alert("Not Enough Money");
     }
 
     },err=>{
