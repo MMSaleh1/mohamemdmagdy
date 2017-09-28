@@ -10,19 +10,9 @@
 <ion-content padding>
   <span *ngIf="ready">
 <ion-card  class="news-card" *ngFor="let post of news; let index = index ; trackBy:trackByIndex;">
-      <ion-card-header>
-        {{post.title}}
-      </ion-card-header>
-      <ion-card-content>
-        <ion-row>
-          <ion-col>
-        {{post.content}}
-          </ion-col>
-          <ion-col class="news-img-cont">
-            <img [src]="post.image" >
-          </ion-col>
-        </ion-row>
-      </ion-card-content>
+    <ion-row><ion-col class="title-col">{{post.title}}</ion-col></ion-row>
+    <img [src]="post.image">
+    <ion-row><ion-col><p>{{post.content}}</p></ion-col></ion-row>
       <div *ngIf="!post.isliked && !post.isdesliked">
       <ion-row>
         <ion-col col-3>

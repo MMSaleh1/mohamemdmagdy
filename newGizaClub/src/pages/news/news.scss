@@ -16,11 +16,17 @@ page-news {
         }
          .col{
             padding: 0px;
+
+        }
+        .title-col{
+            padding: 0px;
+            padding-top: 7%;
+            text-align:  center;
         }
         ion-card img {
             display: block;
             margin: auto;
-            width: 60%;
+            width: 100%;
         }
  
         ion-navbar {
@@ -38,6 +44,12 @@ page-news {
             top: -50px;
         }
  
+        .icon{
+            color: 	#fbb713;
+            font-size: 2em;
+            margin: auto
+        }
+        
         
  
         ion-card {
