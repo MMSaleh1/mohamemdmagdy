@@ -63,7 +63,7 @@ export class RegestrationPage {
         if(data.length == 0){
           alert("please enter a valid phone number");
           }else{
-            this.natStorage.setItem(this.defaultPage,CodeverificationPage.name);
+            this.natStorage.setItem(this.defaultPage,"1");
           console.log(data);
           this.user.username=data[0].name;
           this.user.email=data[0].email;

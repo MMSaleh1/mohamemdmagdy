@@ -109,13 +109,13 @@ export class OrderPage {
     let today  = new Date();
     let time = today.getHours()+":"+today.getMinutes();
     if((this.user.balanceMoney >= this.orderPrice && this.paymentMethod == 61)|| this.paymentMethod ==41 ){
-    this.ProdProvider.add_invoice_header(count,this.totalprice,this.user.memberId,this.paymentMethod,this.resturant.id,this.tableCode,0,time,"Pending",this.dToRestaurnat).subscribe(data=>{
+    this.ProdProvider.add_invoice_header(count,this.totalprice,this.user.memberId,this.paymentMethod,this.resturant.id,this.tableCode,0,time,"Pending",this.dToRestaurnat.id).subscribe(data=>{
 
     let invId=data;
     let ordernumber = 0;
     for(var i = 0;i<this.orders.length;i++){
       if(this.orders[i].quantity > 0){
-        this.ProdProvider.add_invoice_item(this.orders[i].item.category.id,this.orders[i].item.id,this.orders[i].quantity,this.orders[i].item.price,this.user.memberId,this.paymentMethod,invId,"Pending",0,this.tableCode).subscribe(Data=>{
+        this.ProdProvider.add_invoice_item(this.orders[i].item.category.id,this.orders[i].item.id,this.orders[i].quantity,this.orders[i].item.price,this.user.memberId,this.paymentMethod,invId,"Pending",this.dToRestaurnat.id,this.tableCode).subscribe(Data=>{
           ordernumber++;
           if(ordernumber == this.viewOrder.length ){
             alert ("Order Completed");

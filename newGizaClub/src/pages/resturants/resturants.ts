@@ -50,11 +50,11 @@ export class ResturantsPage {
     this.categories[0] = new Category("All","-2");
     if(this.choosenResturant != undefined){
       if(this.choosenResturant.products.length >0){
-    for(var i =0;i< this.choosenResturant.products.length;i++)
+    for(let i =0;i< this.choosenResturant.products.length;i++)
       {
         
         let newCategory = true;
-        for(var j = 0 ;j<this.categories.length;j++){
+        for(let j = 0 ;j<this.categories.length;j++){
           if(this.categories[j].id == this.choosenResturant.products[i].category.id){
             console.log( this.choosenResturant.products[i].category.id);
             newCategory = false;
@@ -82,7 +82,7 @@ this.haveMenu = true;
     this.orders= new Array();
     this.subOrders = new Array();
     this.orders.length =this.choosenResturant.products.length;
-    for(var i =0;i<this.orders.length;i++){
+    for(let i =0;i<this.orders.length;i++){
       this.orders[i] ={item :this.choosenResturant.products[i],quantity:0 ,mainIndex : i}
      //console.log(this.orders[i]);
      
@@ -110,7 +110,7 @@ this.haveMenu = true;
   order(){
     let totalPrice =0;
     if(this.subOrders.length>0){
-      for(var i = 0;i<this.subOrders.length;i++){
+      for(let i = 0;i<this.subOrders.length;i++){
         this.orders[this.subOrders[i].mainIndex].quantity=this.subOrders[i].quantity;
       }
     }
@@ -135,7 +135,7 @@ this.haveMenu = true;
     console.log(category);
     let counter =0;
     if(this.subOrders.length>0){
-      for(var i = 0;i<this.subOrders.length;i++){
+      for(let i = 0;i<this.subOrders.length;i++){
         this.orders[this.subOrders[i].mainIndex].quantity=this.subOrders[i].quantity;
       }
     }
@@ -144,7 +144,7 @@ this.haveMenu = true;
       this.choosenProducts = this.choosenResturant.products;
       this.subOrders = this.orders;
     }else{
-      for(var i =0;i<this.choosenResturant.products.length;i++){
+      for(let i =0;i<this.choosenResturant.products.length;i++){
         if(this.choosenResturant.products[i].category.id == category.id )
           {
             this.choosenProducts[counter]=this.choosenResturant.products[i];
