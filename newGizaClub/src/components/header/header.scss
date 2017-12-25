@@ -6,8 +6,14 @@ header {
 }
 
 .toolbar-title-md{
-    font-size: 1.2em;
+
+    font-size: 1.5em;
+    overflow: initial;
+    white-space: nowrap;
+    font-weight: bold;
+
 }
+
 .logout-Button{
     margin: auto;
     
