@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController,MenuController} from 'ionic-angular';
+import { NavController,MenuController} from 'ionic-angular';
 import {FormBuilder,FormGroup,Validators} from '@angular/forms';
 import {NativeStorage} from '@ionic-native/native-storage';
 
@@ -13,7 +13,6 @@ import {User} from '../../templates/usertemplate';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-//@IonicPage()
 @Component({
   selector: 'page-regestration',
   templateUrl: 'regestration.html',
