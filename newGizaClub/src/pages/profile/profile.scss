@@ -4,6 +4,12 @@ page-profile {
     }
 
 }
+.segment-md-secondary .segment-button{
+    border-color: #fbb713;
+}
+.segment-ios-secondary .segment-button{
+    border-color: #fbb713;
+}
 .balance-card{
     margin-top: 70px;
     text-align: center;
@@ -17,10 +23,18 @@ page-profile {
     color: #ffffff;
     opacity: 1;
 }
+.segment-ios-secondary .segment-button.segment-activated{
+    border-color: #fbb713;
+    color: #ffffff;
+    opacity: 1;
+}
 .profile-user-name{
         margin: auto;
     text-align: center;
     color: #005a87;
+}
+.toolbar-background-ios{
+    background: #003147;
 }
 .profile-user-row{
     width: 90%;

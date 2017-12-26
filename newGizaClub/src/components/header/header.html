@@ -4,11 +4,13 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-row >
-      <ion-col class="title-cont">
+      <ion-col  class="title-cont">
     <ion-title class="title">{{name}}</ion-title>
       </ion-col>
   <ion-col col-auto>
-    <button ion-button name="logOut" class="logout-Button" (tap)="logOut()" >logOut
+    <button *ngIf="platform.is('android')" ion-button name="logOut" class="android-logout-Button" (tap)="logOut()" >logOut
+    </button>
+    <button *ngIf="platform.is('ios')" ion-button name="logOut" class="ios-logout-Button" (tap)="logOut()" >logOut
     </button>
     </ion-col>
     </ion-row>

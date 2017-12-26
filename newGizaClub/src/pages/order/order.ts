@@ -28,7 +28,7 @@ export class OrderPage {
   public viewOrder :Array<any>;
 
   public user : User ;
-  public totalPrice:number = 0;
+  public orderPrice:number = 0;
   public tableCode : number = 0;
   public paymentMethods : Array<{
     name : string  ;
@@ -37,7 +37,11 @@ export class OrderPage {
   public paymentMethod :number = 61 ;
   public resturant : any;
   public ready : boolean = false;
-  
+  public service : number;
+  public charge : number;
+  public totalprice : number;
+
+
 
   constructor(public navCtrl: NavController,
      public navParams: NavParams ,
@@ -59,11 +63,15 @@ export class OrderPage {
     this.resturant = this.navParams.get("resturant");
     let counter= 0;
     for(let i =0; i< this.orders.length;i++){
-      this.totalPrice += (this.orders[i].item.price*this.orders[i].quantity);
+      this.orderPrice += (this.orders[i].item.price*this.orders[i].quantity);
       if(this.orders[i].quantity >0){
         this.viewOrder[counter] = this.orders[i];
         counter++;
       }
+      this.charge = Math.ceil((this.orderPrice*14)/100);
+      this.service = Math.ceil((this.orderPrice*12)/100);
+      this.totalprice = this.orderPrice+this.charge+this.service;
+
     }
     
     
@@ -86,17 +94,6 @@ export class OrderPage {
     })
   }
 
-
-
-
-  public changePayment(payment : string ){
-    if(payment == "cash"){
-      this.paymentMethod = 41;
-    }else if(payment == "balance"){
-      this.paymentMethod = 61;
-    }
-
-  }
   public confirmOrder(){
     if(this.tableCode >0 && this.tableCode <= 100){
     let count = 0;
@@ -107,8 +104,8 @@ export class OrderPage {
     console.log(count);
     let today  = new Date();
     let time = today.getHours()+":"+today.getMinutes();
-    if((this.user.balanceMoney >= this.totalPrice && this.paymentMethod == 61)|| this.paymentMethod ==41 ){
-    this.ProdProvider.add_invoice_header(count,this.totalPrice,this.user.memberId,this.paymentMethod,this.resturant.id,this.tableCode,0,time).subscribe(data=>{
+    if((this.user.balanceMoney >= this.orderPrice && this.paymentMethod == 61)|| this.paymentMethod ==41 ){
+    this.ProdProvider.add_invoice_header(count,this.totalprice,this.user.memberId,this.paymentMethod,this.resturant.id,this.tableCode,0,time).subscribe(data=>{
 
     let invId=data;
     for(var i = 0;i<this.orders.length;i++){
